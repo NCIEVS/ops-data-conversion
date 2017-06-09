@@ -1,0 +1,40 @@
+Terminology2ODM Converter README
+================================
+
+This program converts NCI Terminology Excel files from ftp://ftp1.nci.nih.gov/ to ODM format according to the ideas set
+out by the CDISC XML Technologies team.  
+
+The schema files and xsl transforms in this package were supplied by various members of the CDISC team.
+
+Prerequisits
+============
+
+Java (>=1.6.0) and ant (>=1.8.0) must be installed prio to using the converter.  Other dependencies (java libraries, 
+scala compile, etc.) will be downloaded automatically the first time the converter is run.
+
+Quickstart
+==========
+
+In a console, navigate to the directory in which the converter was unpacked (the directory in which this README file is
+contained), and call
+
+	ant
+	
+The first run will download and cache several java libraries (~18MB), compile the converter, download the NCI Excel and text
+files from NCI ftp server and convert them to ODM and HTML. Subsequent calls will use the cached java libraries, but will 
+download the Excel files again only if they do not exist and convert them.
+
+The output can be found in {basedir}/build/out, along with copies of the schema files and an xsl transform for easy 
+viewing of the output files in a browser.
+
+Other ant targets
+=================
+
+run       - the default target (see "Quickstart")
+download  - only download the nci excel files.  no conversion.
+convert   - compile the converter and convert the excel files (these must alread be availble)
+validate  - validate the ODM files against the schema
+transform - transform the ODM files to html with the scl stylesheet
+clean     - removes the compiled converter artifacts and generated ODM files.
+scrub     - as for clean, but will also remove all downloaded/cached java libraries
+

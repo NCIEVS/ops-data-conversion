@@ -1,0 +1,47 @@
+REM set ANT_HOME=C:\ant\apache-ant-1.8.0
+set JAVA_HOME=C:\PROGRA~2\Java\JDK16~1.0_1
+set PATH=%ANT_HOME%\bin;%JAVA_HOME%\bin;%PATH%
+
+set XalanFolder=.\xalan-j_2_7_1
+set CLASSPATH=%XalanFolder%\xml-apis.jar;%XalanFolder%\serializer.jar;%XalanFolder%\xalan.jar;%XalanFolder%\xercesImpl.jar;%CLASSPATH%
+
+set xsl=./xsl/controlledterminology1-0-0-pdf.xsl
+
+set xml=./xml/ADaM Terminology.xml
+set html=./html/ADaM-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+set xml=./xml/CDASH Terminology.xml
+set html=./html/CDASH-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+set xml=./xml/Clinical Data Element Glossary.xml
+set html=./html/CDE-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+set xml=./xml/QS Terminology.xml
+set html=./html/QS-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+set xml=./xml/SDTM Terminology.xml
+set html=./html/SDTM-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+set xml=./xml/SEND Terminology.xml
+set html=./html/SEND-Terminology-pdf.html
+javaw -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx1024m org.apache.xalan.xslt.Process -IN "%xml%" -XSL %xsl% -OUT %html%
+
+
+set xmlworker=5.4.1
+set itextpdf=5.4.1
+
+javac -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF.java
+
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/ADaM-Terminology-pdf.html   ./pdf/ADaM-Terminology.pdf    
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/CDASH-Terminology-pdf.html  ./pdf/CDASH-Terminology.pdf   
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/CDE-Terminology-pdf.html    ./pdf/CDE-Terminology.pdf     
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/QS-Terminology-pdf.html     ./pdf/QS-Terminology.pdf      
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/SDTM-Terminology-pdf.html   ./pdf/SDTM-Terminology.pdf    
+java  -cp .;itextpdf-%itextpdf%.jar;xmlworker-%xmlworker%.jar XMLWorkerPDF ./html/SEND-Terminology-pdf.html   ./pdf/SEND-Terminology.pdf    
+
+pause

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+	Copyright 2011 Andrew Fowler <andrew.fowler@devframe.com>
+	
+	This file is part of Terinology2ODM Terminology2ODMConverter.
+	
+	Terminology2ODMConverter is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Terminology2ODMConverter is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Terminology2ODMConverter.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project name="ivy-bootstrap" default="setup-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+	
+	<property name="ivy.install.version" value="2.2.0" />
+	<property name="ivy.jar.dir" value="${basedir}/cache/ivy" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+	
+	<condition property="skip.ivy.download">
+		<available file="${ivy.jar.file}"/>
+	</condition>
+	
+	<target name="download-ivy" unless="skip.ivy.download">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<echo message="dowloading ivy..."/>
+		<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}"/>
+	</target>
+	
+	<target name="setup-ivy" depends="download-ivy">
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>    
+	
+	<target name="clean-ivy-cache" depends="setup-ivy">
+		<ivy:cleancache/>
+	</target>
+</project>

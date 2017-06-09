@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="netnook"
+		module="terminology2odm"
+		revision="working@NCI-02054300-L"
+		conf="build"
+		confs="build"
+		date="20170330154857"/>
+	<dependencies>
+		<module organisation="org.scala-lang" name="scala-compiler">
+			<revision name="2.8.1" status="release" pubdate="20101109130239" resolver="scalatools" artresolver="scalatools" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="3">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2726" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.scala-lang\scala-compiler\ivy-2.8.1.xml" searched="false" origin-is-local="false" origin-location="https://oss.sonatype.org/content/groups/scala-tools/org/scala-lang/scala-compiler/2.8.1/scala-compiler-2.8.1.pom"/>
+				<caller organisation="netnook" name="terminology2odm" conf="build" rev="2.8.1" rev-constraint-default="2.8.1" rev-constraint-dynamic="2.8.1" callerrev="working@NCI-02054300-L"/>
+				<artifacts>
+					<artifact name="scala-compiler" type="jar" ext="jar" status="no" details="" size="8984943" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.scala-lang\scala-compiler\jars\scala-compiler-2.8.1.jar">
+						<origin-location is-local="false" location="https://oss.sonatype.org/content/groups/scala-tools/org/scala-lang/scala-compiler/2.8.1/scala-compiler-2.8.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.8.1" status="release" pubdate="20101109130151" resolver="scalatools" artresolver="scalatools" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="4">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2546" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.scala-lang\scala-library\ivy-2.8.1.xml" searched="false" origin-is-local="false" origin-location="https://oss.sonatype.org/content/groups/scala-tools/org/scala-lang/scala-library/2.8.1/scala-library-2.8.1.pom"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="default, compile, runtime, master" rev="2.8.1" rev-constraint-default="2.8.1" rev-constraint-dynamic="2.8.1" callerrev="2.8.1"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="6496110" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.scala-lang\scala-library\jars\scala-library-2.8.1.jar">
+						<origin-location is-local="false" location="https://oss.sonatype.org/content/groups/scala-tools/org/scala-lang/scala-library/2.8.1/scala-library-2.8.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.poi" name="poi">
+			<revision name="3.2-FINAL" status="release" pubdate="20081019155942" resolver="default" artresolver="default" homepage="http://poi.apache.org/" downloaded="false" searched="false" default="false" conf="master" position="2">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3046" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.apache.poi\poi\ivy-3.2-FINAL.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/poi/poi/3.2-FINAL/poi-3.2-FINAL.pom"/>
+				<caller organisation="netnook" name="terminology2odm" conf="build" rev="3.2-FINAL" rev-constraint-default="3.2-FINAL" rev-constraint-dynamic="3.2-FINAL" callerrev="working@NCI-02054300-L"/>
+				<artifacts>
+					<artifact name="poi" type="jar" ext="jar" status="no" details="" size="1428690" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\org.apache.poi\poi\jars\poi-3.2-FINAL.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/poi/poi/3.2-FINAL/poi-3.2-FINAL.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="jaxen" name="jaxen">
+			<revision name="1.1.1" status="release" pubdate="20070505173021" resolver="default" artresolver="default" homepage="http://jaxen.codehaus.org/" downloaded="false" searched="false" default="false" conf="master" position="1">
+				<metadata-artifact status="no" details="" size="3104" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\jaxen\jaxen\ivy-1.1.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/jaxen/jaxen/1.1.1/jaxen-1.1.1.pom"/>
+				<caller organisation="netnook" name="terminology2odm" conf="build" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="working@NCI-02054300-L"/>
+				<artifacts>
+					<artifact name="jaxen" type="jar" ext="jar" status="no" details="" size="226915" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\jaxen\jaxen\jars\jaxen-1.1.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/jaxen/jaxen/1.1.1/jaxen-1.1.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="dom4j" name="dom4j">
+			<revision name="1.6.1" status="release" pubdate="20060210073318" resolver="default" artresolver="default" homepage="http://dom4j.org" downloaded="false" searched="false" default="false" conf="master" position="0">
+				<metadata-artifact status="no" details="" size="3786" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\dom4j\dom4j\ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.pom"/>
+				<caller organisation="netnook" name="terminology2odm" conf="build" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="working@NCI-02054300-L"/>
+				<artifacts>
+					<artifact name="dom4j" type="jar" ext="jar" status="no" details="" size="313898" time="0" location="C:\evsops\ODM_converter\trunk\cache\ivy-cache\dom4j\dom4j\jars\dom4j-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

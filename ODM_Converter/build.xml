@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<!--
+	Copyright 2011 Andrew Fowler <andrew.fowler@devframe.com>
+	
+	This file is part of Terinology2ODM Terminology2ODMConverter.
+	
+	Terminology2ODMConverter is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	Terminology2ODMConverter is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with Terminology2ODMConverter.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project name="Terminology to ODM Converter" default="run" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property name="source.dir"        location="src"/>
+	<property name="jsource.dir"       location="java_src"/>
+	<property name="cache.dir"         location="cache"/>
+	<property name="lib.dir"           location="${cache.dir}/lib"/>
+	<property name="jlib.dir"          location="lib"/>
+	<property name="in.dir"            location="in"/>
+	
+	<property name="build.dir"         location="build"/>
+	<property name="classes.dir"       location="${build.dir}/classes"/>
+	<property name="out.dir"           location="${build.dir}/out"/>
+	<property name="xsl.dir"           location="${out.dir}/xsl"/>
+	<property name="schema.dir"        location="${out.dir}/schema"/>
+	
+	
+	<property name="input.file.adam"    location="${in.dir}/ADaM Terminology.xls"/>
+	<property name="input.file.cdash"   location="${in.dir}/CDASH Terminology.xls"/>
+	<property name="input.file.cde"     location="${in.dir}/Clinical Data Element Glossary.xls"/>
+	<property name="input.file.prot"      location="${in.dir}/Protocol Terminology.xls"/>	
+	<property name="input.file.qs"      location="${in.dir}/QS Terminology.xls"/>
+	<property name="input.file.sdtm"    location="${in.dir}/SDTM Terminology.xls"/>
+	<property name="input.file.send"    location="${in.dir}/SEND Terminology.xls"/>
+	
+	<property name="input.file.adam.txt"    location="${in.dir}/ADaM Terminology.txt"/>
+	<property name="input.file.cdash.txt"   location="${in.dir}/CDASH Terminology.txt"/>
+	<property name="input.file.cde.txt"     location="${in.dir}/Clinical Data Element Glossary.txt"/>
+	<property name="input.file.prot.txt"     location="${in.dir}/Protocol Terminology.txt"/>	
+	<property name="input.file.qs.txt"      location="${in.dir}/QS Terminology.txt"/>
+	<property name="input.file.sdtm.txt"    location="${in.dir}/SDTM Terminology.txt"/>
+	<property name="input.file.send.txt"    location="${in.dir}/SEND Terminology.txt"/>
+
+	<property name="output.file.adam.xml"   location="${out.dir}/ADaM/ADaM Terminology.odm.xml"/>
+	<property name="output.file.cdash.xml"  location="${out.dir}/SDTM/CDASH Terminology.odm.xml"/>
+	<property name="output.file.cde.xml"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.odm.xml"/>
+	<property name="output.file.prot.xml"    location="${out.dir}/Protocol/Protocol Terminology.odm.xml"/>	
+	<property name="output.file.qs.xml"     location="${out.dir}/Questionnaire/QS Terminology.odm.xml"/>
+	<property name="output.file.sdtm.xml"   location="${out.dir}/SDTM/SDTM Terminology.odm.xml"/>
+	<property name="output.file.send.xml"   location="${out.dir}/SEND/SEND Terminology.odm.xml"/>
+
+	<property name="output.file.adam.html"   location="${out.dir}/ADaM/ADaM Terminology.html"/>
+	<property name="output.file.cdash.html"  location="${out.dir}/SDTM/CDASH Terminology.html"/>
+	<property name="output.file.cde.html"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.html"/>
+	<property name="output.file.prot.html"    location="${out.dir}/Protocol/Protocol Terminology.html"/>	
+	<property name="output.file.qs.html"     location="${out.dir}/Questionnaire/QS Terminology.html"/> 
+	<property name="output.file.sdtm.html"   location="${out.dir}/SDTM/SDTM Terminology.html"/>
+	<property name="output.file.send.html"   location="${out.dir}/SEND/SEND Terminology.html"/>
+	
+	<property name="output.file.adam.4pdf.html"   location="${out.dir}/ADaM/ADaM Terminology 4pdf.html"/>
+	<property name="output.file.cdash.4pdf.html"  location="${out.dir}/SDTM/CDASH Terminology 4pdf.html"/>
+	<property name="output.file.cde.4pdf.html"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary 4pdf.html"/>
+	<property name="output.file.prot.4pdf.html"    location="${out.dir}/Protocol/Protocol Terminology 4pdf.html"/>	
+	<property name="output.file.qs.4pdf.html"     location="${out.dir}/Questionnaire/QS Terminology 4pdf.html"/>
+	<property name="output.file.sdtm.4pdf.html"   location="${out.dir}/SDTM/SDTM Terminology 4pdf.html"/>
+	<property name="output.file.send.4pdf.html"   location="${out.dir}/SEND/SEND Terminology 4pdf.html"/>
+	
+	<property name="output.file.adam.pdf"   location="${out.dir}/ADaM/ADaM Terminology.pdf"/>
+	<property name="output.file.cdash.pdf"  location="${out.dir}/SDTM/CDASH Terminology.pdf"/>
+	<property name="output.file.cde.pdf"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.pdf"/>
+	<property name="output.file.prot.pdf"    location="${out.dir}/Protocol/Protocol Terminology.pdf"/>	
+	<property name="output.file.qs.pdf"     location="${out.dir}/Questionnaire/QS Terminology.pdf"/>
+	<property name="output.file.sdtm.pdf"   location="${out.dir}/SDTM/SDTM Terminology.pdf"/>
+	<property name="output.file.send.pdf"   location="${out.dir}/SEND/SEND Terminology.pdf"/>
+
+	<property name="xsl.file"                   location="${xsl.dir}/controlledterminology1-0-0.xsl"/>
+	<property name="xsl4pdf.file"                location="${xsl.dir}/controlledterminology1-0-0-pdf.xsl"/>
+	<property name="schema.file"                location="${schema.dir}/controlledterminology1-0-0.xsd"/>
+	<property name="cdisc.odm.schema.namespace" value="http://www.cdisc.org/ns/odm/v1.3"/>
+
+	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
+	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
+	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
+	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.8.1.jar"/>
+	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.8.1.jar"/>
+	<property name="itext-pdfa.jar"     location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
+	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
+	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
+	<property name="xmlworker.jar"       location="${jlib.dir}/xmlworker-5.4.1.jar"/>
+	
+	<import file="etc/ivy-bootstrap.xml"/>
+	
+	<path id="runtime.classpath">
+		<path refid="build.classpath"/>
+	</path>
+	
+	<path id="build.classpath">
+		<pathelement location="${classes.dir}"/>
+		<pathelement location="${dom4j.jar}"/>
+		<pathelement location="${jaxen.jar}"/>
+		<pathelement location="${poi.jar}"/>
+		<pathelement location="${scala-library.jar}"/>
+		<pathelement location="${itext-pdfa.jar}"/>
+		<pathelement location="${itext-xtra.jar}"/>
+		<pathelement location="${itextpdf.jar}"/>
+		<pathelement location="${xmlworker.jar}"/>
+	</path>
+	
+	<!-- ************************************************************************************** -->
+	<!-- ** targets  ************************************************************************** -->
+	<!-- ************************************************************************************** -->
+	
+	<target name="run" depends="init, download, convert, validate, transform, transform4pdf" description=" --> download nci files, convert and transform"/>
+	
+	<target name="init" depends="setup-ivy">
+		<ivy:settings file="ivysettings.xml"/>
+		<ivy:retrieve conf="build" pattern="${lib.dir}/[artifact]-[revision].[ext]"/>
+		
+		<taskdef resource="scala/tools/ant/antlib.xml">
+			<classpath>
+				<pathelement location="${scala-compiler.jar}"/>
+				<pathelement location="${scala-library.jar}"/>
+			</classpath>
+		</taskdef>
+	</target>
+	
+	<target name="download" description=" --> download nci excel files">
+		<mkdir dir="${in.dir}"/>
+		
+<!--		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.xls" dest="${input.file.adam}" verbose="on" ignoreerrors="true" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.xls" dest="${input.file.cdash}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.xls" dest="${input.file.cde}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Questionnaire/QS Terminology.xls" dest="${input.file.qs}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.xls" dest="${input.file.sdtm}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.xls" dest="${input.file.send}" verbose="on" skipexisting="true"/>
+
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.txt" dest="${input.file.adam.txt}" verbose="on" ignoreerrors="true" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.txt" dest="${input.file.cdash.txt}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.txt" dest="${input.file.cde.txt}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Questionnaire/QS Terminology.txt" dest="${input.file.qs.txt}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.txt" dest="${input.file.sdtm.txt}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.txt" dest="${input.file.send.txt}" verbose="on" skipexisting="true"/> -->
+	</target>
+	
+	<target name="compile" depends="init">
+		<mkdir dir="${classes.dir}"/>
+		
+		<scalac srcdir="${source.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
+		<javac srcdir="${jsource.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
+	</target>
+	
+	<target name="convert" depends="compile" description=" --> convert nci excel files odm (files must already be downloaded)">
+		<delete dir="${out.dir}"/>
+		<mkdir dir="${out.dir}"/>
+		<mkdir dir="${out.dir}/ADaM"/>
+		<mkdir dir="${out.dir}/Clinical_Data_Element_Glossary"/>
+		<mkdir dir="${out.dir}/Protocol"/>		
+		<mkdir dir="${out.dir}/Questionnaire"/>
+		<mkdir dir="${out.dir}/SDTM"/>
+		<mkdir dir="${out.dir}/SEND"/>
+		
+		<terminology2odm inputfile="${input.file.adam}"  outputfile="${output.file.adam.xml}"/>
+		<terminology2odm inputfile="${input.file.cdash}" outputfile="${output.file.cdash.xml}"/>
+		<terminology2odm inputfile="${input.file.cde}"   outputfile="${output.file.cde.xml}"/>
+		<terminology2odm inputfile="${input.file.prot}"   outputfile="${output.file.prot.xml}"/>		
+		<terminology2odm inputfile="${input.file.qs}"    outputfile="${output.file.qs.xml}"/>
+		<terminology2odm inputfile="${input.file.sdtm}"  outputfile="${output.file.sdtm.xml}"/>
+		<terminology2odm inputfile="${input.file.send}"  outputfile="${output.file.send.xml}"/>
+		
+		
+		<copy todir="${out.dir}">
+			<fileset dir="etc">
+				<include name="xsl/**"/>
+				<include name="schema/**"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/ADaM">
+			<fileset dir="in">
+				<include name="ADaM*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/SDTM">
+			<fileset dir="in">
+				<include name="CDASH*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/Clinical_Data_Element_Glossary">
+			<fileset dir="in">
+				<include name="Clinical Data Element*.*"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${out.dir}/Protocol">
+			<fileset dir="in">
+				<include name="Protocol*.*"/>
+			</fileset>
+		</copy>		
+
+		<copy todir="${out.dir}/Questionnaire">
+			<fileset dir="in">
+				<include name="QS*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/SDTM">
+			<fileset dir="in">
+				<include name="SDTM*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/SEND">
+			<fileset dir="in">
+				<include name="SEND*.*"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+  <target name="validate" depends="convert" description=" --> validate nci excel files odm">
+    <schemavalidate file="${output.file.adam.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+    <schemavalidate file="${output.file.cdash.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+    <schemavalidate file="${output.file.cde.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+    <schemavalidate file="${output.file.prot.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>  	
+    <schemavalidate file="${output.file.qs.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+    <schemavalidate file="${output.file.sdtm.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+    <schemavalidate file="${output.file.send.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+	</target>
+
+  <target name="transform" depends="validate" description=" --> transform nci excel files odm html">
+    <xslt in="${output.file.adam.xml}"  out="${output.file.adam.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.cde.xml}"   out="${output.file.cde.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.prot.xml}"   out="${output.file.prot.html}" style="${xsl.file}" failonerror="false"/>  	
+    <xslt in="${output.file.qs.xml}"    out="${output.file.qs.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.send.xml}"  out="${output.file.send.html}" style="${xsl.file}" failonerror="false"/>
+  </target>
+	
+  <target name="transform4pdf" depends="transform" description=" --> transform nci odm to html for pdf conversion">
+	    <xslt in="${output.file.adam.xml}"  out="${output.file.adam.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+	    <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+	    <xslt in="${output.file.cde.xml}"   out="${output.file.cde.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.prot.xml}"   out="${output.file.prot.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>  	
+	    <xslt in="${output.file.qs.xml}"    out="${output.file.qs.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+	    <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+	    <xslt in="${output.file.send.xml}"  out="${output.file.send.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+  	
+	<transform4pdf inputfile="${output.file.adam.4pdf.html}"  outputfile="${output.file.adam.pdf}"/>
+	<transform4pdf inputfile="${output.file.cdash.4pdf.html}" outputfile="${output.file.cdash.pdf}"/>
+	<transform4pdf inputfile="${output.file.cde.4pdf.html}"   outputfile="${output.file.cde.pdf}"/>
+	<transform4pdf inputfile="${output.file.prot.4pdf.html}"   outputfile="${output.file.prot.pdf}"/>  	
+	<transform4pdf inputfile="${output.file.qs.4pdf.html}"    outputfile="${output.file.qs.pdf}"/>
+	<transform4pdf inputfile="${output.file.sdtm.4pdf.html}"  outputfile="${output.file.sdtm.pdf}"/>
+	<transform4pdf inputfile="${output.file.send.4pdf.html}"  outputfile="${output.file.send.pdf}"/>
+  
+  </target>
+	
+
+	
+	<macrodef name="terminology2odm">
+		<attribute name="inputfile"/>
+		<attribute name="outputfile"/>
+		<sequential>
+			<java classname="TerminologyExcel2ODM" classpathref="runtime.classpath" failonerror="true">
+				<arg value="@{inputfile}"/>
+				<arg value="@{outputfile}"/>
+			</java>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="transform4pdf">
+		<attribute name="inputfile"/>
+		<attribute name="outputfile"/>
+		<sequential>
+			<java classname="gov.nih.nci.evs.PDF_ODM_Converter" classpathref="runtime.classpath" failonerror="true">
+				<arg value="@{inputfile}"/>
+				<arg value="@{outputfile}"/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<target name="clean" description=" --> remove all build artifacts and generated files">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="scrub" depends="clean" description=" --> clean + remove all downloaded (cached) files / libraries etc">
+		<delete dir="${cache.dir}"/>
+	</target>
+</project>

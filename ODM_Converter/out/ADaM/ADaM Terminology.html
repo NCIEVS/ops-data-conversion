@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>CDISC ADaM Controlled Terminology</title>
+<style type="text/css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style:  normal;
+    font-weight: normal;
+    font-size:   14px;
+    margin: 0;
+    padding: 10px;
+}
+
+h1, #study_description {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px 25px;
+    border: 2px solid black;
+}
+
+td {
+    vertical-align: top;
+    padding: 3px 4px;
+    border:  1px solid #dddddd;
+}
+
+thead tr th {
+    vertical-align: top;
+    padding: 3px 4px;
+    border:  2px solid black;
+}
+
+.header {
+    font-weight:bold;
+    white-space: nowrap;
+}
+
+.header td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr.item_last td {
+    border-bottom: solid 1px black;
+}
+
+.cl {
+    background: #ccffff;
+}
+
+.cli {
+    background: white;
+}
+
+.nci {
+    background: #ffffcc;
+}
+
+.pre {
+    white-space: pre-wrap;
+}
+
+#legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#toc {
+float:left;
+left:5px;
+width:300px;
+}
+#contents {
+position: absolute;
+left:300px;
+margin-right:10px;
+}
+
+
+tr.codelist td {
+    border-top: solid 1px black;
+}
+                </style>
+</head>
+<body>
+<a id="top"></a>
+<h1>CDISC ADaM Controlled Terminology</h1>
+<div id="study_description">CDISC ADaM Controlled Terminology, 2011-01-07</div>
+<table id="legend">
+<caption>Legend:</caption>
+<tr>
+<td class="cl">CodeList</td>
+</tr>
+<tr>
+<td class="cli">CodeListItem</td>
+</tr>
+<tr>
+<td class="nci">NCI attributes</td>
+</tr>
+</table>
+<div id="toc">
+<table>
+<tr>
+<td>C81223</td><td><a href="#CL.C81223.DATEFL">Date Imputation Flag</a></td>
+</tr>
+<tr>
+<td>C81224</td><td><a href="#CL.C81224.DTYPE">Derivation Type</a></td>
+</tr>
+<tr>
+<td>C81225</td><td><a href="#CL.C81225.PARAMTYP">Parameter Type</a></td>
+</tr>
+<tr>
+<td>C81226</td><td><a href="#CL.C81226.TIMEFL">Time Imputation Flag</a></td>
+</tr>
+</table>
+</div>
+<div id="contents">
+<h2>Codelist Definitions</h2>
+<table>
+<thead>
+<tr class="header cl">
+<th>OID</th><th>Name (CDISC Submission Value)</th><th>DataType Extensible</th><th rowspan="2" class="nci">NCI Code</th><th rowspan="2" class="nci">CDISC Synonym</th><th rowspan="2" class="nci">CDISC Definition</th><th rowspan="2" class="nci">Preferred Term</th>
+</tr>
+<tr class="header cli">
+<th></th><th colspan="2">CDISC Submission Value [ODM:CodedValue]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="cl">
+<td><a name="CL.C81223.DATEFL">CL.C81223.DATEFL</a></td><td>Date Imputation Flag (DATEFL)</td><td nowrap>text Extensible: No</td><td>C81223</td><td>Date Imputation Flag</td><td>Date Imputation Flag: Indicates the level of imputation reflected in a date value.</td><td>CDISC ADaM Date Imputation Flag Terminology</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">D</td><td class="nci">C81212</td><td class="nci"></td><td class="nci">Day Imputed: Day is imputed.</td><td class="nci">Day Imputed</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">M</td><td class="nci">C81211</td><td class="nci"></td><td class="nci">Month Imputed: Month and day are imputed.</td><td class="nci">Month Day Imputed</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">Y</td><td class="nci">C81210</td><td class="nci"></td><td class="nci">Year Imputed: Entire date (year, month and day) is imputed.</td><td class="nci">Year Month Day Imputed</td>
+</tr>
+<tr>
+<td colspan="7"><a href="#top">Back to top</a></td>
+</tr>
+<tr class="cl">
+<td><a name="CL.C81224.DTYPE">CL.C81224.DTYPE</a></td><td>Derivation Type (DTYPE)</td><td nowrap>text Extensible: Yes</td><td>C81224</td><td>Derivation Type</td><td>Derivation Type: Analysis value derivation method.</td><td>CDISC ADaM Derivation Type Terminology</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">AVERAGE</td><td class="nci">C81209</td><td class="nci"></td><td class="nci">Average: A data derivation technique which calculates a subject's average value over a defined set of records.</td><td class="nci">Average of Value Derivation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">BC</td><td class="nci">C92225</td><td class="nci"></td><td class="nci">Best Case: A data imputation technique which populates missing values with the best possible outcome.</td><td class="nci">Best Case Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">BLOCF</td><td class="nci">C81201</td><td class="nci"></td><td class="nci">Baseline Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing baseline observation.</td><td class="nci">Baseline Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">BOCF</td><td class="nci">C92226</td><td class="nci"></td><td class="nci">Best Observation Carried Forward: A data imputation technique which populates missing values with the subject's best-case nonmissing value.</td><td class="nci">Best Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">ENDPOINT</td><td class="nci">C82866</td><td class="nci"></td><td class="nci">Endpoint: A data derivation technique which calculates a subject's analysis end point value.</td><td class="nci">Endpoint Value Derivation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">INTERP</td><td class="nci">C81208</td><td class="nci"></td><td class="nci">Interpolation: A method of imputation involving a missing value that is between known values and is estimated by a function of those known values.</td><td class="nci">Interpolation Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">LOCF</td><td class="nci">C81198</td><td class="nci"></td><td class="nci">Last Observation Carried Forward: A data imputation technique which populates missing values with the subject's previous nonmissing value.</td><td class="nci">Last Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">MAXIMUM</td><td class="nci">C82868</td><td class="nci"></td><td class="nci">Maximum: A data derivation technique which calculates a subject's maximum value over a defined set of records.</td><td class="nci">Maximum Value Derivation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">MINIMUM</td><td class="nci">C82867</td><td class="nci"></td><td class="nci">Minimum: A data derivation technique which calculates a subject's minimum value over a defined set of records.</td><td class="nci">Minimum Value Derivation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">ML</td><td class="nci">C53331</td><td class="nci"></td><td class="nci">Maximum Likelihood: A data imputation technique which populates missing values with estimates that maximize the probability of observing what has in fact been observed.</td><td class="nci">Maximum Likelihood Estimation</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">MOTH</td><td class="nci">C81204</td><td class="nci"></td><td class="nci">Mean of Other Group: A data imputation technique which populates missing values with the mean value from a comparator or reference group.</td><td class="nci">Mean of Other Group Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">MOV</td><td class="nci">C81207</td><td class="nci"></td><td class="nci">Mean Observed Value in a Group: A data imputation technique which populates missing values with the mean value observed in a group of subjects.</td><td class="nci">Mean Observed Value in a Group Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">POCF</td><td class="nci">C81205</td><td class="nci"></td><td class="nci">Penultimate Observation Carried Forward: A data imputation technique which populates missing values with the subject's next-to-last nonmissing value.</td><td class="nci">Penultimate Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">SOCF</td><td class="nci">C81200</td><td class="nci"></td><td class="nci">Screening Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing screening observation.</td><td class="nci">Screening Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">WC</td><td class="nci">C81203</td><td class="nci"></td><td class="nci">Worst Case: A data imputation technique which populates missing values with the worst possible outcome.</td><td class="nci">Worst Case Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">WOCF</td><td class="nci">C81199</td><td class="nci"></td><td class="nci">Worst Observation Carried Forward: A data imputation technique which populates missing values with the subject's worst-case nonmissing value.</td><td class="nci">Worst Observation Carried Forward Imputation Technique</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">WOV</td><td class="nci">C81206</td><td class="nci"></td><td class="nci">Worst Observed Value in a Group: A data imputation technique which populates missing values with the worst value observed in a group of subjects.</td><td class="nci">Worst Observed Value in a Group Imputation Technique</td>
+</tr>
+<tr>
+<td colspan="7"><a href="#top">Back to top</a></td>
+</tr>
+<tr class="cl">
+<td><a name="CL.C81225.PARAMTYP">CL.C81225.PARAMTYP</a></td><td>Parameter Type (PARAMTYP)</td><td nowrap>text Extensible: No</td><td>C81225</td><td>Parameter Type</td><td>Parameter Type: Indicates whether the parameter is derived as a function of one or more other parameters.</td><td>CDISC ADaM Parameter Type Terminology</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">DERIVED</td><td class="nci">C81197</td><td class="nci"></td><td class="nci">Derived: Indicates that a parameter is derived as a function of one or more other parameters.</td><td class="nci">Derived Flag</td>
+</tr>
+<tr>
+<td colspan="7"><a href="#top">Back to top</a></td>
+</tr>
+<tr class="cl">
+<td><a name="CL.C81226.TIMEFL">CL.C81226.TIMEFL</a></td><td>Time Imputation Flag (TIMEFL)</td><td nowrap>text Extensible: No</td><td>C81226</td><td>Time Imputation Flag</td><td>Time Imputation Flag: Indicates the level of imputation reflected in a time value.</td><td>CDISC ADaM Time Imputation Flag Terminology</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">H</td><td class="nci">C81213</td><td class="nci"></td><td class="nci">Hours Imputed: Entire time (hours, minutes and seconds) is imputed.</td><td class="nci">Hours Minutes Seconds Imputed</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">M</td><td class="nci">C81214</td><td class="nci"></td><td class="nci">Minutes Imputed: Minutes and seconds are imputed.</td><td class="nci">Minutes Seconds Imputed</td>
+</tr>
+<tr class="cli">
+<td></td><td colspan="2">S</td><td class="nci">C81215</td><td class="nci"></td><td class="nci">Seconds Imputed: Seconds are imputed.</td><td class="nci">Seconds Imputed</td>
+</tr>
+<tr>
+<td colspan="7"><a href="#top">Back to top</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
