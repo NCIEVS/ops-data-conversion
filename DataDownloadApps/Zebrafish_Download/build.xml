@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<!--This will build the OBO_Download project -->
+
+<project name="ReportWriter" default="deploy" basedir=".">
+	
+    <!-- *********************************************************-->
+    <!--    Properties                                            -->
+    <!-- *********************************************************-->
+	
+	
+    <!-- ********************************************************-->
+    <!--    Targets for building                                 -->
+    <!-- ********************************************************-->
+	
+	<!-- build initialization -->
+	<target name="init" depends="clean" description="Cleans then recreates directories">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${output}" />
+	</target>
+	
+	<!-- cleans the build artifacts -->
+	<target name="clean" description="Cleans">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete dir="${output}" />
+	</target>
+	
+	<!-- compiles the source code -->
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath>
+				<pathelement path="${lib}" />
+				<fileset dir="lib">
+					<include name="**/*" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	
+    <!-- ********************************************************-->
+    <!--    Targets for packaging                                 -->
+    <!-- ********************************************************-->
+	
+	<!-- creates the deployment -->
+	<target name="deploy" depends="deploy-client">
+		<copy file="runOBODownload.bat" tofile="${dist}\runOBODownload.bat"/>
+		<copy file="runOBODownload.bat" tofile="${dist}\runOBODownload.bat"/>
+	</target>
+	
+	<target name="deploy-client" depends="create-jar-manifest,compile">
+		<jar jarfile="${dist}/${client.jar}" index="true" manifest="${build}/MANIFEST.MF">
+			<fileset dir="${build}" includes="**/*.class" />
+		    <zipgroupfileset includes="*.jar" dir="${lib}"/>
+		</jar>
+	</target>
+	
+	<!-- generates the jar manifest -->
+	<target name="create-jar-manifest" depends="init" description="makes a custom manifest">
+		<tstamp>
+			<format property="buildtime" pattern="MM-dd-yyyy HH:mm:s
+s" />
+		</tstamp>
+		<manifest file="${build}/MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Build-Date" value="${buildtime}" />
+		    <attribute name="Main-Class" value="gov.nih.nci.evs.OBO_Download"/>
+		</manifest>
+	</target>
+	
+	
+    <!-- *****************************************************-->
+    <!--    Targets for running                               -->
+    <!-- *****************************************************-->
+	
+</project>

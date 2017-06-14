@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodingSchemeManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest
+       http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest.xsd"
+       xmlns:lgNaming="http://LexGrid.org/schema/2010/01/LexGrid/naming"
+       xmlns:owldef="http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest"
+       xmlns="http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest"
+       id="http://ncicb.nci.nih.gov/genenames.org/HGNC.owl#">
+		<codingScheme>HGNC</codingScheme>
+		<entityDescription>HGNC</entityDescription>
+		<formalName toOverride="true">HUGO Gene Nomenclature Committee Ontology</formalName>
+		<codingSchemeURI toOverride="true">urn:oid:2.16.840.1.113883.6.281</codingSchemeURI>
+		<defaultLanguage>en</defaultLanguage>
+		<representsVersion toOverride="true">template</representsVersion>
+		<localName>HUGO</localName>
+		<localName>Human Genome Organisation</localName>
+		<localName>HUGO Gene Nomenclature Committee Database</localName>
+		<localName>http://ncicb.nci.nih.gov/genenames.org/HGNC.owl#</localName>
+		<owldef:mappings>
+			<lgNaming:supportedCodingScheme localId="HGNC" uri="urn:oid:2.16.840.1.113883.6.281" isImported="false">HGNC</lgNaming:supportedCodingScheme>
+		</owldef:mappings>
+		<owldef:associationDefinitions />
+</CodingSchemeManifest>
