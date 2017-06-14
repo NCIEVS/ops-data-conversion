@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<met:ontology_description xmlns:met="http://server.stanford.ncbo.org/metadata">
+    <met:concise_name>HGNC</met:concise_name>
+    <met:category_name>Vocabularies</met:category_name>
+    <met:display_label>Human Genome Organization</met:display_label>
+    <met:default_language>English</met:default_language>
+    <met:description>HGNC, published by the HUGO Gene Nomenclature Committee at the European Bioinformatics Institute".</met:description>
+    <met:key_classes>biological_process</met:key_classes>
+    <met:authority>
+        <met:idspace local_name="HGNC" xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <met:about>
+            <met:homepage>http://www.genenames.org/index.html</met:homepage>
+            <met:documentation>http://www.genenames.org/aboutHGNC.html</met:documentation>
+            <met:contact email="ncicb@pop.nci.nih.gov" emailType="">NCICB Support</met:contact>
+        </met:about>
+    </met:authority>
+    <met:core_format>
+        <met:format>OWL-FULL</met:format>
+    </met:core_format>
+    <met:version_info is_current="true">
+        <met:version>template</met:version>
+        <met:status>production</met:status>
+        <met:download_info>
+            <met:download_format>SQL</met:download_format>
+            <met:download_url></met:download_url>
+        </met:download_info>
+        <met:version_releaseDate>template</met:version_releaseDate>
+    </met:version_info>
+    <met:foundry is_foundry="false" opt_foundry="true">
+        <met:open>false</met:open>
+        <met:language>false</met:language>
+        <met:idspace>false</met:idspace>
+        <met:versioned>false</met:versioned>
+        <met:content>false</met:content>
+        <met:definitions>false</met:definitions>
+        <met:relations>false</met:relations>
+        <met:documented>false</met:documented>
+        <met:users>false</met:users>
+    </met:foundry>
+    <met:authority>HUGO Gene Nomenclature Committee at the European Bioinformatics Institute</met:authority>
+<met:copyright>Anyone may use the HGNC data, but we request that they reference the "HUGO Gene Nomenclature Committee at the European Bioinformatics Institute" and the website http://www.genenames.org where possible.</met:copyright>
+<met:display_name>HGNC</met:display_name>
+<met:full_name>HUGO Gene Nomenclature Committee</met:full_name>
+<met:html_compatable_description><![CDATA[The Human Genome Organisation's (HUGO) Gene Nomenclature Committee (HGNC) at the European Bioinformatics Institute approves a gene name and symbol (short-form abbreviation) for each known human gene. All approved symbols are stored in the HGNC database. Each symbol is unique and each gene is only given one approved gene symbol. This facilitates electronic data exchange and retrieval. In preference each symbol maintains parallel construction in different members of a gene family and can also be used in other species, especially the mouse. HGNC has already approved over 33,000 symbols; the vast majority of these are for protein-coding genes, but also include symbols for pseudogenes, non-coding RNAs, phenotypes and genomic features. HGNC assigns nomenclature to genes submitted by the Human Genome Project, as well as by scientists, journals (e.g. Genomics, Nature Genetics), databases (e.g. Ensembl, Entrez Gene, MGD, RGD and OMIM), and researchers working on gene families, chromosome segments or whole chromosomes. In all cases, considerable efforts are made to use a symbol acceptable to workers in the field.  See <a href="http://www.genenames.org">http://www.genenames.org</a> for details.]]></met:html_compatable_description>
+<met:source_content_contact>Organization: HUGO Gene Nomenclature Committee at the European Bioinformatics Institute; Email: hgnc@genenames.org; URL: http://www.genenames.org/aboutHGNC.html</met:source_content_contact>
+<met:source_license_contact>Organization: HUGO Gene Nomenclature Committee at the European Bioinformatics Institute; Email: hgnc@genenames.org; http://www.genenames.org/aboutHGNC.html</met:source_license_contact>
+<met:source_url>http://www.genenames.org/cgi-bin/hgnc_stats.pl</met:source_url>
+<met:term_browser_version>template</met:term_browser_version>
+<met:license_display>show</met:license_display>
+<met:show_hierarchy>false</met:show_hierarchy>
+<met:cabig_vkc_index_url>https://wiki.nci.nih.gov/display/VKC/Human+Genome+Organisation+Ontology</met:cabig_vkc_index_url>
+</met:ontology_description>

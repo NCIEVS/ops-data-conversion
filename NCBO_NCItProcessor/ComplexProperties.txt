@@ -1,0 +1,3 @@
+http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#FULL_SYN	<ncicp:term-name>	</ncicp:term-name>
+http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#DEFINITION	<ncicp:def-definition>	</ncicp:def-definition>
+http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#ALT_DEFINITION	<ncicp:def-definition>	</ncicp:def-definition>
