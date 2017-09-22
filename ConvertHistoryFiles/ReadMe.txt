@@ -1,3 +1,3 @@
 Run configuration example
 
-C:\temp\ncitconcept_history C:\temp\formatted_history.txt
+C:\path\to\ncitconcept_history C:\path\to\formatted_output_history.txt
