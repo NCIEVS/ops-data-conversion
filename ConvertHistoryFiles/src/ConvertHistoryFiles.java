@@ -1,3 +1,14 @@
+/* Rob Wynne, MSC
+ * 
+ * Convert the ncitconcept_history file to the
+ * format consumed by LexEVS.  The output is
+ * appended to cumulative_history.txt 
+ */
+
+
+package gov.nih.nci.evs.history;
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,20 +33,8 @@ public class ConvertHistoryFiles {
 	}
 	
 	public void run(String[] args) {
-		configPrintWriter("concept_history.txt");
+		configPrintWriter(args[1]);
 		Vector<String> records = readFile(args[0]);
-		String theDate = args[1];
-		
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = null;
-		try {
-			d = sdf.parse(theDate);
-            sdf.applyLocalizedPattern("dd-MMM-yy");
-            theDate = sdf.format(d);				
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 		
 		for(String record : records) {
 			String[] recordArray = record.split("\t");
@@ -43,10 +42,22 @@ public class ConvertHistoryFiles {
 			String action = recordArray[1];
 			String date = recordArray[2];
 			String refCode = recordArray[3];
+	        
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        Date d = null;
+			
+			try {
+				d = sdf.parse(date);
+	            sdf.applyLocalizedPattern("dd-MMM-yy");
+	            date = sdf.format(d);				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}				
 			
 
             
-            pw.println(conceptCode + "||" + action.toLowerCase() + "|" + theDate + "|" + refCode + "|");
+            pw.println(conceptCode + "||" + action.toLowerCase() + "|" + date + "|" + refCode + "|");
             pw.flush();
 		}
 		
