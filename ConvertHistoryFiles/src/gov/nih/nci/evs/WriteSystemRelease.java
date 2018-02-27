@@ -133,6 +133,7 @@ public class WriteSystemRelease {
                 case 'g': versionOrder = "seventh";
                 break;
                 case 'h': versionOrder = "eighth";
+                break;
                 default: versionOrder = "unknown";
                 break;
             }
