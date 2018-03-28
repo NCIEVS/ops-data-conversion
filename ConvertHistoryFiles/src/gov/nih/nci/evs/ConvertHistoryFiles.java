@@ -32,6 +32,7 @@ public class ConvertHistoryFiles {
 	public void run(String[] args) {
 		configPrintWriter(args[1]);
 		Vector<String> records = readFile(args[0]);
+		System.out.println("Reading file from " + args[0]);
 
 		for (String record : records) {
 			String[] recordArray = record.split("\t");
@@ -78,6 +79,7 @@ public class ConvertHistoryFiles {
 
 		}
 
+		System.out.println("File outputed to "+ args[1]);
 		pw.close();
 
 	}
