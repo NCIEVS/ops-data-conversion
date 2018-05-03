@@ -29,7 +29,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>gov.nih.nci.evs.history.ConvertHistoryFiles</mainClass>
+							<mainClass>gov.nih.nci.evs.ConvertHistoryFiles</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
