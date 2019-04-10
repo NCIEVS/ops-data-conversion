@@ -90,14 +90,19 @@ class TerminologyExcelReader extends ExcelReader {
         
         val parts = sheetName.split(" ")
           
-        if (parts.length != 4) {
+        if (parts.length != 3) {
           throw new RuntimeException("Expected sheet name in form 'Clinical <type> Glossary <date>' but found '" + sheetName + "' instead")
         }
           
-        terminologyModel = "Clinical Data Element"
+ /*       terminologyModel = "Clinical Data Element"
         terminologyShortModel = "CDE"
         terminologyType = "Glossary"
-        terminologyDate = parts(3).trim()
+        terminologyDate = parts(3).trim()  */
+      
+        terminologyModel = parts(0).trim()
+        terminologyShortModel = parts(0).trim()
+        terminologyType = "Glossary"
+        terminologyDate = parts(2).trim()
       
         readCodelists(sheet)
       } 
