@@ -89,8 +89,9 @@
 	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
 	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
 	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
-	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.8.1.jar"/>
-	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.8.1.jar"/>
+	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.10.7.jar"/>
+	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.10.7.jar"/>
+	<property name="scala-reflect.jar"  location="${lib.dir}/scala-reflect-2.10.7.jar"/>
 	<property name="itext-pdfa.jar"     location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
 	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
 	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
@@ -108,6 +109,8 @@
 		<pathelement location="${jaxen.jar}"/>
 		<pathelement location="${poi.jar}"/>
 		<pathelement location="${scala-library.jar}"/>
+		<pathelement location="${scala-compiler.jar}"/>
+		<pathelement location="${scala-reflect.jar}"/>
 		<pathelement location="${itext-pdfa.jar}"/>
 		<pathelement location="${itext-xtra.jar}"/>
 		<pathelement location="${itextpdf.jar}"/>
@@ -128,6 +131,7 @@
 			<classpath>
 				<pathelement location="${scala-compiler.jar}"/>
 				<pathelement location="${scala-library.jar}"/>
+				<pathelement location="${scala-reflect.jar}"/>
 			</classpath>
 		</taskdef>
 	</target>
