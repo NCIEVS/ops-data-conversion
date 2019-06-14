@@ -23,10 +23,12 @@
 	<resolvers>
 		<ibiblio name="default" m2compatible="true"/>
 		<ibiblio name="scalatools" root="https://oss.sonatype.org/content/groups/scala-tools" m2compatible="true"/>
+		<ibiblio name="mvncentral" root="https://mvnrepository.com/artifact/org.scala-lang/scala-compiler" m2compatible="true"/>
 	</resolvers>
 	
 	<modules>
-		<module organisation="org.scala-lang" resolver="scalatools"/>
+		<!--module organisation="org.scala-lang" resolver="scalatools"/-->
+		<module organisaztion="org.scala-lang" resolver="mvncentral"/>
 	</modules>
 
 	<caches defaultCacheDir="${basedir}/cache/ivy-cache"/>

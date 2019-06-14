@@ -24,7 +24,7 @@
 	<property name="cache.dir"         location="cache"/>
 	<property name="lib.dir"           location="${cache.dir}/lib"/>
 	<property name="jlib.dir"          location="lib"/>
-	<property name="in.dir"            location="in"/>
+	<property name="in.dir"            location="/Users/safrant/EVS/data/CDISC/190325/P37 Publication Files to Tracy"/>
 	
 	<property name="build.dir"         location="build"/>
 	<property name="classes.dir"       location="${build.dir}/classes"/>
@@ -35,49 +35,49 @@
 	
 	<property name="input.file.adam"    location="${in.dir}/ADaM Terminology.xls"/>
 	<property name="input.file.cdash"   location="${in.dir}/CDASH Terminology.xls"/>
-	<property name="input.file.cde"     location="${in.dir}/Clinical Data Element Glossary.xls"/>
+	<property name="input.file.cde"     location="${in.dir}/CDISC Glossary.xls"/>
 	<property name="input.file.prot"      location="${in.dir}/Protocol Terminology.xls"/>	
-	<property name="input.file.qs"      location="${in.dir}/QS Terminology.xls"/>
+	<property name="input.file.qrs"      location="${in.dir}/QRS Terminology.xls"/>
 	<property name="input.file.sdtm"    location="${in.dir}/SDTM Terminology.xls"/>
 	<property name="input.file.send"    location="${in.dir}/SEND Terminology.xls"/>
 	
 	<property name="input.file.adam.txt"    location="${in.dir}/ADaM Terminology.txt"/>
 	<property name="input.file.cdash.txt"   location="${in.dir}/CDASH Terminology.txt"/>
-	<property name="input.file.cde.txt"     location="${in.dir}/Clinical Data Element Glossary.txt"/>
+	<property name="input.file.cde.txt"     location="${in.dir}/CDISC Glossary.txt"/>
 	<property name="input.file.prot.txt"     location="${in.dir}/Protocol Terminology.txt"/>	
-	<property name="input.file.qs.txt"      location="${in.dir}/QS Terminology.txt"/>
+	<property name="input.file.qrs.txt"      location="${in.dir}/QRS Terminology.txt"/>
 	<property name="input.file.sdtm.txt"    location="${in.dir}/SDTM Terminology.txt"/>
 	<property name="input.file.send.txt"    location="${in.dir}/SEND Terminology.txt"/>
 
 	<property name="output.file.adam.xml"   location="${out.dir}/ADaM/ADaM Terminology.odm.xml"/>
 	<property name="output.file.cdash.xml"  location="${out.dir}/SDTM/CDASH Terminology.odm.xml"/>
-	<property name="output.file.cde.xml"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.odm.xml"/>
+	<property name="output.file.cde.xml"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.odm.xml"/>
 	<property name="output.file.prot.xml"    location="${out.dir}/Protocol/Protocol Terminology.odm.xml"/>	
-	<property name="output.file.qs.xml"     location="${out.dir}/Questionnaire/QS Terminology.odm.xml"/>
+	<property name="output.file.qrs.xml"     location="${out.dir}/QRS/QRS Terminology.odm.xml"/>
 	<property name="output.file.sdtm.xml"   location="${out.dir}/SDTM/SDTM Terminology.odm.xml"/>
 	<property name="output.file.send.xml"   location="${out.dir}/SEND/SEND Terminology.odm.xml"/>
 
 	<property name="output.file.adam.html"   location="${out.dir}/ADaM/ADaM Terminology.html"/>
 	<property name="output.file.cdash.html"  location="${out.dir}/SDTM/CDASH Terminology.html"/>
-	<property name="output.file.cde.html"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.html"/>
+	<property name="output.file.cde.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.html"/>
 	<property name="output.file.prot.html"    location="${out.dir}/Protocol/Protocol Terminology.html"/>	
-	<property name="output.file.qs.html"     location="${out.dir}/Questionnaire/QS Terminology.html"/> 
+	<property name="output.file.qrs.html"     location="${out.dir}/QRS/QRS Terminology.html"/> 
 	<property name="output.file.sdtm.html"   location="${out.dir}/SDTM/SDTM Terminology.html"/>
 	<property name="output.file.send.html"   location="${out.dir}/SEND/SEND Terminology.html"/>
 	
 	<property name="output.file.adam.4pdf.html"   location="${out.dir}/ADaM/ADaM Terminology 4pdf.html"/>
 	<property name="output.file.cdash.4pdf.html"  location="${out.dir}/SDTM/CDASH Terminology 4pdf.html"/>
-	<property name="output.file.cde.4pdf.html"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary 4pdf.html"/>
+	<property name="output.file.cde.4pdf.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary 4pdf.html"/>
 	<property name="output.file.prot.4pdf.html"    location="${out.dir}/Protocol/Protocol Terminology 4pdf.html"/>	
-	<property name="output.file.qs.4pdf.html"     location="${out.dir}/Questionnaire/QS Terminology 4pdf.html"/>
+	<property name="output.file.qrs.4pdf.html"     location="${out.dir}/QRS/QRS Terminology 4pdf.html"/>
 	<property name="output.file.sdtm.4pdf.html"   location="${out.dir}/SDTM/SDTM Terminology 4pdf.html"/>
 	<property name="output.file.send.4pdf.html"   location="${out.dir}/SEND/SEND Terminology 4pdf.html"/>
 	
 	<property name="output.file.adam.pdf"   location="${out.dir}/ADaM/ADaM Terminology.pdf"/>
 	<property name="output.file.cdash.pdf"  location="${out.dir}/SDTM/CDASH Terminology.pdf"/>
-	<property name="output.file.cde.pdf"    location="${out.dir}/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.pdf"/>
+	<property name="output.file.cde.pdf"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.pdf"/>
 	<property name="output.file.prot.pdf"    location="${out.dir}/Protocol/Protocol Terminology.pdf"/>	
-	<property name="output.file.qs.pdf"     location="${out.dir}/Questionnaire/QS Terminology.pdf"/>
+	<property name="output.file.qrs.pdf"     location="${out.dir}/QRS/QRS Terminology.pdf"/>
 	<property name="output.file.sdtm.pdf"   location="${out.dir}/SDTM/SDTM Terminology.pdf"/>
 	<property name="output.file.send.pdf"   location="${out.dir}/SEND/SEND Terminology.pdf"/>
 
@@ -89,8 +89,9 @@
 	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
 	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
 	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
-	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.8.1.jar"/>
-	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.8.1.jar"/>
+	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.10.7.jar"/>
+	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.10.7.jar"/>
+	<property name="scala-reflect.jar"  location="${lib.dir}/scala-reflect-2.10.7.jar"/>
 	<property name="itext-pdfa.jar"     location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
 	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
 	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
@@ -108,6 +109,8 @@
 		<pathelement location="${jaxen.jar}"/>
 		<pathelement location="${poi.jar}"/>
 		<pathelement location="${scala-library.jar}"/>
+		<pathelement location="${scala-compiler.jar}"/>
+		<pathelement location="${scala-reflect.jar}"/>
 		<pathelement location="${itext-pdfa.jar}"/>
 		<pathelement location="${itext-xtra.jar}"/>
 		<pathelement location="${itextpdf.jar}"/>
@@ -128,6 +131,7 @@
 			<classpath>
 				<pathelement location="${scala-compiler.jar}"/>
 				<pathelement location="${scala-library.jar}"/>
+				<pathelement location="${scala-reflect.jar}"/>
 			</classpath>
 		</taskdef>
 	</target>
@@ -138,14 +142,14 @@
 <!--		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.xls" dest="${input.file.adam}" verbose="on" ignoreerrors="true" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.xls" dest="${input.file.cdash}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.xls" dest="${input.file.cde}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Questionnaire/QS Terminology.xls" dest="${input.file.qs}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/QRS/QRS Terminology.xls" dest="${input.file.qrs}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.xls" dest="${input.file.sdtm}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.xls" dest="${input.file.send}" verbose="on" skipexisting="true"/>
 
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.txt" dest="${input.file.adam.txt}" verbose="on" ignoreerrors="true" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.txt" dest="${input.file.cdash.txt}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.txt" dest="${input.file.cde.txt}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Questionnaire/QS Terminology.txt" dest="${input.file.qs.txt}" verbose="on" skipexisting="true"/>
+		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/QRS/QRS Terminology.txt" dest="${input.file.qrs.txt}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.txt" dest="${input.file.sdtm.txt}" verbose="on" skipexisting="true"/>
 		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.txt" dest="${input.file.send.txt}" verbose="on" skipexisting="true"/> -->
 	</target>
@@ -161,9 +165,9 @@
 		<delete dir="${out.dir}"/>
 		<mkdir dir="${out.dir}"/>
 		<mkdir dir="${out.dir}/ADaM"/>
-		<mkdir dir="${out.dir}/Clinical_Data_Element_Glossary"/>
+		<mkdir dir="${out.dir}/CDISC_Glossary"/>
 		<mkdir dir="${out.dir}/Protocol"/>		
-		<mkdir dir="${out.dir}/Questionnaire"/>
+		<mkdir dir="${out.dir}/QRS"/>
 		<mkdir dir="${out.dir}/SDTM"/>
 		<mkdir dir="${out.dir}/SEND"/>
 		
@@ -171,7 +175,7 @@
 		<terminology2odm inputfile="${input.file.cdash}" outputfile="${output.file.cdash.xml}"/>
 		<terminology2odm inputfile="${input.file.cde}"   outputfile="${output.file.cde.xml}"/>
 		<terminology2odm inputfile="${input.file.prot}"   outputfile="${output.file.prot.xml}"/>		
-		<terminology2odm inputfile="${input.file.qs}"    outputfile="${output.file.qs.xml}"/>
+		<terminology2odm inputfile="${input.file.qrs}"    outputfile="${output.file.qrs.xml}"/>
 		<terminology2odm inputfile="${input.file.sdtm}"  outputfile="${output.file.sdtm.xml}"/>
 		<terminology2odm inputfile="${input.file.send}"  outputfile="${output.file.send.xml}"/>
 		
@@ -195,9 +199,9 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${out.dir}/Clinical_Data_Element_Glossary">
+		<copy todir="${out.dir}/CDISC_Glossary">
 			<fileset dir="in">
-				<include name="Clinical Data Element*.*"/>
+				<include name="CDISC*.*"/>
 			</fileset>
 		</copy>
 		
@@ -207,9 +211,9 @@
 			</fileset>
 		</copy>		
 
-		<copy todir="${out.dir}/Questionnaire">
+		<copy todir="${out.dir}/QRS">
 			<fileset dir="in">
-				<include name="QS*.*"/>
+				<include name="QRS*.*"/>
 			</fileset>
 		</copy>
 
@@ -240,7 +244,7 @@
     <schemavalidate file="${output.file.prot.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>  	
-    <schemavalidate file="${output.file.qs.xml}" warn="yes" fullchecking="true" failonerror="false">
+    <schemavalidate file="${output.file.qrs.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
     <schemavalidate file="${output.file.sdtm.xml}" warn="yes" fullchecking="true" failonerror="false">
@@ -256,7 +260,7 @@
     <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.html}" style="${xsl.file}" failonerror="false"/>
     <xslt in="${output.file.cde.xml}"   out="${output.file.cde.html}" style="${xsl.file}" failonerror="false"/>
     <xslt in="${output.file.prot.xml}"   out="${output.file.prot.html}" style="${xsl.file}" failonerror="false"/>  	
-    <xslt in="${output.file.qs.xml}"    out="${output.file.qs.html}" style="${xsl.file}" failonerror="false"/>
+    <xslt in="${output.file.qrs.xml}"    out="${output.file.qrs.html}" style="${xsl.file}" failonerror="false"/>
     <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.html}" style="${xsl.file}" failonerror="false"/>
     <xslt in="${output.file.send.xml}"  out="${output.file.send.html}" style="${xsl.file}" failonerror="false"/>
   </target>
@@ -266,7 +270,7 @@
 	    <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
 	    <xslt in="${output.file.cde.xml}"   out="${output.file.cde.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
 		<xslt in="${output.file.prot.xml}"   out="${output.file.prot.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>  	
-	    <xslt in="${output.file.qs.xml}"    out="${output.file.qs.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+	    <xslt in="${output.file.qrs.xml}"    out="${output.file.qrs.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
 	    <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
 	    <xslt in="${output.file.send.xml}"  out="${output.file.send.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
   	
@@ -274,7 +278,7 @@
 	<transform4pdf inputfile="${output.file.cdash.4pdf.html}" outputfile="${output.file.cdash.pdf}"/>
 	<transform4pdf inputfile="${output.file.cde.4pdf.html}"   outputfile="${output.file.cde.pdf}"/>
 	<transform4pdf inputfile="${output.file.prot.4pdf.html}"   outputfile="${output.file.prot.pdf}"/>  	
-	<transform4pdf inputfile="${output.file.qs.4pdf.html}"    outputfile="${output.file.qs.pdf}"/>
+	<transform4pdf inputfile="${output.file.qrs.4pdf.html}"    outputfile="${output.file.qrs.pdf}"/>
 	<transform4pdf inputfile="${output.file.sdtm.4pdf.html}"  outputfile="${output.file.sdtm.pdf}"/>
 	<transform4pdf inputfile="${output.file.send.4pdf.html}"  outputfile="${output.file.send.pdf}"/>
   
