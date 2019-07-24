@@ -34,6 +34,7 @@ class CanmedOntology {
             rawCode = rawCode.replace(",", "_");
             rawCode = rawCode.replace("__", "_");
             rawCode = rawCode.replace("/", "-");
+            rawCode = rawCode.replace("&", "and");
         }
         return rawCode;
     }
