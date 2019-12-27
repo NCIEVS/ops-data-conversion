@@ -1,0 +1,95 @@
+CanMed
+
+* Versioning Scheme - use Date MonthYear
+* Official name - SEER CanMED
+* Metadata and licensing information
+	The Cancer Medications Enquiry Database (CanMED) is a two-part resource for cancer drug treatment related studies. It is intended to facilitate cancer surveillance, epidemiology, and pharmacoepidemiology research that uses the National Drug Code (NDC) and Healthcare Common Procedure Coding Systems (HCPCS) nomenclatures
+
+* Hierarchy decision 
+  * use of Minor Class - yes, for now
+  * multiple parentage paths (cyclin dependent kinase inhibitor) - use as presented
+
+Minor class
+	drug name
+		product NDC
+			package NDC
+
+* Mapping to NCIt?
+   Adding a contributing source of SEER
+   Adding PT with SEER source
+   No official mapping right now
+
+
+_______________
+NDC
+
+SEER *Rx Category 
+- code
+- name
+- potential link to NCIt
+
+Major class
+- code
+- name
+- potential link to NCIt
+
+Minor class
+- code
+- name
+- potential link to NCIt
+
+Drug name
+- code
+- name
+
+Product NDC
+- code
+- name
+- brand name
+- NDC product code
+- route of administration
+
+Package NDC
+- code
+- name
+- brand name
+- strength
+- NDC package code
+- package effective date
+- package discontinuation date (optional)
+- status
+
+__________________________
+HCPCS
+
+SEER *Rx Category 
+- code
+- name
+- potential link to NCIt
+
+Major class
+- code
+- name
+- potential link to NCIt
+
+Minor class
+- code
+- name
+- potential link to NCIt
+
+Drug name
+- code
+- name
+
+Package
+- code
+- name
+- brand names
+- HCPCS code
+- strength
+- Oral Y/N
+- FDA Approval
+- FDA Discontinuation
+- CMS Effective
+- CMS Discontinuation
+- Status

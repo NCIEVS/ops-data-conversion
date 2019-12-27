@@ -5,20 +5,24 @@
  */
 package gov.nih.nci.evs.canmed;
 
+import gov.nih.nci.evs.canmed.entity.Ontology;
 import java.io.File;
 import java.net.URI;
+import java.time.LocalDate;
 
 
 public class CanmedToOwl {
     private File NDCcsvFile = null;
     private File HCPCScsvFile = null;
     private URI saveURI = null;
+    private String version = "";
 
 
     public static void main(String[] args) {
 
         CanmedToOwl cto = new CanmedToOwl();
-        if (args.length == 3) {
+        if (args.length >0) {
+            cto.version=LocalDate.now().getMonth().toString()+LocalDate.now().getYear();
             cto.configure(args);
             cto.processCanMED();
         } else {
@@ -94,9 +98,10 @@ public class CanmedToOwl {
 
         System.out.println();
         System.out.println("Usage: CanMEDToOwl NDCsource HCPCSsource target ");
-        System.out.println("  source The path to the raw NDC text downloaded from CanMED");
-        System.out.println("  source The path to the raw HCPCS text downloaded from CanMED");
-        System.out.println("  target The path and name to store the owl file");
+        System.out.println("-n  ndc source. The path to the raw NDC text downloaded from CanMED");
+        System.out.println("-h  hcpcs source. The path to the raw HCPCS text downloaded from CanMED");
+        System.out.println("-t  target output. The path and name to store the owl file");
+        System.out.println("-v version. The version to assign to the final vocabulary");
         System.out.println();
         System.exit(1);
     }
@@ -107,15 +112,27 @@ public class CanmedToOwl {
      */
     private void configure(String[] args) {
         try {
-
-            NDCcsvFile = readCsvFile(args[0]);
-            HCPCScsvFile = readCsvFile(args[1]);
-
-
-            String target = args[2];
-            if (target != null) {
-                saveURI = new URI(target);
+            if(args.length>0){
+                for (int i = 0; i < args.length; i++) {
+                    if (args[i].equalsIgnoreCase("-n")){
+                        NDCcsvFile = readCsvFile(args[++i]);
+                    }
+                    else if (args[i].equalsIgnoreCase("-h")){
+                        HCPCScsvFile = readCsvFile(args[++i]);
+                    }
+                    else if (args[i].equalsIgnoreCase("-t")){
+                        saveURI = new URI(args[++i]);
+                    }
+                    else if (args[i].equalsIgnoreCase("-v")){
+                        version = args[++i];
+                    }else {
+                        printHelp();
+                    }
+                }
+            }else {
+                printHelp();
             }
+
         } catch (Exception e) {
             System.exit(0);
         }
@@ -130,12 +147,36 @@ public class CanmedToOwl {
         try {
             CanmedCsvParser NDCparser = new CanmedCsvParser(NDCcsvFile);
             CanmedCsvParser HCPCSparser = new CanmedCsvParser(HCPCScsvFile);
-            CanmedOntology ontology = new CanmedOntology(NDCparser, HCPCSparser);
-            CanmedOwlWriter writer = new CanmedOwlWriter(ontology, saveURI);
+            Ontology ontology = new Ontology(NDCparser, HCPCSparser);
+            OwlWriter owlWriter = new OwlWriter(ontology, saveURI);
+//            CanmedOntology canmedOntology = new CanmedOntology(NDCparser, HCPCSparser);
+//            CanmedOwlWriter writer = new CanmedOwlWriter(canmedOntology, saveURI);
         } catch (Exception e) {
             System.out.println("Error reading in CSV file.  Program ending");
             e.printStackTrace();
             System.exit(0);
         }
+    }
+
+    /**
+     * Concept codes must be able to make valid URI fragments
+     * This converts spaces, slashes and the like to neutral characters
+     *
+     * @param rawCode
+     * @return valid string fragment for URI
+     */
+    public static String parseConceptCode(String rawCode) {
+        if (rawCode != null && rawCode.length()>0) {
+            rawCode = rawCode.toUpperCase();
+            rawCode = rawCode.replace("\"", "");
+            rawCode = rawCode.replace(" ", "_");
+            rawCode = rawCode.replace(",", "_");
+            rawCode = rawCode.replace("__", "_");
+            rawCode = rawCode.replace("/", "-");
+            rawCode = rawCode.replace("&", "and");
+            rawCode = rawCode.replace("'", "");
+            rawCode = rawCode.replace("%", "");
+        }
+        return rawCode;
     }
 }

@@ -7,8 +7,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import jdk.nashorn.internal.ir.IfNode;
 
-class CanmedCsvParser {
+public class CanmedCsvParser {
     private final List<List<String>> lineByLineData = new Vector<>();
     private List<String> header = null;
 
@@ -84,7 +85,7 @@ class CanmedCsvParser {
      * @param input
      * @return
      */
-    private List<String> tokenizeString(String input) {
+    public static List<String> tokenizeString(String input) {
         //https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
         //String input = "foo,bar,c;qual=\"baz,blurb\",d;junk=\"quux,syzygy\"";
         List<String> result = new ArrayList<String>();
@@ -92,10 +93,24 @@ class CanmedCsvParser {
         boolean inQuotes = false;
         for (int current = 0; current < input.length(); current++) {
             if (input.charAt(current) == '\"') inQuotes = !inQuotes; // toggle state
+            //Are we at the end of the input string yet?
             boolean atLastChar = (current == input.length() - 1);
-            if (atLastChar) result.add(input.substring(start));
+            //if so, the add the last token
+            if (atLastChar) {
+                String token = input.substring(start);
+                if(token.startsWith("\"")){
+                    token = token.substring(1, token.length()-1);
+                }
+                result.add(token.trim());
+            }
+            //If we are at a comma and not within quotes then we have found a delimiter
             else if (input.charAt(current) == ',' && !inQuotes) {
-                result.add(input.substring(start, current));
+                String token = input.substring(start, current);
+                if(token.startsWith("\"")){
+                    token = token.substring(1, token.length()-1);
+                }
+                result.add(token.trim());
+//                result.add(input.substring(start, current));
                 start = current + 1;
             }
         }
