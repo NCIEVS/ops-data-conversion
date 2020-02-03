@@ -283,7 +283,7 @@ public class Ontology {
 
         //Create Package Concept
                 String packageCode = generateHCPCSpackageCode(propertyValueList);
-                if(drugNameCode.equals("HCPCS_")){
+               if(packageCode.toUpperCase().startsWith("NOT")|| packageCode.endsWith("_")){
                     String debug = "stop";
                 }
                 String brandNameString = propertyValueList.get(Constants.HCPCS_BRAND_NAME);
@@ -359,11 +359,19 @@ public class Ontology {
         String packageCode = "HCPCS_";
 
         String hcpcsCode = propertyValues.get(Constants.HCPCS_CODE);
+        //multiple rows are labeled "Not yet assigned".
+        if(hcpcsCode.toUpperCase().startsWith("NOT")){
+            hcpcsCode="";
+        }
         //The default code is "NA". We only want real codes.
         if(hcpcsCode.length()>2){
             return hcpcsCode;
         }
-        return CanmedToOwl.parseConceptCode(packageCode + propertyValues.get(Constants.HCPCS_DRUG_NAME) +"_"+ propertyValues.get(Constants.HCPCS_STRENGTH));
+        String code = packageCode + propertyValues.get(Constants.HCPCS_DRUG_NAME);
+        if(propertyValues.get(Constants.HCPCS_STRENGTH) !=null && propertyValues.get(Constants.HCPCS_STRENGTH).length()>0 ){
+            code = code +"_"+ propertyValues.get(Constants.HCPCS_STRENGTH);
+        }
+        return CanmedToOwl.parseConceptCode(code);
     }
 
     public HashMap<String, HierarchicalConcept> getConcepts() {

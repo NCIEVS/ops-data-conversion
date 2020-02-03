@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.formats.OWLXMLDocumentFormat;
 import org.semanticweb.owlapi.io.WriterDocumentTarget;
@@ -28,7 +29,9 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
+import org.semanticweb.owlapi.model.OWLOntologyID;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.SetOntologyID;
 import org.semanticweb.owlapi.rdf.rdfxml.renderer.RDFXMLStorer;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
@@ -55,11 +58,16 @@ class OwlWriter {
      * @param canmedOntology
      * @param saveURI
      */
-    public OwlWriter(Ontology canmedOntology, URI saveURI) {
+    public OwlWriter(Ontology canmedOntology, URI saveURI, String version) {
         try {
             this.manager = OWLManager.createOWLOntologyManager();
 
             this.ontology = manager.createOntology(ontologyIRI);
+
+            IRI versionIRI=IRI.create(version);
+            SetOntologyID change=new SetOntologyID(ontology,
+                    new OWLOntologyID(ontologyIRI, versionIRI));
+            ontology.getOWLOntologyManager().applyChange(change);
             factory = manager.getOWLDataFactory();
             createConcepts(canmedOntology);
             saveOntology(saveURI);

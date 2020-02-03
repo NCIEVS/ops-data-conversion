@@ -148,7 +148,7 @@ public class CanmedToOwl {
             CanmedCsvParser NDCparser = new CanmedCsvParser(NDCcsvFile);
             CanmedCsvParser HCPCSparser = new CanmedCsvParser(HCPCScsvFile);
             Ontology ontology = new Ontology(NDCparser, HCPCSparser);
-            OwlWriter owlWriter = new OwlWriter(ontology, saveURI);
+            OwlWriter owlWriter = new OwlWriter(ontology, saveURI, version);
 //            CanmedOntology canmedOntology = new CanmedOntology(NDCparser, HCPCSparser);
 //            CanmedOwlWriter writer = new CanmedOwlWriter(canmedOntology, saveURI);
         } catch (Exception e) {
