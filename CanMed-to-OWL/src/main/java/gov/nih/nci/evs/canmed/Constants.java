@@ -1,6 +1,6 @@
 package gov.nih.nci.evs.canmed;
 
-import com.sun.tools.javac.code.Attribute;
+
 
 /**
  * This is where to map the downloaded data files to the hierarchy.
