@@ -41,7 +41,12 @@ public class Ontology {
             try {
                 //Create SEER Concept
                 String SEER = propertyValueList.get(Constants.NDC_SEER);
+                if(SEER.length()<1){
+                    System.out.println("SEER code is empty");
+                    SEER = "none";
+                }
                 String SEERcode = "NDC_" + CanmedToOwl.parseConceptCode(SEER);
+
                 if (concepts.containsKey(SEERcode)) {
                     SEERconcept = concepts.get(SEERcode);
                 } else {
