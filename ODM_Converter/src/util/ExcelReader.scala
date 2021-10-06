@@ -36,7 +36,7 @@ abstract class ExcelReader {
     
       if (value != col.header) {
         println("ERROR: Incorrect header field.  Expected '" + col.header + "' but found '" + value + "'")
-        error("ERROR: Incorrect header field.  Expected '" + col.header + "' but found '" + value + "'")
+        sys.error("ERROR: Incorrect header field.  Expected '" + col.header + "' but found '" + value + "'")
         
         System.exit(1)
       }
@@ -51,7 +51,7 @@ abstract class ExcelReader {
     var value : String = cell.getCellType() match {
       case HSSFCell.CELL_TYPE_BLANK => return null
       case HSSFCell.CELL_TYPE_STRING => cell.getRichStringCellValue().getString().trim()
-      case HSSFCell.CELL_TYPE_NUMERIC => new String("" + cell.getNumericCellValue().intValue())
+      case HSSFCell.CELL_TYPE_NUMERIC => new String("" + cell.getNumericCellValue())
         
       case _ 
         => {

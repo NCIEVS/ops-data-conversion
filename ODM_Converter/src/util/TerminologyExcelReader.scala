@@ -68,7 +68,8 @@ class TerminologyExcelReader extends ExcelReader {
       
       val sheetName = workbook.getSheetName(i)
       
-      if (sheetName.contains("Terminology")) {
+      
+       if (!sheetName.contains("Glossary") && sheetName.contains("Terminology")) {
         printf("found sheet '%s' ... ", sheetName);
         
         val parts = sheetName.split(" ")
@@ -85,7 +86,7 @@ class TerminologyExcelReader extends ExcelReader {
         readCodelists(sheet)
       } 
 
-      if (sheetName.contains("Glossary")) {
+      if (sheetName.contains("Glossary") && sheetName.contains("Terminology")) {
         printf("found sheet '%s' ... ", sheetName);
         
         val parts = sheetName.split(" ")
@@ -93,12 +94,49 @@ class TerminologyExcelReader extends ExcelReader {
         if (parts.length != 3) {
           throw new RuntimeException("Expected sheet name in form 'Clinical <type> Glossary <date>' but found '" + sheetName + "' instead")
         }
-          
- /*       terminologyModel = "Clinical Data Element"
-        terminologyShortModel = "CDE"
+    
+        terminologyModel = parts(0).trim()
+        terminologyShortModel = parts(0).trim()
         terminologyType = "Glossary"
-        terminologyDate = parts(3).trim()  */
+        terminologyDate = parts(2).trim()
       
+        readCodelists(sheet)
+      } 
+    }
+    
+    is.close()
+    
+    println("OK")
+  }      
+      
+/*      
+      if (sheetName.contains("Terminology") && !sheetName.contains("Glossary")) { 
+        printf("\nfound sheet '%s' ... ", sheetName);
+        
+        val parts = sheetName.split(" ")
+          
+        if (parts.length != 3) {
+          throw new RuntimeException("Expected sheet name in form '<type> Terminology <date>' but found '" + sheetName + "' instead")
+        }
+          
+        terminologyModel = parts(0).trim()
+        terminologyShortModel = parts(0).trim()
+        terminologyType = "Controlled Terminology"
+        terminologyDate = parts(2).trim()
+      
+        readCodelists(sheet)
+      } 
+
+      if (sheetName.contains("Glossary")) { 
+        printf("\nfound sheet '%s' ... ", sheetName);
+        
+        val parts = sheetName.split(" ")
+          
+        if (parts.length != 3) {
+          throw new RuntimeException("Expected sheet name in form 'Clinical <type> Glossary <date>' but found '" + sheetName + "' instead")
+        }
+          
+       
         terminologyModel = parts(0).trim()
         terminologyShortModel = parts(0).trim()
         terminologyType = "Glossary"
@@ -112,7 +150,7 @@ class TerminologyExcelReader extends ExcelReader {
     
     println("OK")
   }
-  
+  */
   def readCodelists(sheet : HSSFSheet) {
     val firstRow = sheet.getFirstRowNum()
     val lastRow  = sheet.getLastRowNum()
@@ -142,7 +180,6 @@ class TerminologyExcelReader extends ExcelReader {
         if (code != null && codelist_code == null) {
           // New codelist
           codelist = new CodeList("[NEW]", "[NEW]", "text")
-          
           codelist.addExtra("terminology:code", code)
           codelist.addExtra("terminology:extensible", extensible)
           codelist.addExtra("terminology:name", name)
@@ -151,13 +188,13 @@ class TerminologyExcelReader extends ExcelReader {
           codelist.addExtra("terminology:synonyms", synonyms)
           codelist.addExtra("terminology:definition", definition)
           codelist.addExtra("terminology:nci_preferred_term", nci_preferred_term)
-
           codelists += codelist
           
         } else if (code != null && codelist_code != null) {
           if (codelist_code != codelist.extras("terminology:code")) {
-            error("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
-          }
+            sys.error("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
+            println("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
+          } 
           
           val cli = new CodeListItem(submission_value, "[NEW]")
           
@@ -169,7 +206,6 @@ class TerminologyExcelReader extends ExcelReader {
           cli.addExtra("terminology:synonyms", synonyms)
           cli.addExtra("terminology:definition", definition)
           cli.addExtra("terminology:nci_preferred_term", nci_preferred_term)
-          
           codelist.codelistItems += cli
         }
       }

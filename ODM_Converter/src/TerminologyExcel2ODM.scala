@@ -107,7 +107,11 @@ object TerminologyExcel2ODM {
         odmCodelist.description = termCodelist.extras("terminology:definition")
         
         odmCodelist.extendedAttributes += new Extension("nciodm:ExtCodeID", termCodelist.extras("terminology:code"))
+        try {
         odmCodelist.extendedAttributes += new Extension("nciodm:CodeListExtensible", termCodelist.extras("terminology:extensible"))
+        } catch {
+        case e: Exception => e.printStackTrace()
+        }
         
         odmCodelist.extendedElements += new Extension("nciodm:CDISCSubmissionValue", termCodelist.extras("terminology:submission_value"))
         
@@ -167,7 +171,7 @@ object TerminologyExcel2ODM {
     
     for (definition <- definitions) {
       if (oids.contains(definition.oid)) {
-        error("Duplicate oid '" + definition.oid + "'")
+        sys.error("Duplicate oid '" + definition.oid + "'")
       }
       oids.add(definition.oid)
     }
