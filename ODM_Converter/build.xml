@@ -93,7 +93,7 @@
 	<property name="output.file.qrs.owl"     location="${out.dir}/QRS/QRS Terminology.owl"/>
 	<property name="output.file.sdtm.owl"   location="${out.dir}/SDTM/SDTM Terminology.owl"/>
 	<property name="output.file.send.owl"         location="${out.dir}/SEND/SEND Terminology.owl"/>
-	<property name="output.file.define-owl.owl"   location="${out.dir}/Define-XML/Define-XML Terminology.owl"/>
+	<property name="output.file.define-xml.owl"   location="${out.dir}/Define-XML/Define-XML Terminology.owl"/>
 
 	<property name="xsl.file"                   location="${xsl.dir}/controlledterminology1-0-0.xsl"/>
 	<property name="xsl4pdf.file"                location="${xsl.dir}/controlledterminology1-0-0-pdf.xsl"/>
@@ -135,7 +135,7 @@
 	<!-- ** targets  ************************************************************************** -->
 	<!-- ************************************************************************************** -->
 	
-	<target name="run" depends="init, download, convert, reload, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
+	<target name="run" depends="init, download, convert, postconvert, reload, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
 	
 	<target name="init" depends="setup-ivy">
 		<ivy:settings file="ivysettings.xml"/>
@@ -253,7 +253,7 @@
 
 	</target>
 
-  <target name="reload" depends="convert" description=" --> refresh Protocol odm.xml (files must exist)">
+  <target name="reload" depends="postconvert" description=" --> refresh Protocol odm.xml (files must exist)">
         <reload inputfile="${output.file.prot.xml}"  outputfile="${output.file.prot.xml}"/>
   </target>
 
@@ -328,7 +328,23 @@
 	<generateowl inputfile="${input.file.send.txt}"  outputfile="${output.file.send.owl}"/>
 	<generateowl inputfile="${input.file.define-xml.txt}"  outputfile="${output.file.define-xml.owl}"/>
   </target>
+
+
+  <target name="postconvert" depends="convert" description=" --> repair odm.xml">
+        <postconvert inputfile="${output.file.define-xml.xml}"  outputfile="${output.file.define-xml.xml}"/>
+  </target>
   
+  
+  	<macrodef name="postconvert">
+  		<attribute name="inputfile"/>
+  		<attribute name="outputfile"/>
+  		<sequential>
+  			<java classname="gov.nih.nci.evs.ODMPostProcessor" classpathref="runtime.classpath" failonerror="true">
+  				<arg value="@{inputfile}"/>
+  				<arg value="@{outputfile}"/>
+  			</java>
+  		</sequential>
+	</macrodef>
   
 	<macrodef name="reload">
 		<attribute name="inputfile"/>
