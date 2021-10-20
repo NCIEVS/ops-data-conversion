@@ -34,7 +34,7 @@
 		
 	<property name="input.file.adam"       location="${in.dir}/ADaM Terminology.xls"/>
 	<property name="input.file.cdash"      location="${in.dir}/CDASH Terminology.xls"/>
-	<property name="input.file.cde"        location="${in.dir}/CDISC Glossary Terminology.xls"/>
+	<property name="input.file.cde"        location="${in.dir}/Glossary Terminology.xls"/>
 	<property name="input.file.prot"       location="${in.dir}/Protocol Terminology.xls"/>	
 	<property name="input.file.qrs"        location="${in.dir}/QRS Terminology.xls"/>
 	<property name="input.file.sdtm"       location="${in.dir}/SDTM Terminology.xls"/>
@@ -43,7 +43,7 @@
 	
 	<property name="input.file.adam.txt"       location="${in.dir}/ADaM Terminology.txt"/>
 	<property name="input.file.cdash.txt"      location="${in.dir}/CDASH Terminology.txt"/>
-	<property name="input.file.cde.txt"        location="${in.dir}/CDISC Glossary.txt"/>
+	<property name="input.file.cde.txt"        location="${in.dir}/Glossary Terminology.txt"/>
 	<property name="input.file.prot.txt"       location="${in.dir}/Protocol Terminology.txt"/>	
 	<property name="input.file.qrs.txt"        location="${in.dir}/QRS Terminology.txt"/>
 	<property name="input.file.sdtm.txt"       location="${in.dir}/SDTM Terminology.txt"/>
@@ -52,7 +52,7 @@
 
 	<property name="output.file.adam.xml"   location="${out.dir}/ADaM/ADaM Terminology.odm.xml"/>
 	<property name="output.file.cdash.xml"  location="${out.dir}/SDTM/CDASH Terminology.odm.xml"/>
-	<property name="output.file.cde.xml"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.odm.xml"/>
+	<property name="output.file.cde.xml"    location="${out.dir}/CDISC_Glossary/Glossary Terminology.odm.xml"/>
 	<property name="output.file.prot.xml"    location="${out.dir}/Protocol/Protocol Terminology.odm.xml"/>	
 	<property name="output.file.qrs.xml"     location="${out.dir}/QRS/QRS Terminology.odm.xml"/>
 	<property name="output.file.sdtm.xml"   location="${out.dir}/SDTM/SDTM Terminology.odm.xml"/>
@@ -61,7 +61,7 @@
 
 	<property name="output.file.adam.html"   location="${out.dir}/ADaM/ADaM Terminology.html"/>
 	<property name="output.file.cdash.html"  location="${out.dir}/SDTM/CDASH Terminology.html"/>
-	<property name="output.file.cde.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.html"/>
+	<property name="output.file.cde.html"    location="${out.dir}/CDISC_Glossary/Glossary Terminology.html"/>
 	<property name="output.file.prot.html"    location="${out.dir}/Protocol/Protocol Terminology.html"/>	
 	<property name="output.file.qrs.html"     location="${out.dir}/QRS/QRS Terminology.html"/> 
 	<property name="output.file.sdtm.html"   location="${out.dir}/SDTM/SDTM Terminology.html"/>
@@ -70,7 +70,7 @@
 	
 	<property name="output.file.adam.4pdf.html"   location="${out.dir}/ADaM/ADaM Terminology 4pdf.html"/>
 	<property name="output.file.cdash.4pdf.html"  location="${out.dir}/SDTM/CDASH Terminology 4pdf.html"/>
-	<property name="output.file.cde.4pdf.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary 4pdf.html"/>
+	<property name="output.file.cde.4pdf.html"    location="${out.dir}/CDISC_Glossary/Glossary Terminology 4pdf.html"/>
 	<property name="output.file.prot.4pdf.html"    location="${out.dir}/Protocol/Protocol Terminology 4pdf.html"/>	
 	<property name="output.file.qrs.4pdf.html"     location="${out.dir}/QRS/QRS Terminology 4pdf.html"/>
 	<property name="output.file.sdtm.4pdf.html"   location="${out.dir}/SDTM/SDTM Terminology 4pdf.html"/>
@@ -79,7 +79,7 @@
 	
 	<property name="output.file.adam.pdf"   location="${out.dir}/ADaM/ADaM Terminology.pdf"/>
 	<property name="output.file.cdash.pdf"  location="${out.dir}/SDTM/CDASH Terminology.pdf"/>
-	<property name="output.file.cde.pdf"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.pdf"/>
+	<property name="output.file.cde.pdf"    location="${out.dir}/CDISC_Glossary/Glossary Terminology.pdf"/>
 	<property name="output.file.prot.pdf"    location="${out.dir}/Protocol/Protocol Terminology.pdf"/>	
 	<property name="output.file.qrs.pdf"     location="${out.dir}/QRS/QRS Terminology.pdf"/>
 	<property name="output.file.sdtm.pdf"   location="${out.dir}/SDTM/SDTM Terminology.pdf"/>
@@ -88,7 +88,7 @@
 
 	<property name="output.file.adam.owl"   location="${out.dir}/ADaM/ADaM Terminology.owl"/>
 	<property name="output.file.cdash.owl"  location="${out.dir}/SDTM/CDASH Terminology.owl"/>
-	<property name="output.file.cde.owl"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.owl"/>
+	<property name="output.file.cde.owl"    location="${out.dir}/CDISC_Glossary/Glossary Terminology.owl"/>
 	<property name="output.file.prot.owl"    location="${out.dir}/Protocol/Protocol Terminology.owl"/>	
 	<property name="output.file.qrs.owl"     location="${out.dir}/QRS/QRS Terminology.owl"/>
 	<property name="output.file.sdtm.owl"   location="${out.dir}/SDTM/SDTM Terminology.owl"/>
@@ -218,7 +218,7 @@
 
 		<copy todir="${out.dir}/CDISC_Glossary">
 			<fileset dir="in">
-				<include name="CDISC*.*"/>
+				<include name="Glossary*.*"/>
 			</fileset>
 		</copy>
 		
