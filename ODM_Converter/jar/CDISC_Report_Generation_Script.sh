@@ -92,7 +92,7 @@ else
 fi 
 
 #	c. CDISC Glossary Terminology (C67497)
-if [ -e "Previous/Glossary Terminology.txt" ]; then
+if [ -e "Previous/CDISC Glossary.txt" ]; then
 	java -jar cdiscversiondiff.jar "CDISC Glossary Terminology.txt" "Previous/CDISC Glossary.txt" $PUBLICATION_DATE "CDISC Glossary Changes.txt"
 else 
 	echo "Previous/CDISC Glossary.txt does not exist"
