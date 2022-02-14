@@ -97,7 +97,7 @@ class TerminologyExcelReader extends ExcelReader {
     
         terminologyModel = parts(0).trim()
         terminologyShortModel = parts(0).trim()
-        terminologyType = "Glossary"
+        terminologyType = "Controlled Terminology"
         terminologyDate = parts(2).trim()
       
         readCodelists(sheet)
@@ -109,48 +109,7 @@ class TerminologyExcelReader extends ExcelReader {
     println("OK")
   }      
       
-/*      
-      if (sheetName.contains("Terminology") && !sheetName.contains("Glossary")) { 
-        printf("\nfound sheet '%s' ... ", sheetName);
-        
-        val parts = sheetName.split(" ")
-          
-        if (parts.length != 3) {
-          throw new RuntimeException("Expected sheet name in form '<type> Terminology <date>' but found '" + sheetName + "' instead")
-        }
-          
-        terminologyModel = parts(0).trim()
-        terminologyShortModel = parts(0).trim()
-        terminologyType = "Controlled Terminology"
-        terminologyDate = parts(2).trim()
-      
-        readCodelists(sheet)
-      } 
 
-      if (sheetName.contains("Glossary")) { 
-        printf("\nfound sheet '%s' ... ", sheetName);
-        
-        val parts = sheetName.split(" ")
-          
-        if (parts.length != 3) {
-          throw new RuntimeException("Expected sheet name in form 'Clinical <type> Glossary <date>' but found '" + sheetName + "' instead")
-        }
-          
-       
-        terminologyModel = parts(0).trim()
-        terminologyShortModel = parts(0).trim()
-        terminologyType = "Glossary"
-        terminologyDate = parts(2).trim()
-      
-        readCodelists(sheet)
-      } 
-    }
-    
-    is.close()
-    
-    println("OK")
-  }
-  */
   def readCodelists(sheet : HSSFSheet) {
     val firstRow = sheet.getFirstRowNum()
     val lastRow  = sheet.getLastRowNum()
