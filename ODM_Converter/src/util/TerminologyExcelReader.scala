@@ -140,7 +140,13 @@ class TerminologyExcelReader extends ExcelReader {
           // New codelist
           codelist = new CodeList("[NEW]", "[NEW]", "text")
           codelist.addExtra("terminology:code", code)
-          codelist.addExtra("terminology:extensible", extensible)
+
+          if (terminologyModel.indexOf("Glossary") != -1 || terminologyModel.indexOf("Protocol") != -1) {
+          	//codelist.addExtra("terminology:extensible", extensible)
+          } else {
+               codelist.addExtra("terminology:extensible", extensible)
+          }
+
           codelist.addExtra("terminology:name", name)
           codelist.addExtra("terminology:submission_value", submission_value)
           // codelist.addExtra("terminology:preferred_term", preferred_term)

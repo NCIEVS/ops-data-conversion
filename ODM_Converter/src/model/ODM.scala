@@ -29,4 +29,8 @@ class ODM extends Extras {
   var originator: String = null 
   var sourceSystem: String = null
   var sourceSystemVersion: String = null
+
+  var nciodmContext: String = null
+  var nciodmControlledTerminologyVersion: String = null
+
 }
