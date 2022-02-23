@@ -146,8 +146,9 @@ class TerminologyExcelReader extends ExcelReader {
           //if (terminologyModel.indexOf("Glossary") != -1 || terminologyModel.indexOf("Protocol") != -1) {
           	//codelist.addExtra("terminology:extensible", extensible)
           //} else {
+          if (extensible != null && extensible.length > 0) {
                codelist.addExtra("terminology:extensible", extensible)
-          //}
+          }
 
           codelist.addExtra("terminology:name", xmlUtil.xmlEscapeText(name))
           codelist.addExtra("terminology:submission_value", xmlUtil.xmlEscapeText(submission_value))
