@@ -97,7 +97,7 @@
 
 	<property name="xsl.file"                   location="${xsl.dir}/controlledterminology1-0-0.xsl"/>
 	<property name="xsl4pdf.file"                location="${xsl.dir}/controlledterminology1-0-0-pdf.xsl"/>
-	<property name="schema.file"                location="${schema.dir}/controlledterminology1-0-0.xsd"/>
+	<property name="schema.file"                location="${schema.dir}/controlledterminology1-2-0.xsd"/>
 	<property name="cdisc.odm.schema.namespace" value="http://www.cdisc.org/ns/odm/v1.3"/>
 
 	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
@@ -201,6 +201,9 @@
 			<fileset dir="etc">
 				<include name="xsl/**"/>
 				<include name="schema/**"/>
+				<include name="core/**"/>
+				<include name="ct-1.2.0/**"/>
+				<include name="cdisc-odm-1.3.2/**"/>
 			</fileset>
 		</copy>
 
@@ -267,11 +270,11 @@
     <schemavalidate file="${output.file.cde.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-<!--		
+		
     <schemavalidate file="${output.file.prot.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>  
--->		
+		
     <schemavalidate file="${output.file.qrs.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
