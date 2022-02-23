@@ -117,6 +117,8 @@ class TerminologyExcelReader extends ExcelReader {
     var isFirstRow = true
     
     var codelist : CodeList = null;
+    var xmlUtil = new XmlUtil()
+    //var test_encoded_str = xmlUtil.xmlEscapeText("<>&")
     
     for (i <- firstRow to lastRow) {
       var row = sheet.getRow(i)
@@ -147,12 +149,12 @@ class TerminologyExcelReader extends ExcelReader {
                codelist.addExtra("terminology:extensible", extensible)
           }
 
-          codelist.addExtra("terminology:name", name)
-          codelist.addExtra("terminology:submission_value", submission_value)
-          // codelist.addExtra("terminology:preferred_term", preferred_term)
-          codelist.addExtra("terminology:synonyms", synonyms)
-          codelist.addExtra("terminology:definition", definition)
-          codelist.addExtra("terminology:nci_preferred_term", nci_preferred_term)
+          codelist.addExtra("terminology:name", xmlUtil.xmlEscapeText(name))
+          codelist.addExtra("terminology:submission_value", xmlUtil.xmlEscapeText(submission_value))
+          // codelist.addExtra("terminology:preferred_term", xmlUtil.xmlEscapeText(preferred_term))
+          codelist.addExtra("terminology:synonyms", xmlUtil.xmlEscapeText(synonyms))
+          codelist.addExtra("terminology:definition", xmlUtil.xmlEscapeText(definition))
+          codelist.addExtra("terminology:nci_preferred_term", xmlUtil.xmlEscapeText(nci_preferred_term))
           codelists += codelist
           
         } else if (code != null && codelist_code != null) {

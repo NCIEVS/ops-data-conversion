@@ -37,6 +37,7 @@ import org.dom4j.QName
 
 import util.TerminologyExcelReader
 import util.ODMWriter
+import util.XmlUtil
 
 import model._
 
@@ -55,6 +56,7 @@ object TerminologyExcel2ODM {
     val outfile = new File(args(1))
   
     val terminologyReader = new TerminologyExcelReader()
+
     terminologyReader.read(infile)
     
     val odm = new ODM()
