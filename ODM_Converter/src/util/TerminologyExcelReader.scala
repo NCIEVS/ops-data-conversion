@@ -67,26 +67,8 @@ class TerminologyExcelReader extends ExcelReader {
       val sheet = workbook.getSheetAt(i)
       
       val sheetName = workbook.getSheetName(i)
-      
-      
-       if (!sheetName.contains("Glossary") && sheetName.contains("Terminology")) {
-        printf("found sheet '%s' ... ", sheetName);
-        
-        val parts = sheetName.split(" ")
-          
-        if (parts.length != 3) {
-          throw new RuntimeException("Expected sheet name in form '<type> Terminology <date>' but found '" + sheetName + "' instead")
-        }
-          
-        terminologyModel = parts(0).trim()
-        terminologyShortModel = parts(0).trim()
-        terminologyType = "Controlled Terminology"
-        terminologyDate = parts(2).trim()
-      
-        readCodelists(sheet)
-      } 
-
-      if (sheetName.contains("Glossary") && sheetName.contains("Terminology")) {
+ 
+      if (sheetName.contains("Terminology")) {
         printf("found sheet '%s' ... ", sheetName);
         
         val parts = sheetName.split(" ")
@@ -106,7 +88,7 @@ class TerminologyExcelReader extends ExcelReader {
     
     is.close()
     
-    println("OK")
+    printf("Done reading %s ... ", file)
   }      
       
 
