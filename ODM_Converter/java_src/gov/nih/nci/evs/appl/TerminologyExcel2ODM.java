@@ -105,7 +105,12 @@ public class TerminologyExcel2ODM {
 		odm_xml_file = odmxmlfile;
 		terminologyReader = new TerminologyExcelReader();
 		File excel_file = new File(excelfile);
+
+System.out.println("\nExcel : " + excel_file.getName());
+
+System.out.println("terminologyRead.read " + excel_file);
 		terminologyReader.read(excel_file);
+System.out.println("Done terminologyRead.read " + excel_file);
 
 		dateStamp = terminologyReader.terminologyDate;
 		terminologyType = terminologyReader.terminologyType;
@@ -704,11 +709,26 @@ public class TerminologyExcel2ODM {
 		return sb.toString();
 	}
 
+    public static boolean fileExists(String filename) {
+		File f = new File(filename);
+		if(f.exists() && !f.isDirectory()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public static void main(String[] args) {
 		String excelfile = args[0];
-		String odmxmlfile = args[0];
-		TerminologyExcel2ODM test = new TerminologyExcel2ODM(excelfile, odmxmlfile);
-		test.generate_odm_xml();
+
+		if (fileExists(excelfile)) {
+			String odmxmlfile = args[1];
+			System.out.println("\nConverting " + excelfile + " to " + odmxmlfile + " ...");
+			TerminologyExcel2ODM test = new TerminologyExcel2ODM(excelfile, odmxmlfile);
+			test.generate_odm_xml();
+	    } else {
+			System.out.println("File " + excelfile + " does not exist.");
+		}
 	}
 }
 

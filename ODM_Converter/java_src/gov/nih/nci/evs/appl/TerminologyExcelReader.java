@@ -105,6 +105,7 @@ class TerminologyExcelReader extends ExcelReader {
 			sheet = workbook.getSheetAt(1);
 			sheetName = sheet.getSheetName();
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 
 			Vector parts = parseData(sheetName, ' ');
