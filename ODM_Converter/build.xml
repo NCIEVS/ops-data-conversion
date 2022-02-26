@@ -102,7 +102,11 @@
 
 	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
 	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
+	
+	<!--
 	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
+	-->
+	
 	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.10.7.jar"/>
 	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.10.7.jar"/>
 	<property name="scala-reflect.jar"  location="${lib.dir}/scala-reflect-2.10.7.jar"/>
@@ -110,6 +114,16 @@
 	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
 	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
 	<property name="xmlworker.jar"       location="${jlib.dir}/xmlworker-5.4.1.jar"/>
+	
+	<property name="commons-collections.jar"       location="${jlib.dir}/commons-collections4-4.4.jar"/>
+	<property name="gson.jar"       location="${jlib.dir}/gson-2.6.2.jar"/>
+
+	<property name="poi.jar"       location="${jlib.dir}/poi-3.17.jar"/>
+	<property name="poi-ooxml.jar"       location="${jlib.dir}/poi-ooxml-3.17.jar"/>
+	<property name="poi-ooxml-schemas.jar"       location="${jlib.dir}/poi-ooxml-schemas-3.17.jar"/>
+	
+	<property name="xbean.jar"       location="${jlib.dir}/xbean.jar"/>
+	<property name="xstream.jar"       location="${jlib.dir}/xstream-1.2.2.jar"/>
 	
 	<import file="etc/ivy-bootstrap.xml"/>
 	
@@ -121,7 +135,11 @@
 		<pathelement location="${classes.dir}"/>
 		<pathelement location="${dom4j.jar}"/>
 		<pathelement location="${jaxen.jar}"/>
+		
+		<!--
 		<pathelement location="${poi.jar}"/>
+		-->
+		
 		<pathelement location="${scala-library.jar}"/>
 		<pathelement location="${scala-compiler.jar}"/>
 		<pathelement location="${scala-reflect.jar}"/>
@@ -129,6 +147,18 @@
 		<pathelement location="${itext-xtra.jar}"/>
 		<pathelement location="${itextpdf.jar}"/>
 		<pathelement location="${xmlworker.jar}"/>
+		
+		<pathelement location="${commons-collections.jar}"/>
+		<pathelement location="${gson.jar}"/>
+
+		<pathelement location="${poi.jar}"/>
+		<pathelement location="${poi-ooxml.jar}"/>
+		<pathelement location="${poi-ooxml-schemas.jar}"/>
+		
+		<pathelement location="${xbean.jar}"/>
+		<pathelement location="${xstream.jar}"/>
+	
+		
 	</path>
 	
 	<!-- ************************************************************************************** -->

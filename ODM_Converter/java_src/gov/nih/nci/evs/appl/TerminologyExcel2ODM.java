@@ -89,20 +89,20 @@ public class TerminologyExcel2ODM {
 	Vector xml_data = null;
 	int codeListCount = 0;
 
-	//String curr_codelist = null;
 	XMLData curr_xmldata = null;
 
 	TerminologyExcelReader terminologyReader = null;
 
-	static String XSD_FILENAME = "controlledterminology1-0-0.xsd";
+	static String XSD_FILENAME = "controlledterminology1-2-0.xsd";
 	static String ODM_VERSION = "1.3.2";
 
 	public TerminologyExcel2ODM(String excelfile) {
 		int n = excelfile.lastIndexOf(".");
 		odm_xml_file = excelfile.substring(0, n) + ".odm.xml";
+	}
 
-		//String datafile = "data_" + excelfile.substring(0, n) + ".txt";
-
+	public TerminologyExcel2ODM(String excelfile, String odmxmlfile) {
+		odm_xml_file = odmxmlfile;
 		terminologyReader = new TerminologyExcelReader();
 		File excel_file = new File(excelfile);
 		terminologyReader.read(excel_file);
@@ -704,9 +704,10 @@ public class TerminologyExcel2ODM {
 		return sb.toString();
 	}
 
-	public static void run(String[] args) {
+	public static void main(String[] args) {
 		String excelfile = args[0];
-		TerminologyExcel2ODM test = new TerminologyExcel2ODM(excelfile);
+		String odmxmlfile = args[0];
+		TerminologyExcel2ODM test = new TerminologyExcel2ODM(excelfile, odmxmlfile);
 		test.generate_odm_xml();
 	}
 }
