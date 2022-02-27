@@ -83,9 +83,6 @@ class ODMWriter {
     } else {
         addAttribute(odmElem, "nciodm:Context", "Submission")
     }
-
-Console.println("odm.fileOID" + odm.fileOID)
-
        
     val studyElem = odmElem.addElement("Study")
     addAttribute(studyElem, "OID", odm.study.oid)
@@ -241,7 +238,7 @@ Console.println("odm.fileOID" + odm.fileOID)
   
   def addTextElement(element: Element, name: String, text: String) {
     if (text != null) {
-      element.addElement(name).setText(text)
+      element.addElement(name).setText(text.replace("&amp;#", "&#"))
     }
   }
   
@@ -250,7 +247,7 @@ Console.println("odm.fileOID" + odm.fileOID)
       element.addElement(name)
         .addElement("TranslatedText")
         .addAttribute("xml:lang", "en")
-        .setText(text)
+        .setText(text.replace("&amp;#", "&#"))
     }
   }
       
@@ -259,7 +256,7 @@ Console.println("odm.fileOID" + odm.fileOID)
         parentElem.addAttribute(extension.name, extension.value);
     }
     extended.extendedElements.foreach { extension =>
-        parentElem.addElement(extension.name).setText(extension.value)
+        parentElem.addElement(extension.name).setText(extension.value.replace("&amp;#", "&#"))
     }
   }
 }

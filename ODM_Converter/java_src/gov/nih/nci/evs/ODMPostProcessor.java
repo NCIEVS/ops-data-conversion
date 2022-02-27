@@ -138,6 +138,7 @@ public class ODMPostProcessor {
 		run(odmxml, odmxml);
 	}
 
+/*
 	public static void run(String odmxml, String outputfile) {
 		Vector w = readFile(odmxml);
 		String timeStamp = getToday();
@@ -158,6 +159,19 @@ public class ODMPostProcessor {
 		}
 		saveToFile(outputfile, v2);
 	}
+*/
+
+	public static void run(String odmxml, String outputfile) {
+		Vector w = readFile(odmxml);
+		Vector v = new Vector();
+		for (int i=0; i<w.size(); i++) {
+			String line = (String) w.elementAt(i);
+			line = line.replace("&amp;#", "&#");
+			v.add(line);
+		}
+		saveToFile(outputfile, v);
+	}
+
 
 	public static void main(String[] args) {
 		String odmxml = args[0];

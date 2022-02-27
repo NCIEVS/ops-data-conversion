@@ -56,6 +56,7 @@ object TerminologyExcel2ODM {
     val outfile = new File(args(1))
   
     val terminologyReader = new TerminologyExcelReader()
+    
 
     terminologyReader.read(infile)
     
@@ -161,9 +162,12 @@ object TerminologyExcel2ODM {
   }
   
   def convertSynonyms(target: Extras, source: Extras) {
+    var str = null
+    val xmlUtil = new XmlUtil()
     if (source.extras.contains("terminology:synonyms")) {
-        source.extras("terminology:synonyms").split(';').foreach { synonym =>
-            target.extendedElements += new Extension("nciodm:CDISCSynonym", synonym.trim())
+        source.extras("terminology:synonyms")
+        .split(';').foreach { synonym =>
+            target.extendedElements += new Extension("nciodm:CDISCSynonym", xmlUtil.xmlEscapeText(synonym.trim()))
         }
     }
   }

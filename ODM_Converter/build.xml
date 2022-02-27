@@ -165,7 +165,7 @@
 	<!-- ** targets  ************************************************************************** -->
 	<!-- ************************************************************************************** -->
 	
-	<target name="run" depends="init, download, convert, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
+	<target name="run" depends="init, download, convert, postconvert, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
 
 	<target name="init" depends="setup-ivy">
 	
@@ -289,8 +289,19 @@
 
 	</target>
 
+  <target name="postconvert" depends="convert" description=" --> postprocess odm.xml">
+        <postprocess inputfile="${output.file.adam.xml}"  outputfile="${output.file.adam.xml}"/>
+        <postprocess inputfile="${output.file.cdash.xml}"  outputfile="${output.file.cdash.xml}"/>
+        <postprocess inputfile="${output.file.cde.xml}"  outputfile="${output.file.cde.xml}"/>
+        <postprocess inputfile="${output.file.prot.xml}"  outputfile="${output.file.prot.xml}"/>
+        <postprocess inputfile="${output.file.qrs.xml}"  outputfile="${output.file.qrs.xml}"/>
+        <postprocess inputfile="${output.file.sdtm.xml}"  outputfile="${output.file.sdtm.xml}"/>
+        <postprocess inputfile="${output.file.send.xml}"  outputfile="${output.file.send.xml}"/>
+        <postprocess inputfile="${output.file.define-xml.xml}"  outputfile="${output.file.define-xml.xml}"/>
+  </target>
 
-  <target name="validate" description=" --> validate nci excel files odm">
+
+  <target name="validate" depends="postconvert" description=" --> validate nci excel files odm">
     <schemavalidate file="${output.file.adam.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
@@ -368,6 +379,17 @@
 		<attribute name="outputfile"/>
 		<sequential>
 			<java classname="gov.nih.nci.evs.appl.TerminologyExcel2ODM" classpathref="runtime.classpath" failonerror="true">
+				<arg value="@{inputfile}"/>
+				<arg value="@{outputfile}"/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="postprocess">
+		<attribute name="inputfile"/>
+		<attribute name="outputfile"/>
+		<sequential>
+			<java classname="gov.nih.nci.evs.ODMPostProcessor" classpathref="runtime.classpath" failonerror="true">
 				<arg value="@{inputfile}"/>
 				<arg value="@{outputfile}"/>
 			</java>

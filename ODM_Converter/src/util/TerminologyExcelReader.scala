@@ -100,7 +100,6 @@ class TerminologyExcelReader extends ExcelReader {
     
     var codelist : CodeList = null;
     var xmlUtil = new XmlUtil()
-    //var test_encoded_str = xmlUtil.xmlEscapeText("<>&")
     
     for (i <- firstRow to lastRow) {
       var row = sheet.getRow(i)
@@ -117,6 +116,7 @@ class TerminologyExcelReader extends ExcelReader {
         val submission_value   = getCellValue(row, COLS("submission_value"  ), false)
         //val preferred_term     = getCellValue(row, COLS("preferred_term"    ), false)
         val synonyms           = getCellValue(row, COLS("synonyms"          ), false)
+        if (synonyms != null && synonyms.length > 2) synonyms.replace("; ", ";")
         val definition         = getCellValue(row, COLS("definition"        ), false)
         val nci_preferred_term = getCellValue(row, COLS("nci_preferred_term"), false)
         
@@ -135,7 +135,7 @@ class TerminologyExcelReader extends ExcelReader {
           codelist.addExtra("terminology:name", xmlUtil.xmlEscapeText(name))
           codelist.addExtra("terminology:submission_value", xmlUtil.xmlEscapeText(submission_value))
           // codelist.addExtra("terminology:preferred_term", xmlUtil.xmlEscapeText(preferred_term))
-          codelist.addExtra("terminology:synonyms", xmlUtil.xmlEscapeText(synonyms))
+          codelist.addExtra("terminology:synonyms", synonyms)
           codelist.addExtra("terminology:definition", xmlUtil.xmlEscapeText(definition))
           codelist.addExtra("terminology:nci_preferred_term", xmlUtil.xmlEscapeText(nci_preferred_term))
           codelists += codelist
@@ -152,10 +152,10 @@ class TerminologyExcelReader extends ExcelReader {
           // cli.extras("terminology:extensible", extensible)
           cli.addExtra("terminology:name", name)
           cli.addExtra("terminology:submission_value", submission_value)
-          // codelist.addExtra("terminology:preferred_term", preferred_term)
+          // codelist.addExtra("terminology:preferred_term", xmlUtil.xmlEscapeText(preferred_term))
           cli.addExtra("terminology:synonyms", synonyms)
-          cli.addExtra("terminology:definition", definition)
-          cli.addExtra("terminology:nci_preferred_term", nci_preferred_term)
+          cli.addExtra("terminology:definition", xmlUtil.xmlEscapeText(definition))
+          cli.addExtra("terminology:nci_preferred_term", xmlUtil.xmlEscapeText(nci_preferred_term))
           codelist.codelistItems += cli
         }
       }
