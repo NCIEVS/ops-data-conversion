@@ -168,7 +168,7 @@
 	<target name="run" depends="init, download, convert, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
 
 	<target name="init" depends="setup-ivy">
-<!--	
+	
 		<ivy:settings file="ivysettings.xml"/>
 		<ivy:retrieve conf="build" pattern="${lib.dir}/[artifact]-[evision].[ext]"/>
 		
@@ -179,7 +179,7 @@
 				<pathelement location="${scala-reflect.jar}"/>
 			</classpath>
 		</taskdef>
--->		
+		
 	</target>
 	
 	<target name="download" description=" --> download nci excel files">
@@ -203,9 +203,9 @@
 	
 	<target name="compile" depends="init">
 		<mkdir dir="${classes.dir}"/>
-<!--		
+
 		<scalac srcdir="${source.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
--->		
+		
 		<javac srcdir="${jsource.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
 	</target>
 	

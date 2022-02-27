@@ -4,9 +4,10 @@ package util
   
  
   def xmlEscapeText(t: String): String ={
+  if (t == null || t.length == 0) return ""
 	var sb = new StringBuilder()
 	var i = 0
-	var c = ' ';
+	var c = ' '
 	for(i <- 0 to t.length-1){
 		c = t(i);
 		if (c == '<') sb.append("&lt;")
@@ -17,9 +18,9 @@ package util
 		else if (c == '\'') sb.append("&apos;")
 		else {
 				if (c>0x7e) {
-					sb.append("&#"+c.toInt+";");
+					sb.append("&#"+c.toInt+";")
 				} else {
-					sb.append(c);
+					sb.append(c)
 				}
 		}
 	}

@@ -21,6 +21,8 @@ import org.apache.poi.hssf.usermodel.HSSFCell
 import org.apache.poi.hssf.usermodel.HSSFRow
 import org.apache.poi.hssf.usermodel.HSSFSheet
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.ss.usermodel.CellType
+
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
 import java.io.File
 
@@ -47,11 +49,23 @@ abstract class ExcelReader {
     val cell = row.getCell(column.index)
     
     if (cell == null) return null
-      
-    var value : String = cell.getCellType() match {
-      case HSSFCell.CELL_TYPE_BLANK => return null
-      case HSSFCell.CELL_TYPE_STRING => cell.getRichStringCellValue().getString().trim()
-      case HSSFCell.CELL_TYPE_NUMERIC => new String("" + cell.getNumericCellValue())
+
+var value : String = null
+if (cell.getCellTypeEnum() == CellType.BLANK) {
+    return null;
+} else if (cell.getCellTypeEnum() == CellType.BOOLEAN) {
+    value = cell.getBooleanCellValue().toString();
+} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {
+    value = cell.getNumericCellValue().toString();
+} else if (cell.getCellTypeEnum() == CellType.STRING) {
+    value = cell.getRichStringCellValue().toString();
+}    
+    
+/*    
+    var value : CellType = cell.getCellType() match {
+      case CellType.BLANK => return null
+      case CellType.STRING => cell.getRichStringCellValue().getString().trim()
+      case CellType.NUMERIC => new String("" + cell.getNumericCellValue())
         
       case _ 
         => {
@@ -59,8 +73,8 @@ abstract class ExcelReader {
           return null
       }
     }
-    
-    value = value.toString()
+*/    
+    //value = value.toString()
         
     if (scrapNewline) {
       value = value.replace('\n', ' ')
