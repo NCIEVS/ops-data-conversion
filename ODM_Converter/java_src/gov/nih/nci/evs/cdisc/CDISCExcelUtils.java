@@ -191,6 +191,7 @@ public class CDISCExcelUtils {
 		sheet.setAutoFilter(CellRangeAddress.valueOf("A1:" + lastColumnChar + numRows));
 	}
 
+/*
 	private static String getCellData(Cell cell) {
 		String value = null;
 		if (cell == null) {
@@ -216,6 +217,35 @@ public class CDISCExcelUtils {
 		}
 		return value;
 	}
+*/
+    private static String getCellData(Cell cell) {
+        switch (cell.getCellTypeEnum()) {
+            case BOOLEAN:
+                System.out.print(cell.getBooleanCellValue());
+                Boolean bool_obj = cell.getBooleanCellValue();
+                boolean bool = Boolean.valueOf(bool_obj);
+                return "" + bool;
+
+            case STRING:
+                return (cell.getRichStringCellValue().getString());
+
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return ("" + cell.getDateCellValue());
+                } else {
+                    return ("" + cell.getNumericCellValue());
+                }
+
+            case FORMULA:
+                return(cell.getCellFormula().toString());
+
+            case BLANK:
+                return "";
+
+            default:
+                return "";
+        }
+    }
 
 	public String reformat(String xlsfile) {
 		String outputfile = xlsfile;

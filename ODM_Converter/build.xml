@@ -124,6 +124,10 @@
 	
 	<property name="xbean.jar"       location="${jlib.dir}/xbean.jar"/>
 	<property name="xstream.jar"       location="${jlib.dir}/xstream-1.2.2.jar"/>
+	<property name="evs-restapi-bean.jar"       location="${jlib.dir}/evs-restapi-bean.jar"/>
+        <property name="commons-collections.jar"       location="${jlib.dir}/commons-collections4-4.4.jar"/>
+        
+        <property name="opencsv.jar"       location="${jlib.dir}/opencsv-3.8.jar"/>
 	
 	<import file="etc/ivy-bootstrap.xml"/>
 	
@@ -157,8 +161,12 @@
 		
 		<pathelement location="${xbean.jar}"/>
 		<pathelement location="${xstream.jar}"/>
-	
 		
+		<pathelement location="${evs-restapi-bean.jar}"/>
+		<pathelement location="${commons-collections.jar}"/>
+		<pathelement location="${opencsv.jar}"/>
+		
+	
 	</path>
 	
 	<!-- ************************************************************************************** -->
