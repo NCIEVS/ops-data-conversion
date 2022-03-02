@@ -89,6 +89,56 @@ class TerminologyExcelReader extends ExcelReader {
 		return w;
 	}
 
+	public static int findTerminologySheetName(String excelfile) {
+		FileInputStream is = null;
+		HSSFWorkbook workbook = null;
+		int sheetCount = 0;
+		HSSFSheet sheet = null;
+		String sheetName = null;
+		int sheetIndex = -1;
+
+		try {
+			is = new FileInputStream(new File(excelfile));
+			workbook = new HSSFWorkbook(is);
+			sheetCount = workbook.getNumberOfSheets();
+			System.out.println("sheetCount: " + sheetCount);
+			for (int i=0; i<sheetCount; i++) {
+				sheetName = workbook.getSheetName(i);
+				System.out.println("sheetName: " + sheetName);
+				if (sheetName.indexOf("Terminology") != -1) {
+					sheetIndex = i;
+					break;
+				}
+			}
+			try {
+				workbook.close();
+				is.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return sheetIndex;
+	}
+
+
+	public int findTerminologySheetName(HSSFWorkbook workbook) {
+		int sheetCount = workbook.getNumberOfSheets();
+		System.out.println("sheetCount: " + sheetCount);
+		for (int i=0; i<sheetCount; i++) {
+			String sheetName = workbook.getSheetName(i);
+			System.out.println("sheetName: " + sheetName);
+			if (sheetName.indexOf("Terminology") != -1) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+
 	public void read(File file) {
 		FileInputStream is = null;
 		POIFSFileSystem fs = null;
@@ -102,7 +152,8 @@ class TerminologyExcelReader extends ExcelReader {
 			fs = new POIFSFileSystem(is);
 			workbook = new HSSFWorkbook(fs);
 			sheetCount = workbook.getNumberOfSheets();
-			sheet = workbook.getSheetAt(1);
+			int sheetIndex = findTerminologySheetName(workbook);
+			sheet = workbook.getSheetAt(sheetIndex);
 			sheetName = sheet.getSheetName();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -118,7 +169,6 @@ class TerminologyExcelReader extends ExcelReader {
 			terminologyModel = terminologyModel.trim();
 			terminologyShortModel = (String) parts.elementAt(1);
 			terminologyShortModel = terminologyShortModel.trim();
-
 
 			terminologyType = "Controlled Terminology";
 			terminologyDate = (String) parts.elementAt(2);

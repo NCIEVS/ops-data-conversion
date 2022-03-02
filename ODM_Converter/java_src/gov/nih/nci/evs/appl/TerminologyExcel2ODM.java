@@ -101,6 +101,9 @@ public class TerminologyExcel2ODM {
 		odm_xml_file = excelfile.substring(0, n) + ".odm.xml";
 	}
 
+
+
+
 	public TerminologyExcel2ODM(String excelfile, String odmxmlfile) {
 		odm_xml_file = odmxmlfile;
 		terminologyReader = new TerminologyExcelReader();
@@ -135,7 +138,8 @@ public class TerminologyExcel2ODM {
 		mdv_name = "CDISC " + terminologyModel + " " + terminologyType;
 		mdv_description = "CDISC " + terminologyModel + " " + terminologyType + ", " + dateStamp;
 		char delim = '|';
-		xml_data = ExcelReader.toDelimited(excelfile, 1, delim);
+		int sheetIndex = TerminologyExcelReader.findTerminologySheetName(excelfile);
+		xml_data = ExcelReader.toDelimited(excelfile, sheetIndex, delim);
 	}
 
     public static Vector parseData(String line, char delimiter) {
