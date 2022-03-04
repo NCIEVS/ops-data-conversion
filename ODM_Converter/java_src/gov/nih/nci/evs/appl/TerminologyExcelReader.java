@@ -165,8 +165,17 @@ class TerminologyExcelReader extends ExcelReader {
 				throw new RuntimeException("Expected sheet name in form '<type> Terminology <date>' but found '" + sheetName + "' instead");
 			}
 
+/*
 			terminologyModel = (String) parts.elementAt(0);
 			terminologyModel = terminologyModel.trim();
+			terminologyShortModel = (String) parts.elementAt(1);
+			terminologyShortModel = terminologyShortModel.trim();
+*/
+
+			terminologyModel = (String) parts.elementAt(0);
+			terminologyModel = terminologyModel.trim();
+			terminologyModel = terminologyModel.replace("Def-XML", "Define-XML");
+
 			terminologyShortModel = (String) parts.elementAt(1);
 			terminologyShortModel = terminologyShortModel.trim();
 
