@@ -280,6 +280,7 @@ v.	H is a width of 35
 			String sheetName = xlsfile.substring(0,n);
 			sheetName = sheetName.replace("_", " ");
 			sheetName = sheetName + " " + timestamp;
+			sheetName = sheetName.replace("Define-XML", "Def-XML");
 			wb.setSheetName(sheetIndex, sheetName);
 
 			Font font= wb.createFont();
