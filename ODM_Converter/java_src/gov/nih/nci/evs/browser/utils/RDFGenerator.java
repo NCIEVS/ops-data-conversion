@@ -5,7 +5,6 @@ import java.util.*;
 import java.net.*;
 import java.text.*;
 
-
 /**
  * <!-- LICENSE_TEXT_START -->
  * Copyright 2008,2009 NGIT. This software was developed in conjunction
@@ -157,7 +156,7 @@ public class RDFGenerator {
 		out.println("    xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"");
 		out.println("    xmlns:cts=\"http://rdf.cdisc.org/ct/schema#\"");
 		out.println("    xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"");
-		out.println("  xml:base=\"http://rdf.cdisc.org/" + terminology_abbr + "-terminology\">");
+		out.println("    xml:base=\"http://rdf.cdisc.org/" + terminology_abbr + "-terminology\">");
 		out.println("  <owl:Ontology rdf:about=\"\">");
 		out.println("    <owl:imports rdf:resource=\"http://rdf.cdisc.org/mms\"/>");
 		out.println("    <owl:imports rdf:resource=\"http://rdf.cdisc.org/ct/schema\"/>");
@@ -254,9 +253,13 @@ public class RDFGenerator {
 		}
 	}
 
-//"/Users/safrant/EVS/data/CDISC/190107/sdtm_terminology.owl"
     public String get_terminology_abbr(String datafile) {
+		//KLO, 03072022
 		int m = datafile.lastIndexOf("/");
+		if (m == -1) {
+			m = datafile.lastIndexOf(File.separator);
+		}
+
 		if (m != -1) {
 			datafile = datafile.substring(m+1, datafile.length());
 		}
@@ -292,7 +295,6 @@ public class RDFGenerator {
 					}
 				}
 			}
-			//codes = new SortUtils().quickSort(codes);
 		    for (int i=0; i<codes.size(); i++) {
 				String key = (String) codes.elementAt(i);
 				writePermissibleValue(pw, key);
@@ -315,9 +317,6 @@ public class RDFGenerator {
 		String datafile = args[0];
 		String owlfile = args[1];
 		RDFGenerator rdfGenerator = new RDFGenerator();
-		//String datafile = "/Users/safrant/EVS/data/CDISC/190107/sdtm_terminology.owl";
-		//String abbrev = new RDFGenerator().get_terminology_abbr(datafile);
-		//System.out.println(abbrev);
 		rdfGenerator.generate(datafile, owlfile);
 	}
 }
