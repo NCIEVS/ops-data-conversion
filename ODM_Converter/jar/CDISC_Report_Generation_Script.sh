@@ -207,23 +207,23 @@ echo "Step 6. Move files and clean-up:"
 	cd $CDISC_HOME
 
 	#	c. CDISC Glossary Terminology (C67497)
-	mv $CDISC_HOME/*Glossary*.txt $CDISC_HOME/Current/Glossary
+	mv $CDISC_HOME/*Glossary*.txt $CDISC_HOME/Current/CDISC_Glossary
 	rm -f $CDISC_HOME/*Glossary*.xls
-	cp $CDISC_HOME/ct-schema.owl $CDISC_HOME/Current/Glossary
-	cp $CDISC_HOME/meta-model-schema.owl $CDISC_HOME/Current/Glossary
-	cd $CDISC_HOME/Current/Glossary
+	cp $CDISC_HOME/ct-schema.owl $CDISC_HOME/Current/CDISC_Glossary
+	cp $CDISC_HOME/meta-model-schema.owl $CDISC_HOME/Current/CDISC_Glossary
+	cd $CDISC_HOME/Current/CDISC_Glossary
 	zip "CDISC Glossary.OWL.zip" "CDISC Glossary.owl" ct-schema.owl meta-model-schema.owl
-	if ! [ -e "$CDISC_HOME/Current/Glossary/Archive" ]; then
-		mkdir $CDISC_HOME/Current/Glossary/Archive
-	fi 
-	cp $CDISC_HOME/Current/Glossary/"CDISC Glossary.OWL.zip" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.OWL.zip"
-	cp $CDISC_HOME/Current/Glossary/"Glossary Terminology.xls" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.xls"
-	cp $CDISC_HOME/Current/Glossary/"Glossary Terminology.txt" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.txt"
-	cp $CDISC_HOME/Current/Glossary/"Glossary Terminology.xls" $CDISC_HOME/Current/Glossary/"CDISC Glossary.xls"
-	cp $CDISC_HOME/Current/Glossary/"Glossary Terminology.txt" $CDISC_HOME/Current/Glossary/"CDISC Glossary.txt"
-	cp $CDISC_HOME/Current/Glossary/"CDISC Glossary.pdf" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.pdf"
-	cp $CDISC_HOME/Current/Glossary/"CDISC Glossary.html" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.html"
-	cp $CDISC_HOME/Current/Glossary/"CDISC Glossary.odm.xml" $CDISC_HOME/Current/Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.odm.xml"
+    if ! [ -e "$CDISC_HOME/Current/CDISC_Glossary/Archive" ]; then
+		mkdir $CDISC_HOME/Current/CDISC_Glossary/Archive
+	fi
+	cp $CDISC_HOME/Current/CDISC_Glossary/"CDISC Glossary.OWL.zip" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.OWL.zip"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.xls" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.xls"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.txt" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.txt"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.xls" $CDISC_HOME/Current/CDISC_Glossary/"CDISC Glossary.xls"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.txt" $CDISC_HOME/Current/CDISC_Glossary/"CDISC Glossary.txt"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.pdf" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.pdf"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.html" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.html"
+	cp $CDISC_HOME/Current/CDISC_Glossary/"Glossary Terminology.odm.xml" $CDISC_HOME/Current/CDISC_Glossary/Archive/"CDISC Glossary $PUBLICATION_DATE.odm.xml"
 	cd $CDISC_HOME
 	
 	#	d. CDISC Protocol Terminology (C132298)
