@@ -178,6 +178,7 @@ class TerminologyExcelReader extends ExcelReader {
 
 			terminologyShortModel = (String) parts.elementAt(0);
 			terminologyShortModel = terminologyShortModel.trim();
+			terminologyShortModel = terminologyShortModel.replace("Def-XML", "Define-XML");
 
 			terminologyType = "Controlled Terminology";
 			terminologyDate = (String) parts.elementAt(2);
