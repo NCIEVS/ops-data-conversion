@@ -1,18 +1,15 @@
 package gov.nih.nci.evs.cdisc;
-import gov.nih.nci.evs.restapi.util.*;
-import gov.nih.nci.evs.restapi.bean.*;
-
+import gov.nih.nci.evs.bean.*;
+import gov.nih.nci.evs.util.*;
 import java.io.*;
-import java.util.*;
-
 import java.lang.reflect.Field;
 import java.net.*;
 import java.text.SimpleDateFormat;
-
+import java.util.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
- * Copyright 2011, MSC. This software was developed in conjunction
+ * Copyright 2022 Guidehouse. This software was developed in conjunction
  * with the National Cancer Institute, and so to the extent government
  * employees are co-authors, any rights in such works shall be subject
  * to Title 17 of the United States Code, section 105.
@@ -27,21 +24,21 @@ import java.text.SimpleDateFormat;
  *      with the distribution.
  *   2. The end-user documentation included with the redistribution,
  *      if any, must include the following acknowledgment:
- *      "This product includes software developed by MSC and the National
+ *      "This product includes software developed by Guidehouse and the National
  *      Cancer Institute."   If no such end-user documentation is to be
  *      included, this acknowledgment shall appear in the software itself,
  *      wherever such third-party acknowledgments normally appear.
- *   3. The names "The National Cancer Institute", "NCI" and "MSC" must
+ *   3. The names "The National Cancer Institute", "NCI" and "Guidehouse" must
  *      not be used to endorse or promote products derived from this software.
  *   4. This license does not authorize the incorporation of this software
  *      into any third party proprietary programs. This license does not
  *      authorize the recipient to use any trademarks owned by either NCI
- *      or MSC.
+ *      or GUIDEHOUSE
  *   5. THIS SOFTWARE IS PROVIDED "AS IS," AND ANY EXPRESSED OR IMPLIED
  *      WARRANTIES, (INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  *      OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE) ARE
  *      DISCLAIMED. IN NO EVENT SHALL THE NATIONAL CANCER INSTITUTE,
- *      MSC, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT,
+ *      GUIDEHOUSE, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT,
  *      INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
  *      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
  *      LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -57,11 +54,9 @@ import java.text.SimpleDateFormat;
  * @version 1.0
  *
  * Modification history:
- *     Initial implementation ongki@nih.gov
+ *     Initial implementation kim.ong@nih.gov
  *
  */
-
-
 public class CDISCScanner {
     String owlfile = null;
 
@@ -89,6 +84,23 @@ public class CDISCScanner {
 		initialize();
 	}
 
+    public static Vector parseData(String line, char delimiter) {
+		if(line == null) return null;
+		Vector w = new Vector();
+		StringBuffer buf = new StringBuffer();
+		for (int i=0; i<line.length(); i++) {
+			char c = line.charAt(i);
+			if (c == delimiter) {
+				w.add(buf.toString());
+				buf = new StringBuffer();
+			} else {
+				buf.append(c);
+			}
+		}
+		w.add(buf.toString());
+		return w;
+	}
+
 	public void set_CDISC_SOURCE(String source) {
 		CDISC_SOURCE = source;
 	}
@@ -113,7 +125,7 @@ public class CDISCScanner {
 		HashMap hmap = new HashMap();
 		for (int i=0; i<parent_child_vec.size(); i++) {
 			String line = (String) parent_child_vec.elementAt(i);
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			String parent_code = (String) u.elementAt(1);
 			String child_code = (String) u.elementAt(3);
 			Vector w = new Vector();
@@ -130,7 +142,7 @@ public class CDISCScanner {
 		HashMap hmap = new HashMap();
 		for (int i=0; i<a8_vec.size(); i++) {
 			String line = (String) a8_vec.elementAt(i);
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			String member_code = (String) u.elementAt(0);
 			String subset_code = (String) u.elementAt(2);
 			Vector w = new Vector();
@@ -197,7 +209,7 @@ public class CDISCScanner {
 		//Utils.saveToFile(propertyCode + ".txt", preferredNames);
         for (int i=0; i<preferredNames.size(); i++) {
 			String line = (String) preferredNames.elementAt(i);
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			String code = (String) u.elementAt(0);
 			//if (focusedCodes.contains(code)) {
 				preferredNameMap.put((String) u.elementAt(0), decodeSpecialChar((String) u.elementAt(2)));
@@ -210,7 +222,7 @@ public class CDISCScanner {
 		//Utils.saveToFile(propertyCode + ".txt", preferredNames);
         for (int i=0; i<w3.size(); i++) {
 			String line = (String) w3.elementAt(i);
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			String code = (String) u.elementAt(0);
 			//if (focusedCodes.contains(code)) {
 				String status = (String) u.elementAt(2);
@@ -232,12 +244,12 @@ public class CDISCScanner {
         for (int i=0; i<defs.size(); i++) {
 			String line = (String) defs.elementAt(i);
 			if (line.indexOf("P378$CDISC") != -1 || line.indexOf("P378$CDISC-GLOSS") != -1) {
-				Vector u = StringUtils.parseData(line, '|');
+				Vector u = parseData(line, '|');
 				String code = (String) u.elementAt(1);
 				String alt_def = (String) u.elementAt(3);
 				alt_def = decodeSpecialChar(alt_def);
 				String source_str = (String) u.elementAt(4);
-				Vector u2 = StringUtils.parseData(source_str, '$');
+				Vector u2 = parseData(source_str, '$');
 				String src = (String) u2.elementAt(1);
 				if (src.compareTo("CDISC") == 0) {
 					cdiscDefinitionMap.put(code, alt_def);
@@ -253,7 +265,7 @@ public class CDISCScanner {
 		for (int i=0; i<syns.size(); i++) {
 			String line = (String) syns.elementAt(i);
 			//CSS1002C|C113894|P90|CSS1002C|P383$PT|P384$CDISC|P385$QS-C-SSRS Pediatric/Cognitively Impaired Lifetime/Recent TESTCD
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			String code = (String) u.elementAt(1);
 			//if (focusedCodes.contains(code)) {
 				Synonym syn = string2Synonym(line);
@@ -272,7 +284,7 @@ public class CDISCScanner {
 		extensibleListMap = new HashMap();
 		for (int i=0; i<extensibleList.size(); i++) {
 			String line = (String) extensibleList.elementAt(i);
-			Vector u = StringUtils.parseData(line, '|');
+			Vector u = parseData(line, '|');
 			extensibleListMap.put((String) u.elementAt(0), (String) u.elementAt(2));
 		}
 	}
@@ -315,7 +327,7 @@ public class CDISCScanner {
 	}
 
     public Synonym string2Synonym(String line) {
-		Vector u = StringUtils.parseData(line, '|');
+		Vector u = parseData(line, '|');
 		String label = (String) u.elementAt(0);
 		String code = (String) u.elementAt(1);
 		String termName = (String) u.elementAt(3);
@@ -329,22 +341,22 @@ public class CDISCScanner {
 
 		if (u.size() > 4) {
 			String group = (String) u.elementAt(4);
-			Vector v = StringUtils.parseData(group, '$');
+			Vector v = parseData(group, '$');
 			termGroup = (String) v.elementAt(1);
 		}
 		if (u.size() > 5) {
 			String source = (String) u.elementAt(5);
-			Vector v = StringUtils.parseData(source, '$');
+			Vector v = parseData(source, '$');
 			termSource = (String) v.elementAt(1);
 		}
 		if (u.size() > 6) {
 			String sourcecode = (String) u.elementAt(6);
-			Vector v = StringUtils.parseData(sourcecode, '$');
+			Vector v = parseData(sourcecode, '$');
 			sourceCode = (String) v.elementAt(1);
 		}
 		if (u.size() > 7) {
 			String sourcesourcename = (String) u.elementAt(7);
-			Vector v = StringUtils.parseData(sourcesourcename, '$');
+			Vector v = parseData(sourcesourcename, '$');
 			subSourceName = (String) v.elementAt(1);
 		}
 		return new Synonym(

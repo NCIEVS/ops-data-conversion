@@ -43,14 +43,14 @@ import java.util.*;
  * <!-- LICENSE_TEXT_END -->
  */
 
- /**
-  * @author EVS Team
-  * @version 1.0
-  *
-  *          Modification history Initial implementation kim.ong@nih.gov
-  *
+/**
+ * @author EVS Team
+ * @version 1.0
+ *
+ * Modification history:
+ *     Initial implementation kim.ong@nih.gov
+ *
  */
-
 public class SortComparator implements Comparator<Object> {
     //private static Logger _logger = Logger.getLogger(SortComparator.class);
     private static final int SORT_BY_NAME = 1;

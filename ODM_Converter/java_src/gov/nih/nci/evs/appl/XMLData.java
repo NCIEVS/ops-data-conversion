@@ -1,15 +1,13 @@
 package gov.nih.nci.evs.appl;
-
-import java.io.*;
-import java.util.*;
-import java.net.*;
-
 import com.google.gson.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.XStream;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
@@ -53,14 +51,14 @@ import com.thoughtworks.xstream.XStream;
  * <!-- LICENSE_TEXT_END -->
  */
 
- /**
-  * @author EVS Team
-  * @version 1.0
-  *
-  *          Modification history Initial implementation kim.ong@nih.gov
-  *
+/**
+ * @author EVS Team
+ * @version 1.0
+ *
+ * Modification history:
+ *     Initial implementation kim.ong@nih.gov
+ *
  */
-
 public class XMLData
 {
 

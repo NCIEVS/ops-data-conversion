@@ -100,34 +100,35 @@
 	<property name="schema.file"                location="${schema.dir}/controlledterminology1-2-0.xsd"/>
 	<property name="cdisc.odm.schema.namespace" value="http://www.cdisc.org/ns/odm/v1.3"/>
 
-	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
-	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
-	
-	<!--
-	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
-	-->
-	
 	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.10.7.jar"/>
 	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.10.7.jar"/>
 	<property name="scala-reflect.jar"  location="${lib.dir}/scala-reflect-2.10.7.jar"/>
-	<property name="itext-pdfa.jar"     location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
-	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
-	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
-	<property name="xmlworker.jar"       location="${jlib.dir}/xmlworker-5.4.1.jar"/>
-	
-	<property name="commons-collections.jar"       location="${jlib.dir}/commons-collections4-4.4.jar"/>
-	<property name="gson.jar"       location="${jlib.dir}/gson-2.6.2.jar"/>
 
-	<property name="poi.jar"       location="${jlib.dir}/poi-3.17.jar"/>
-	<property name="poi-ooxml.jar"       location="${jlib.dir}/poi-ooxml-3.17.jar"/>
-	<property name="poi-ooxml-schemas.jar"       location="${jlib.dir}/poi-ooxml-schemas-3.17.jar"/>
-	
-	<property name="xbean.jar"       location="${jlib.dir}/xbean.jar"/>
-	<property name="xstream.jar"       location="${jlib.dir}/xstream-1.2.2.jar"/>
-	<property name="evs-restapi-bean.jar"       location="${jlib.dir}/evs-restapi-bean.jar"/>
-        <property name="commons-collections.jar"       location="${jlib.dir}/commons-collections4-4.4.jar"/>
-        
-        <property name="opencsv.jar"       location="${jlib.dir}/opencsv-3.8.jar"/>
+	<property name="commons-collections.jar" location="${jlib.dir}/commons-collections4-4.4.jar"/>
+	<property name="dom4j.jar" location="${jlib.dir}/dom4j-1.6.1.jar"/>
+	<property name="evs-restapi-bean.jar" location="${jlib.dir}/evs-restapi-bean.jar"/>
+	<property name="gson.jar" location="${jlib.dir}/gson-2.6.2.jar"/>
+	<property name="itext-pdfa.jar" location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
+	<property name="itext-xtra.jar" location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
+	<property name="itextpdf.jar" location="${jlib.dir}/itextpdf-5.4.1.jar"/>
+	<property name="jaxen.jar" location="${jlib.dir}/jaxen-1.1.1.jar"/>
+	<property name="opencsv.jar" location="${jlib.dir}/opencsv-3.8.jar"/>
+	<property name="poi.jar" location="${jlib.dir}/poi-3.17.jar"/>
+	<property name="poi-ooxml.jar" location="${jlib.dir}/poi-ooxml-3.17.jar"/>
+	<property name="poi-ooxml-schemas.jar" location="${jlib.dir}/poi-ooxml-schemas-3.17.jar"/>
+	<property name="serializer.jar" location="${jlib.dir}/serializer.jar"/>
+	<property name="xalan.jar" location="${jlib.dir}/xalan.jar"/>
+	<property name="xbean.jar" location="${jlib.dir}/xbean.jar"/>
+	<property name="xercesImpl.jar" location="${jlib.dir}/xercesImpl.jar"/>
+	<property name="xml-apis.jar" location="${jlib.dir}/xml-apis.jar"/>
+	<property name="xmlworker.jar" location="${jlib.dir}/xmlworker-5.4.1.jar"/>
+	<property name="xstream.jar" location="${jlib.dir}/xstream-1.2.2.jar"/>
+	<property name="formatter.jar" location="${jlib.dir}/formatter.jar"/>
+	<property name="log.jar" location="${jlib.dir}/log4j-1.2.15.jar"/>
+	<property name="slf4j-log4j.jar" location="${jlib.dir}/slf4j-log4j12-1.5.6.jar"/>
+	<property name="slf4j-api.jar" location="${jlib.dir}/slf4j-api-1.5.6.jar"/>
+	<property name="xmlbeans.jar" location="${jlib.dir}/xmlbeans-2.6.0.jar"/>
+	<property name="xmlunit.jar" location="${jlib.dir}/xmlunit-1.3.jar"/>
 	
 	<import file="etc/ivy-bootstrap.xml"/>
 	
@@ -136,37 +137,38 @@
 	</path>
 	
 	<path id="build.classpath">
-		<pathelement location="${classes.dir}"/>
-		<pathelement location="${dom4j.jar}"/>
-		<pathelement location="${jaxen.jar}"/>
-		
-		<!--
-		<pathelement location="${poi.jar}"/>
-		-->
-		
+	        <pathelement location="${classes.dir}"/>
+	        
 		<pathelement location="${scala-library.jar}"/>
 		<pathelement location="${scala-compiler.jar}"/>
 		<pathelement location="${scala-reflect.jar}"/>
+		
+		
+		<pathelement location="${commons-collections.jar}"/>
+		<pathelement location="${dom4j.jar}"/>
+		<pathelement location="${evs-restapi-bean.jar}"/>
+		<pathelement location="${gson.jar}"/>
 		<pathelement location="${itext-pdfa.jar}"/>
 		<pathelement location="${itext-xtra.jar}"/>
 		<pathelement location="${itextpdf.jar}"/>
-		<pathelement location="${xmlworker.jar}"/>
-		
-		<pathelement location="${commons-collections.jar}"/>
-		<pathelement location="${gson.jar}"/>
-
+		<pathelement location="${jaxen.jar}"/>
+		<pathelement location="${opencsv.jar}"/>
 		<pathelement location="${poi.jar}"/>
 		<pathelement location="${poi-ooxml.jar}"/>
 		<pathelement location="${poi-ooxml-schemas.jar}"/>
-		
+		<pathelement location="${serializer.jar}"/>
+		<pathelement location="${xalan.jar}"/>
 		<pathelement location="${xbean.jar}"/>
+		<pathelement location="${xercesImpl.jar}"/>
+		<pathelement location="${xml-apis.jar}"/>
+		<pathelement location="${xmlworker.jar}"/>
 		<pathelement location="${xstream.jar}"/>
-		
-		<pathelement location="${evs-restapi-bean.jar}"/>
-		<pathelement location="${commons-collections.jar}"/>
-		<pathelement location="${opencsv.jar}"/>
-		
-	
+		<pathelement location="${formatter.jar}"/>
+		<pathelement location="${log.jar}"/>
+		<pathelement location="${slf4j-log4j.jar}"/>
+		<pathelement location="${slf4j-api.jar}"/>
+		<pathelement location="${xmlbeans.jar}"/>
+		<pathelement location="${xmlunit.jar}"/>
 	</path>
 	
 	<!-- ************************************************************************************** -->

@@ -1,5 +1,4 @@
 package gov.nih.nci.evs.appl;
-
 import java.io.*;
 import java.util.*;
 
@@ -45,14 +44,14 @@ import java.util.*;
  * <!-- LICENSE_TEXT_END -->
  */
 
- /**
-  * @author EVS Team
-  * @version 1.0
-  *
-  *          Modification history Initial implementation kim.ong@nih.gov
-  *
+/**
+ * @author EVS Team
+ * @version 1.0
+ *
+ * Modification history:
+ *     Initial implementation kim.ong@nih.gov
+ *
  */
-
 public class SortTextualData {
 
     public static final int SORT_BY_NAME = 1;

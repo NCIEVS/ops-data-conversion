@@ -1,14 +1,12 @@
-
 package gov.nih.nci.evs.appl;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.*;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import java.io.FileInputStream;
-import java.io.File;
-import java.util.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
@@ -52,15 +50,15 @@ import java.util.*;
  * <!-- LICENSE_TEXT_END -->
  */
 
- /**
-  * @author EVS Team
-  * @version 1.0
-  *
-  *          Modification history Initial implementation kim.ong@nih.gov
-  *
+/**
+ * @author EVS Team
+ * @version 1.0
+ *
+ * Modification history:
+ *     Initial implementation kim.ong@nih.gov
+ *
  */
-
-class TerminologyExcelReader extends ExcelReader {
+public class TerminologyExcelReader extends ExcelReader {
 
 	public String terminologyModel = null;
 	public String terminologyShortModel = null;

@@ -1,6 +1,4 @@
-package gov.nih.nci.evs.cdisc;
-import java.io.*;
-import java.net.*;
+package gov.nih.nci.evs.util;
 import java.util.*;
 
 /**
@@ -53,121 +51,97 @@ import java.util.*;
  *     Initial implementation kim.ong@nih.gov
  *
  */
-public class CDISCRow
-{
+public class SortUtils {
 
-// Variable declaration
-	private String code;
-	private String codelistCode;
-	private String extensibleList;
-	private String codelistName;
-	private String cDISCSubmissionValue;
-	private String cDISCSynonyms;
-	private String cDISCDefinition;
-	private String nCIPreferredTerm;
+    public static final int SORT_BY_NAME = 1;
+    public static final int SORT_BY_CODE = 2;
 
-// Default constructor
-	public CDISCRow() {
-	}
+    /**
+     * Performs quick sort of a List by name.
+     *
+     * @param list an instance of List
+     */
+    public void quickSort(List list) {
+        quickSort(list, SORT_BY_NAME);
+    }
 
-// Constructor
-	public CDISCRow(
-		String code,
-		String codelistCode,
-		String extensibleList,
-		String codelistName,
-		String cDISCSubmissionValue,
-		String cDISCSynonyms,
-		String cDISCDefinition,
-		String nCIPreferredTerm) {
+    /**
+     * Performs quick sort of a List by a specified sort option.
+     *
+     * @param list an instance of List
+     * @param sort_option, an integer; 1, if sort by name; 2: if sort by code
+     */
+    public void quickSort(List list, int sort_option) {
+        if (list == null)
+            return;
+        if (list.size() <= 1)
+            return;
+        try {
+            Collections.sort(list, new SortComparator(sort_option));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
-		this.code = code;
-		this.codelistCode = codelistCode;
-		this.extensibleList = extensibleList;
-		this.codelistName = codelistName;
-		this.cDISCSubmissionValue = cDISCSubmissionValue;
-		this.cDISCSynonyms = cDISCSynonyms;
-		this.cDISCDefinition = cDISCDefinition;
-		this.nCIPreferredTerm = nCIPreferredTerm;
-	}
+    /**
+     * Performs quick sort of a Vector by a specified sort option.
+     *
+     * @param v an instance of Vector
+     * @param sort_option, an integer; 1, if sort by name; 2: if sort by code
+     */
 
-// Set methods
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public Vector quickSort(Vector v, int sort_option) {
+        if (v == null)
+            return v;
+        if (v.size() <= 1)
+            return v;
+        try {
+            Collections.sort((List) v, new SortComparator(sort_option));
+            return v;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
-	public void setCodelistCode(String codelistCode) {
-		this.codelistCode = codelistCode;
-	}
+    /**
+     * Performs quick sort of a Vector by name.
+     *
+     * @param v an instance of Vector
+     */
 
-	public void setExtensibleList(String extensibleList) {
-		this.extensibleList = extensibleList;
-	}
+    public Vector quickSort(Vector v) {
+        return quickSort(v, SORT_BY_NAME);
+    }
 
-	public void setCodelistName(String codelistName) {
-		this.codelistName = codelistName;
-	}
+    @SuppressWarnings("unchecked")
+    public Enumeration<?> sort(Enumeration<?> enumeration) {
+        if (enumeration == null)
+            return enumeration;
 
-	public void setCDISCSubmissionValue(String cDISCSubmissionValue) {
-		this.cDISCSubmissionValue = cDISCSubmissionValue;
-	}
+        List keyList = Collections.list(enumeration);
+        Collections.sort(keyList);
+        enumeration = Collections.enumeration(keyList);
+        return enumeration;
+    }
 
-	public void setCDISCSynonyms(String cDISCSynonyms) {
-		this.cDISCSynonyms = cDISCSynonyms;
-	}
-
-	public void setCDISCDefinition(String cDISCDefinition) {
-		this.cDISCDefinition = cDISCDefinition;
-	}
-
-	public void setNCIPreferredTerm(String nCIPreferredTerm) {
-		this.nCIPreferredTerm = nCIPreferredTerm;
-	}
-
-
-// Get methods
-	public String getCode() {
-		return this.code;
-	}
-
-	public String getCodelistCode() {
-		return this.codelistCode;
-	}
-
-	public String getExtensibleList() {
-		return this.extensibleList;
-	}
-
-	public String getCodelistName() {
-		return this.codelistName;
-	}
-
-	public String getCDISCSubmissionValue() {
-		return this.cDISCSubmissionValue;
-	}
-
-	public String getCDISCSynonyms() {
-		return this.cDISCSynonyms;
-	}
-
-	public String getCDISCDefinition() {
-		return this.cDISCDefinition;
-	}
-
-	public String getNCIPreferredTerm() {
-		return this.nCIPreferredTerm;
-	}
-
-	public String escapeDoubleQuotes(String inputStr) {
-		char doubleQ = '"';
-		StringBuffer buf = new StringBuffer();
-		for (int i=0;  i<inputStr.length(); i++) {
-			char c = inputStr.charAt(i);
-			if (c == doubleQ) {
-				buf.append(doubleQ).append(doubleQ);
-			}
-			buf.append(c);
+	public Vector caseInsensitiveSort(Vector v) {
+		if (v == null) return null;
+		HashMap hmap = new HashMap();
+		Vector keys = new Vector();
+		Vector values = new Vector();
+		for (int i=0; i<v.size(); i++) {
+			String key = (String) v.elementAt(i);
+			String key_lower_case = key.toLowerCase();
+			keys.add(key_lower_case);
+			hmap.put(key_lower_case, key);
 		}
-		return buf.toString();
+		keys = quickSort(keys);
+		for (int i=0; i<keys.size(); i++) {
+			String key = (String) keys.elementAt(i);
+			String value = (String) hmap.get(key);
+			values.add(value);
+		}
+		return values;
 	}
 }

@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.appl;
+package gov.nih.nci.evs.bean;
 import com.google.gson.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -59,43 +59,124 @@ import java.util.*;
  *     Initial implementation kim.ong@nih.gov
  *
  */
-public class Column
+public class Synonym
 {
 
 // Variable declaration
-	private int index;
-	private String header;
+	private String code;
+	private String label;
+	private String termName;
+	private String termGroup;
+	private String termSource;
+	private String sourceCode;
+	private String subSourceName;
+	private String subSourceCode;
 
 // Default constructor
-	public Column() {
+	public Synonym() {
 	}
 
 // Constructor
-	public Column(
-		int index,
-		String header) {
+	public Synonym(
+		String code,
+		String label,
+		String termName,
+		String termGroup,
+		String termSource,
+		String sourceCode,
+		String subSourceName,
+		String subSourceCode) {
 
-		this.index = index;
-		this.header = header;
+		this.code = code;
+		this.label = label;
+		this.termName = termName;
+		this.termGroup = termGroup;
+		this.termSource = termSource;
+		this.sourceCode = sourceCode;
+		this.subSourceName = subSourceName;
+		this.subSourceCode = subSourceCode;
+	}
+
+	public Synonym(
+		String termName,
+		String termGroup,
+		String termSource,
+		String sourceCode) {
+		this.code = null;
+		this.label = null;
+		this.termName = termName;
+		this.termGroup = termGroup;
+		this.termSource = termSource;
+		this.sourceCode = sourceCode;
+		this.subSourceName = null;
+		this.subSourceCode = null;
 	}
 
 // Set methods
-	public void setIndex(int index) {
-		this.index = index;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public void setHeader(String header) {
-		this.header = header;
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setTermName(String termName) {
+		this.termName = termName;
+	}
+
+	public void setTermGroup(String termGroup) {
+		this.termGroup = termGroup;
+	}
+
+	public void setTermSource(String termSource) {
+		this.termSource = termSource;
+	}
+
+	public void setSourceCode(String sourceCode) {
+		this.sourceCode = sourceCode;
+	}
+
+	public void setSubSourceName(String subSourceName) {
+		this.subSourceName = subSourceName;
+	}
+
+	public void setSubSourceCode(String subSourceCode) {
+		this.subSourceCode = subSourceCode;
 	}
 
 
 // Get methods
-	public int getIndex() {
-		return this.index;
+	public String getCode() {
+		return this.code;
 	}
 
-	public String getHeader() {
-		return this.header;
+	public String getLabel() {
+		return this.label;
+	}
+
+	public String getTermName() {
+		return this.termName;
+	}
+
+	public String getTermGroup() {
+		return this.termGroup;
+	}
+
+	public String getTermSource() {
+		return this.termSource;
+	}
+
+	public String getSourceCode() {
+		return this.sourceCode;
+	}
+
+	public String getSubSourceName() {
+		return this.subSourceName;
+	}
+
+	public String getSubSourceCode() {
+		return this.subSourceCode;
 	}
 
 	public String toXML() {
@@ -127,4 +208,31 @@ public class Column
 		}
 		return buf.toString();
 	}
+
+	public String print() {
+		StringBuffer buf = new StringBuffer();
+		buf.append("termName:").append(termName).append("\n");
+		buf.append("\t").append("termGroup: ").append(termGroup).append("\n");
+		buf.append("\t").append("termSource: ").append(termSource).append("\n");
+		buf.append("\t").append("sourceCode: ").append(sourceCode).append("\n");
+		buf.append("\t").append("subSourceName: ").append(subSourceName).append("\n");
+		buf.append("\t").append("subSourceCode: ").append(subSourceCode);
+        return buf.toString() + "\n";
+ 	}
+
+	public String toString() {
+	    return this.code + "|" +
+	           this.label + "|" +
+	           "P90|" +
+	           this.termName + "|" +
+	           "P383|" +
+	           this.termGroup + "|" +
+	           "P384|" +
+	           this.termSource + "|" +
+	           "P385|" +
+	           this.sourceCode + "|" +
+	           "P386|" +
+	           this.subSourceName;
+ 	}
+
 }

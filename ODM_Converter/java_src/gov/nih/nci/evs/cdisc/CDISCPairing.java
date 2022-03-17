@@ -1,33 +1,28 @@
 package gov.nih.nci.evs.cdisc;
-
-import gov.nih.nci.evs.restapi.util.*;
-import gov.nih.nci.evs.restapi.bean.*;
-
-import java.io.*;
-import java.util.*;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import com.opencsv.CSVReader;
+import gov.nih.nci.evs.restapi.bean.*;
+import gov.nih.nci.evs.restapi.util.*;
 import java.awt.Color;
 import java.io.*;
+import java.io.*;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * <!-- LICENSE_TEXT_START -->
- * Copyright 2011, MSC. This software was developed in conjunction
+ * Copyright 2022 Guidehouse. This software was developed in conjunction
  * with the National Cancer Institute, and so to the extent government
  * employees are co-authors, any rights in such works shall be subject
  * to Title 17 of the United States Code, section 105.
@@ -42,21 +37,21 @@ import java.util.Map;
  *      with the distribution.
  *   2. The end-user documentation included with the redistribution,
  *      if any, must include the following acknowledgment:
- *      "This product includes software developed by MSC and the National
+ *      "This product includes software developed by Guidehouse and the National
  *      Cancer Institute."   If no such end-user documentation is to be
  *      included, this acknowledgment shall appear in the software itself,
  *      wherever such third-party acknowledgments normally appear.
- *   3. The names "The National Cancer Institute", "NCI" and "MSC" must
+ *   3. The names "The National Cancer Institute", "NCI" and "Guidehouse" must
  *      not be used to endorse or promote products derived from this software.
  *   4. This license does not authorize the incorporation of this software
  *      into any third party proprietary programs. This license does not
  *      authorize the recipient to use any trademarks owned by either NCI
- *      or MSC.
+ *      or GUIDEHOUSE
  *   5. THIS SOFTWARE IS PROVIDED "AS IS," AND ANY EXPRESSED OR IMPLIED
  *      WARRANTIES, (INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
  *      OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE) ARE
  *      DISCLAIMED. IN NO EVENT SHALL THE NATIONAL CANCER INSTITUTE,
- *      MSC, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT,
+ *      GUIDEHOUSE, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT,
  *      INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
  *      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
  *      LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -72,10 +67,9 @@ import java.util.Map;
  * @version 1.0
  *
  * Modification history:
- *     Initial implementation ongki@nih.gov
+ *     Initial implementation kim.ong@nih.gov
  *
  */
-
 public class CDISCPairing {
 	public static int DATA_SOURCE_NCIT_OWL = 1;
 	public static int DATA_SOURCE_SPARQL = 2;

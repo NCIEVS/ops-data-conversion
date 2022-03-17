@@ -1,11 +1,10 @@
 package gov.nih.nci.evs.appl;
-
 import java.io.*;
-import java.text.*;
 import java.net.*;
-import java.util.*;
-import java.nio.file.*;
 import java.nio.charset.Charset;
+import java.nio.file.*;
+import java.text.*;
+import java.util.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
@@ -49,15 +48,14 @@ import java.nio.charset.Charset;
  * <!-- LICENSE_TEXT_END -->
  */
 
- /**
-  * @author EVS Team
-  * @version 1.0
-  *
-  *          Modification history Initial implementation kim.ong@nih.gov
-  *
+/**
+ * @author EVS Team
+ * @version 1.0
+ *
+ * Modification history:
+ *     Initial implementation kim.ong@nih.gov
+ *
  */
-
-
 public class TerminologyExcel2ODM {
 
 	String dateStamp = null;

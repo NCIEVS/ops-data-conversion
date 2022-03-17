@@ -1,4 +1,10 @@
-package gov.nih.nci.evs.cdisc;
+package gov.nih.nci.evs.bean;
+import com.google.gson.*;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.XStream;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -53,42 +59,35 @@ import java.util.*;
  *     Initial implementation kim.ong@nih.gov
  *
  */
-public class CDISCRow
+public class AltDefinition
 {
 
 // Variable declaration
 	private String code;
-	private String codelistCode;
-	private String extensibleList;
-	private String codelistName;
-	private String cDISCSubmissionValue;
-	private String cDISCSynonyms;
-	private String cDISCDefinition;
-	private String nCIPreferredTerm;
+	private String label;
+	private String propertyLabel;
+	private String description;
+	private String attribution;
+	private String source;
 
 // Default constructor
-	public CDISCRow() {
+	public AltDefinition() {
 	}
 
 // Constructor
-	public CDISCRow(
+	public AltDefinition(
 		String code,
-		String codelistCode,
-		String extensibleList,
-		String codelistName,
-		String cDISCSubmissionValue,
-		String cDISCSynonyms,
-		String cDISCDefinition,
-		String nCIPreferredTerm) {
+		String label,
+		String description,
+		String attribution,
+		String source) {
 
 		this.code = code;
-		this.codelistCode = codelistCode;
-		this.extensibleList = extensibleList;
-		this.codelistName = codelistName;
-		this.cDISCSubmissionValue = cDISCSubmissionValue;
-		this.cDISCSynonyms = cDISCSynonyms;
-		this.cDISCDefinition = cDISCDefinition;
-		this.nCIPreferredTerm = nCIPreferredTerm;
+		this.label = label;
+		this.propertyLabel = "ALT_DEFINITION";
+		this.description = description;
+		this.attribution = attribution;
+		this.source = source;
 	}
 
 // Set methods
@@ -96,32 +95,24 @@ public class CDISCRow
 		this.code = code;
 	}
 
-	public void setCodelistCode(String codelistCode) {
-		this.codelistCode = codelistCode;
+	public void setLabel(String label) {
+		this.label = label;
+	}
+/*
+	public void setPropertyLabel(String propertyLabel) {
+		this.propertyLabel = propertyLabel;
+	}
+*/
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void setExtensibleList(String extensibleList) {
-		this.extensibleList = extensibleList;
+	public void setAttribution(String attribution) {
+		this.attribution = attribution;
 	}
 
-	public void setCodelistName(String codelistName) {
-		this.codelistName = codelistName;
-	}
-
-	public void setCDISCSubmissionValue(String cDISCSubmissionValue) {
-		this.cDISCSubmissionValue = cDISCSubmissionValue;
-	}
-
-	public void setCDISCSynonyms(String cDISCSynonyms) {
-		this.cDISCSynonyms = cDISCSynonyms;
-	}
-
-	public void setCDISCDefinition(String cDISCDefinition) {
-		this.cDISCDefinition = cDISCDefinition;
-	}
-
-	public void setNCIPreferredTerm(String nCIPreferredTerm) {
-		this.nCIPreferredTerm = nCIPreferredTerm;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 
@@ -130,32 +121,41 @@ public class CDISCRow
 		return this.code;
 	}
 
-	public String getCodelistCode() {
-		return this.codelistCode;
+	public String getLabel() {
+		return this.label;
 	}
 
-	public String getExtensibleList() {
-		return this.extensibleList;
+	public String getPropertyLabel() {
+		return this.propertyLabel;
 	}
 
-	public String getCodelistName() {
-		return this.codelistName;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public String getCDISCSubmissionValue() {
-		return this.cDISCSubmissionValue;
+	public String getAttribution() {
+		return this.attribution;
 	}
 
-	public String getCDISCSynonyms() {
-		return this.cDISCSynonyms;
+	public String getSource() {
+		return this.source;
 	}
 
-	public String getCDISCDefinition() {
-		return this.cDISCDefinition;
+	public String toXML() {
+		XStream xstream_xml = new XStream(new DomDriver());
+		String xml = xstream_xml.toXML(this);
+		xml = escapeDoubleQuotes(xml);
+		StringBuffer buf = new StringBuffer();
+		String XML_DECLARATION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+		buf.append(XML_DECLARATION).append("\n").append(xml);
+		xml = buf.toString();
+		return xml;
 	}
 
-	public String getNCIPreferredTerm() {
-		return this.nCIPreferredTerm;
+	public String toJson() {
+		JsonParser parser = new JsonParser();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(this);
 	}
 
 	public String escapeDoubleQuotes(String inputStr) {
@@ -170,4 +170,16 @@ public class CDISCRow
 		}
 		return buf.toString();
 	}
+
+	public String toString() {
+        return this.code
+        + "|" + this.label + "|"
+        + "P325|"
+        + this.description + "|"
+        + "P381|"
+        + this.attribution + "|"
+        + "P378|"
+        + this.source;
+	}
+
 }
