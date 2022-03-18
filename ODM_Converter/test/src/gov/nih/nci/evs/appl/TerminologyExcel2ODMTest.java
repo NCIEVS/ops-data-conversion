@@ -38,12 +38,13 @@ public class TerminologyExcel2ODMTest {
   public void test_generate_odm_xml(String sourceXls, String expectedXml) throws IOException {
     String outFile = Paths.get(outFolder.getAbsolutePath(), "out.xml").toString();
     TerminologyExcel2ODM terminologyExcel2ODM =
-        new TerminologyExcel2ODM(format("test/resources/fixtures/%s", sourceXls), outFile);
+        new TerminologyExcel2ODM(
+            format("test/resources/fixtures/odm-convertor/%s", sourceXls), outFile);
     terminologyExcel2ODM.generate_odm_xml();
     Diff myDiff =
         DiffBuilder.compare(
                 IOUtils.resourceToString(
-                    format("/fixtures/%s", expectedXml), Charset.defaultCharset()))
+                    format("/fixtures/odm-convertor/%s", expectedXml), Charset.defaultCharset()))
             .checkForSimilar()
             .withTest(IOUtils.toString(new FileInputStream(outFile), Charset.defaultCharset()))
             .withDifferenceEvaluator(new IgnoreAttributeDifferenceEvaluator(getIgnoreAttributes()))
