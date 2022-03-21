@@ -216,6 +216,7 @@ public class RDFGenerator {
 
 	public void writeInValueDomain(PrintWriter out, String code) {
 		Vector w = (Vector) code2dataHashMap.get(code);
+		if (w == null) return;
 		for (int i=0; i<w.size(); i++) {
 			String line = (String) w.elementAt(i);
 			Vector u = parseData(line, '\t');
