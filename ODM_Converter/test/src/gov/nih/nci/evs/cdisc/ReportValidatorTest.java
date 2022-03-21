@@ -30,6 +30,8 @@ import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReportValidatorTest {
+
+  // Run this test with -DcurrentReportsDirectory=<PATH_TO_CURRENT_REPORT_FILES\>
   private static final String currentReportsDirectory =
       System.getProperty("currentReportsDirectory");
   private static final File schemaFile =
