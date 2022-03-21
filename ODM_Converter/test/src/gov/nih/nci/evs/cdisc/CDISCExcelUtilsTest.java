@@ -27,7 +27,7 @@ public class CDISCExcelUtilsTest {
     "SDTM Terminology",
     "SEND Terminology"
   })
-  public void test_generate_odm_xml(String concept) throws IOException {
+  public void testExcelFormatting(String concept) throws IOException {
     // Ideally this would be created in a temp directory created by Junit. But the formatter program
     // expects this file at the context root
     String templateExcelFileName = "%s%s.xls";
