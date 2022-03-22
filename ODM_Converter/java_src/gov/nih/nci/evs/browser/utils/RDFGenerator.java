@@ -181,41 +181,46 @@ public class RDFGenerator {
 			Vector u = parseData(line, '\t');
 			String subsetCode = (String) u.elementAt(1);
 
-			String code_dot_subsetcode = code + "." + subsetCode;
-			if (!code_subsetcode_set.contains(code_dot_subsetcode)) {
-                code_subsetcode_set.add(code_dot_subsetcode);
-				String cdiscDefinition = (String) u.elementAt(6);
-				String nciPreferredTerm = (String) u.elementAt(7);
-				String cdiscSynonyms = (String) u.elementAt(5);
-				String cdiscSubmissionValue = (String) u.elementAt(4);
-				String codelistName = (String) u.elementAt(3);
-				out.println("  <mms:PermissibleValue rdf:ID=\"" + subsetCode + "." + code + "\">");
-				if (!subset_codes.contains(subsetCode)) {
-					writeInValueDomain(out, subsetCode);
-					subset_codes.add(subsetCode);
-				} else {
-					out.println("    <mms:inValueDomain rdf:resource=\"#" + subsetCode + "\"/>");
-				}
+			if (subsetCode != null && subsetCode.length() > 0) {
 
-				out.println("    <cts:nciPreferredTerm rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
-				out.println("    >" + encode(nciPreferredTerm) + "</cts:nciPreferredTerm>");
-				out.println("    <cts:nciCode rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
-				out.println("    >" + code + "</cts:nciCode>");
-				out.println("    <cts:cdiscDefinition rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
-				out.println("    >" + encode(cdiscDefinition) + "</cts:cdiscDefinition>");
-				if (cdiscSynonyms.length() > 0) {
-					out.println("    <cts:cdiscSynonyms rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
-					out.println("    >" + encode(cdiscSynonyms) + "</cts:cdiscSynonyms>");
+				String code_dot_subsetcode = code + "." + subsetCode;
+				if (!code_subsetcode_set.contains(code_dot_subsetcode)) {
+					code_subsetcode_set.add(code_dot_subsetcode);
+					String cdiscDefinition = (String) u.elementAt(6);
+					String nciPreferredTerm = (String) u.elementAt(7);
+					String cdiscSynonyms = (String) u.elementAt(5);
+					String cdiscSubmissionValue = (String) u.elementAt(4);
+					String codelistName = (String) u.elementAt(3);
+
+					out.println("  <mms:PermissibleValue rdf:ID=\"" + subsetCode + "." + code + "\">");
+					if (!subset_codes.contains(subsetCode)) {
+						writeInValueDomain(out, subsetCode);
+						subset_codes.add(subsetCode);
+					} else {
+						out.println("    <mms:inValueDomain rdf:resource=\"#" + subsetCode + "\"/>");
+					}
+
+					out.println("    <cts:nciPreferredTerm rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
+					out.println("    >" + encode(nciPreferredTerm) + "</cts:nciPreferredTerm>");
+					out.println("    <cts:nciCode rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
+					out.println("    >" + code + "</cts:nciCode>");
+					out.println("    <cts:cdiscDefinition rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
+					out.println("    >" + encode(cdiscDefinition) + "</cts:cdiscDefinition>");
+					if (cdiscSynonyms.length() > 0) {
+						out.println("    <cts:cdiscSynonyms rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
+						out.println("    >" + encode(cdiscSynonyms) + "</cts:cdiscSynonyms>");
+					}
+					out.println("    <cts:cdiscSubmissionValue rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
+					out.println("    >" + encode(cdiscSubmissionValue) + "</cts:cdiscSubmissionValue>");
+					out.println("  </mms:PermissibleValue>");
 				}
-				out.println("    <cts:cdiscSubmissionValue rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
-				out.println("    >" + encode(cdiscSubmissionValue) + "</cts:cdiscSubmissionValue>");
-				out.println("  </mms:PermissibleValue>");
-			}
+		    }
 		}
 	}
 
 	public void writeInValueDomain(PrintWriter out, String code) {
 		Vector w = (Vector) code2dataHashMap.get(code);
+		if (w == null) return;
 		for (int i=0; i<w.size(); i++) {
 			String line = (String) w.elementAt(i);
 			Vector u = parseData(line, '\t');
@@ -227,9 +232,12 @@ public class RDFGenerator {
 			String isExtensibleCodelist = (String) u.elementAt(2);
 			if (isExtensibleCodelist.compareTo("Yes") == 0) {
 				isExtensibleCodelist = "true";
-			} else {
+			} else if (isExtensibleCodelist.compareTo("No") == 0) {
 				isExtensibleCodelist = "false";
+			} else {
+				isExtensibleCodelist = "";
 			}
+
 			out.println("    <mms:inValueDomain>");
 			out.println("      <mms:EnumeratedValueDomain rdf:ID=\"" + code + "\">");
 			out.println("        <cts:cdiscDefinition rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
@@ -244,12 +252,15 @@ public class RDFGenerator {
 			out.println("        >" + encode(cdiscSubmissionValue) + "</cts:cdiscSubmissionValue>");
 			out.println("        <cts:codelistName rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\"");
 			out.println("        >" + encode(codelistName) + "</cts:codelistName>");
-			out.println("        <cts:isExtensibleCodelist rdf:datatype=\"http://www.w3.org/2001/XMLSchema#boolean\"");
-			out.println("        >" + isExtensibleCodelist + "</cts:isExtensibleCodelist>");
+
+			if (isExtensibleCodelist.length() > 0) {
+				out.println("        <cts:isExtensibleCodelist rdf:datatype=\"http://www.w3.org/2001/XMLSchema#boolean\"");
+				out.println("        >" + isExtensibleCodelist + "</cts:isExtensibleCodelist>");
+			}
 			out.println("      </mms:EnumeratedValueDomain>");
 			out.println("    </mms:inValueDomain>");
 		}
-	}
+    }
 
     public String get_terminology_abbr(String datafile) {
 		//KLO, 03072022

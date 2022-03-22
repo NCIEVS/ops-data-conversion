@@ -326,38 +326,34 @@ public class CDISCScanner {
 		return s;
 	}
 
-    public Synonym string2Synonym(String line) {
+    public static Synonym string2Synonym(String line) {
 		Vector u = parseData(line, '|');
 		String label = (String) u.elementAt(0);
 		String code = (String) u.elementAt(1);
 		String termName = (String) u.elementAt(3);
-		//String qualifiers = (String) u.elementAt(4);
-
 		String termGroup = null;
 		String termSource = null;
 		String sourceCode = null;
 		String subSourceName = null;
 		String subSourceCode = null;
-
+		String qualifierCode = null;
+        String qualifierName = null;
 		if (u.size() > 4) {
-			String group = (String) u.elementAt(4);
-			Vector v = parseData(group, '$');
-			termGroup = (String) v.elementAt(1);
-		}
-		if (u.size() > 5) {
-			String source = (String) u.elementAt(5);
-			Vector v = parseData(source, '$');
-			termSource = (String) v.elementAt(1);
-		}
-		if (u.size() > 6) {
-			String sourcecode = (String) u.elementAt(6);
-			Vector v = parseData(sourcecode, '$');
-			sourceCode = (String) v.elementAt(1);
-		}
-		if (u.size() > 7) {
-			String sourcesourcename = (String) u.elementAt(7);
-			Vector v = parseData(sourcesourcename, '$');
-			subSourceName = (String) v.elementAt(1);
+			for (int i=4; i<u.size(); i++) {
+				String str = (String) u.elementAt(i);
+				Vector v = parseData(str, '$');
+				qualifierCode = (String) v.elementAt(0);
+				qualifierName = (String) v.elementAt(1);
+				if (qualifierCode.compareTo("P383") == 0) {
+					termGroup = qualifierName;
+				} else if (qualifierCode.compareTo("P384") == 0) {
+					termSource = qualifierName;
+				} else if (qualifierCode.compareTo("P385") == 0) {
+					sourceCode = qualifierName;
+				} else if (qualifierCode.compareTo("P386") == 0) {
+					subSourceName = qualifierName;
+				}
+			}
 		}
 		return new Synonym(
 			code,
