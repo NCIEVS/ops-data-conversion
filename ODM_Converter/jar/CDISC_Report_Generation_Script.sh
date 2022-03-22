@@ -14,9 +14,9 @@
 #
 
 
-CDISC_HOME="C:/ncievs-code/cdisc-reporting-code/"
-INPUT_OWL="Thesaurus-211025-21.10d.owl"
-PUBLICATION_DATE="2021-10-25"
+CDISC_HOME="/Users/squareroot/wci/ncievs-CDISC"
+INPUT_OWL="Thesaurus-220314-22.03b.owl"
+PUBLICATION_DATE="2022-03-25"
 echo $CDISC_HOME
 cd $CDISC_HOME
 rm -rf $CDISC_HOME/Current/*
@@ -45,37 +45,40 @@ echo "Step 1. Generate CDISC txt and xls reports:"
 echo "Step 2: Format .xls reports for ODM Converter processing:"
 #   a. CDISC ADaM Terminology (C81222)
 	cp "CDISC ADaM Terminology.xls" "ADaM Terminology.xls"
-	java -jar cdiscexcelutils.jar "ADaM Terminology.xls"     
+	java -jar cdiscexcelutils.jar "ADaM Terminology.xls" "$PUBLICATION_DATE"     
 #   b. CDISC CDASH Terminology (C77527)
 	cp "CDISC CDASH Terminology.xls" "CDASH Terminology.xls"
-	java -jar cdiscexcelutils.jar "CDASH Terminology.xls"     
+	java -jar cdiscexcelutils.jar "CDASH Terminology.xls" "$PUBLICATION_DATE"    
 #   c. CDISC Glossary Terminology (C67497)
 	cp "CDISC Glossary Terminology.xls" "Glossary Terminology.xls"
-	java -jar cdiscexcelutils.jar "Glossary Terminology.xls"     
+	java -jar cdiscexcelutils.jar "Glossary Terminology.xls" "$PUBLICATION_DATE"     
 #   d. CDISC Protocol Terminology (C132298)
 	cp "CDISC Protocol Terminology.xls" "Protocol Terminology.xls"
-	java -jar cdiscexcelutils.jar "Protocol Terminology.xls"     
+	java -jar cdiscexcelutils.jar "Protocol Terminology.xls" "$PUBLICATION_DATE"    
 #   e. CDISC QRS Terminology (C120166)
 	cp "CDISC QRS Terminology.xls" "QRS Terminology.xls"
-	java -jar cdiscexcelutils.jar "QRS Terminology.xls"     
+	java -jar cdiscexcelutils.jar "QRS Terminology.xls" "$PUBLICATION_DATE"
 #   f. CDISC SDTM Terminology (C66830)
 	cp "CDISC SDTM Terminology.xls" "SDTM Terminology.xls"
-	java -jar cdiscexcelutils.jar "SDTM Terminology.xls"     
+	java -jar cdiscexcelutils.jar "SDTM Terminology.xls" "$PUBLICATION_DATE"
 #   g. CDISC SEND Terminology (C77526)
 	cp "CDISC SEND Terminology.xls" "SEND Terminology.xls"
-	java -jar cdiscexcelutils.jar "SEND Terminology.xls"     
+	java -jar cdiscexcelutils.jar "SEND Terminology.xls" "$PUBLICATION_DATE"
 #   h. CDISC Define-XML Terminology (C165634)
 	cp "CDISC Define-XML Terminology.xls" "Define-XML Terminology.xls"
-	java -jar cdiscexcelutils.jar "Define-XML Terminology.xls"     
+	java -jar cdiscexcelutils.jar "Define-XML Terminology.xls" "$PUBLICATION_DATE"    
 
 echo "Step 3. Generate CDISC pairing reports:"
 #   a. CDISC ADaM Terminology (C81222)
        java -jar cdiscpairing.jar $INPUT_OWL C81222
+       mv ADaM_paired_view_*.xlsx ADaM_paired_view_$PUBLICATION_DATE.xlsx
 #   f. CDISC SDTM Terminology (C66830)
        java -jar cdiscpairing.jar $INPUT_OWL C66830
+       mv SDTM_paired_view_*.xlsx SDTM_paired_view_$PUBLICATION_DATE.xlsx
 #   g. CDISC SEND Terminology (C77526)
        java -jar cdiscpairing.jar $INPUT_OWL C77526
-		
+       mv SEND_paired_view_*.xlsx SEND_paired_view_$PUBLICATION_DATE.xlsx
+
 echo "Step 4. Generate CDISC diff reports:"
 #	a. CDISC ADaM Terminology (C81222)
 if [ -e "Previous/ADaM Terminology.txt" ]; then
@@ -164,7 +167,7 @@ echo "Step 5. Run ODM Conversion:"
 	cp "CDISC Define-XML Terminology.txt" "ops-data-conversion/ODM_Converter/in/Define-XML Terminology.txt"
 	
 	cd $CDISC_HOME/ops-data-conversion/ODM_Converter
-	C:/apache/apache-ant-1.10.9/bin/ant > ant.log
+	ant > ant.log
 	cp -r $CDISC_HOME/ops-data-conversion/ODM_Converter/build/out/* $CDISC_HOME/Current
 	cd $CDISC_HOME/ops-data-conversion
 	
