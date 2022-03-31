@@ -1,16 +1,14 @@
 package gov.nih.nci.evs.cdisc;
 
 import gov.nih.nci.evs.test.utils.AssertExcelFiles;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,37 +56,5 @@ public class CDISCReportGeneratorTest {
     // We want to retain the files for troubleshooting when the test fails
     textFile.delete();
     excelFile.delete();
-  }
-
-  private void createSortedFile(Reader inputFileReader, Writer outputFileWriter)
-      throws IOException {
-    List<String> rows = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(inputFileReader)) {
-
-      String s;
-      while ((s = reader.readLine()) != null) {
-        rows.add(s);
-      }
-
-      Collections.sort(rows);
-
-      for (String cur : rows) {
-        outputFileWriter.write(cur + "\n");
-      }
-    }
-  }
-
-  private String getSortedFilename(String inputFile) {
-    return FilenameUtils.getBaseName(inputFile)
-        + "_sorted"
-        + "."
-        + FilenameUtils.getExtension(inputFile);
-  }
-
-  private String getExpectedSortedFilename(String inputFile) {
-    return FilenameUtils.getBaseName(inputFile)
-        + "_expected_sorted"
-        + "."
-        + FilenameUtils.getExtension(inputFile);
   }
 }
