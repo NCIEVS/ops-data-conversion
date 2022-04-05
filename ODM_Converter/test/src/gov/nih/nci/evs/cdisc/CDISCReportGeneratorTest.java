@@ -15,9 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CDISCReportGeneratorTest {
-  // Run this test with -DcurrentReportsDirectory=<PATH_TO_CURRENT_REPORT_FILES\>
+  // Run this test with --DTHESAURUS_220314_22_03_B_FILE=<PATH_TO_THESAURUS_220314_22_03_B_FILE\>
   private static final String THESAURUS_220314_22_03_B_FILE =
-      System.getProperty("THESAURUS_220314_22_03_B");
+      System.getProperty("THESAURUS_220314_22_03_B_FILE");
 
   @ParameterizedTest
   @CsvSource({
@@ -47,12 +47,12 @@ public class CDISCReportGeneratorTest {
     assertThat(new File(textFileName))
         .hasContent(
             IOUtils.toString(
-                getClass().getResourceAsStream(format("/fixtures/report_files/%s", textFileName)),
+                getClass().getResourceAsStream(format("/fixtures/report-files/%s", textFileName)),
                 Charset.defaultCharset()));
 
     assertExcelFiles.assertLegacyExcel(
         new FileInputStream(xlsFileName),
-        this.getClass().getResourceAsStream(format("/fixtures/report_files/%s", xlsFileName)));
+        this.getClass().getResourceAsStream(format("/fixtures/report-files/%s", xlsFileName)));
     // We want to retain the files for troubleshooting when the test fails
     textFile.delete();
     excelFile.delete();
