@@ -121,7 +121,7 @@ public class TerminologyExcel2ODM {
 		odm_fileOID     = "CDISC_CT." + terminologyModel + "." + dateStamp;
 		odm_controlledTerminologyVersion = "1.2.0";
 
-		if (odm_xml_file.indexOf("Glossary") != -1 || odm_xml_file.indexOf("Protocol") != -1) {
+		if (odm_xml_file.indexOf("Glossary") != -1 || odm_xml_file.indexOf("DDF") != -1 || odm_xml_file.indexOf("Protocol") != -1) {
 			odm_context = "Other";
 		} else {
 			odm_context = "Submission";
