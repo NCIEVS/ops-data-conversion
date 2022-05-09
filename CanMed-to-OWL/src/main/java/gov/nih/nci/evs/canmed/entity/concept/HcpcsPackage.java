@@ -9,6 +9,7 @@ import java.util.HashSet;
 
 public class HcpcsPackage extends HcpcsHierarchicalConcept {
     HashSet<String> brandNames;
+    String genericName;
     String hcpcsCode;
     String strength;
     String oral;
@@ -23,6 +24,7 @@ public class HcpcsPackage extends HcpcsHierarchicalConcept {
         super(code, name);
     }
 
+
     public HashSet<String> getBrandNames() {
         return brandNames;
     }
@@ -34,6 +36,12 @@ public class HcpcsPackage extends HcpcsHierarchicalConcept {
 
     public void addBrandName(String brandName) {
         this.brandNames.add(brandName);
+    }
+
+    public String getGenericName(){return genericName;}
+
+    public void setGenericName(String genericName){
+        this.genericName = genericName;
     }
 
     public String getHcpcsCode() {

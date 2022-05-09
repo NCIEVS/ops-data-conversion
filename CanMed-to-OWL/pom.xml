@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>CanMed-to-OWL</groupId>
     <artifactId>CanMed-to-OWL</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>canmed2owl</name>
     <build>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

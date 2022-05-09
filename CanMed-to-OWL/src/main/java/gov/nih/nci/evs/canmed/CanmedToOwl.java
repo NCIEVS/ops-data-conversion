@@ -166,6 +166,7 @@ public class CanmedToOwl {
      * @return valid string fragment for URI
      */
     public static String parseConceptCode(String rawCode) {
+        String origRawCode = rawCode;
         if (rawCode != null && rawCode.length()>0) {
             rawCode = rawCode.toUpperCase();
             rawCode = rawCode.replace("\"", "");
@@ -178,7 +179,7 @@ public class CanmedToOwl {
             rawCode = rawCode.replace("%", "");
         }
         if(rawCode.length()<1){
-            System.out.println("rawCode is empty");
+            System.out.println("Code is empty "+ origRawCode);
         }
         return rawCode;
     }

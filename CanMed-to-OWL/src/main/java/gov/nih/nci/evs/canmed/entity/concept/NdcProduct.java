@@ -3,13 +3,20 @@ package gov.nih.nci.evs.canmed.entity.concept;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class NdcProduct extends NdcHierarchicalConcept {
+public class NdcProduct extends gov.nih.nci.evs.canmed.entity.concept.NdcHierarchicalConcept {
     HashSet<String> brandNames;
+    String genericName;
     String ndcProductCode;
     HashSet<String> routesOfAdministration;
 
     public NdcProduct(String code, String name) {
         super(code, name);
+    }
+
+    public String getGenericName(){ return genericName;}
+
+    public void setGenericName(String genericName){
+        this.genericName = genericName;
     }
 
     public HashSet<String> getBrandNames() {

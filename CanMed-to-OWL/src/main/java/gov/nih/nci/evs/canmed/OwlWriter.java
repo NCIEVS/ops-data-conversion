@@ -167,7 +167,11 @@ class OwlWriter {
         OWLLiteral lbl = factory.getOWLLiteral(name);
         OWLAnnotation label = factory.getOWLAnnotation(factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI()), lbl);
         final OWLAxiom rdfsLabel = factory.getOWLAnnotationAssertionAxiom(clz.getIRI(), label);
-        manager.applyChange(new AddAxiom(ontology, rdfsLabel));
+        if(name.length()>0) {
+            manager.applyChange(new AddAxiom(ontology, rdfsLabel));
+        } else {
+            System.out.println("empty class "+ clz.toString());
+        }
     }
 
     private void setDeprecated(OWLClass clz){
@@ -204,6 +208,11 @@ class OwlWriter {
             changes.add(new AddAxiom(ontology, ax1));
         }
 
+        if(concept.getGenericName()!=null && concept.getGenericName().length()>0){
+            ax1 = buildAxiom(clz, "Generic_Name", concept.getGenericName());
+            changes.add(new AddAxiom(ontology, ax1));
+        }
+
         manager.applyChanges(changes);
 
 
@@ -217,11 +226,16 @@ class OwlWriter {
         OWLAxiom ax1 = buildAxiom(clz, "NDC_Product_Code",concept.getNdcProductCode());
         changes.add(new AddAxiom(ontology, ax1));
 
-        ax1 = buildAxiom(clz, "Generic_Name", concept.getName());
-        changes.add(new AddAxiom(ontology, ax1));
+//        ax1 = buildAxiom(clz, "Generic_Name", concept.getName());
+//        changes.add(new AddAxiom(ontology, ax1));
 
         for(String brandName: concept.getBrandNames()){
             ax1 = buildAxiom(clz, "Brand_Name",brandName);
+            changes.add(new AddAxiom(ontology, ax1));
+        }
+
+        if(concept.getGenericName()!=null && concept.getGenericName().length()>0){
+            ax1 = buildAxiom(clz, "Generic_Name", concept.getGenericName());
             changes.add(new AddAxiom(ontology, ax1));
         }
 
@@ -236,8 +250,13 @@ class OwlWriter {
         List<OWLOntologyChange> changes = new ArrayList<OWLOntologyChange>();
 
         OWLAxiom ax1;
-        ax1 = buildAxiom(clz, "Generic_Name", concept.getName());
-        changes.add(new AddAxiom(ontology, ax1));
+//        ax1 = buildAxiom(clz, "Generic_Name", concept.getName());
+//        changes.add(new AddAxiom(ontology, ax1));
+
+        if(concept.getGenericName()!=null && concept.getGenericName().length()>0){
+            ax1 = buildAxiom(clz, "Generic_Name", concept.getGenericName());
+            changes.add(new AddAxiom(ontology, ax1));
+        }
 
         if(concept.getHcpcsCode()!=null) {
             ax1 = buildAxiom(clz, "HCPCS_Code", concept.getHcpcsCode());
