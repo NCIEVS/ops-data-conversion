@@ -2,7 +2,7 @@
 <!--
 	Copyright 2011 Andrew Fowler <andrew.fowler@devframe.com>
 	
-	This file is part of Terinology2ODM Terminology2ODMConverter.
+	This file is part of Terminology2ODM Terminology2ODMConverter.
 	
 	Terminology2ODMConverter is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 	<property name="cache.dir"         location="cache"/>
 	<property name="lib.dir"           location="${cache.dir}/lib"/>
 	<property name="jlib.dir"          location="lib"/>
-	<property name="in.dir"            location="/Users/safrant/EVS/data/CDISC/190325/P37 Publication Files to Tracy"/>
+	<property name="in.dir"            location="in"/>
 	
 	<property name="build.dir"         location="build"/>
 	<property name="classes.dir"       location="${build.dir}/classes"/>
@@ -32,100 +32,166 @@
 	<property name="xsl.dir"           location="${out.dir}/xsl"/>
 	<property name="schema.dir"        location="${out.dir}/schema"/>
 	
-	
-	<property name="input.file.adam"    location="${in.dir}/ADaM Terminology.xls"/>
-	<property name="input.file.cdash"   location="${in.dir}/CDASH Terminology.xls"/>
-	<property name="input.file.cde"     location="${in.dir}/CDISC Glossary.xls"/>
-	<property name="input.file.prot"      location="${in.dir}/Protocol Terminology.xls"/>	
-	<property name="input.file.qrs"      location="${in.dir}/QRS Terminology.xls"/>
-	<property name="input.file.sdtm"    location="${in.dir}/SDTM Terminology.xls"/>
-	<property name="input.file.send"    location="${in.dir}/SEND Terminology.xls"/>
-	
-	<property name="input.file.adam.txt"    location="${in.dir}/ADaM Terminology.txt"/>
-	<property name="input.file.cdash.txt"   location="${in.dir}/CDASH Terminology.txt"/>
-	<property name="input.file.cde.txt"     location="${in.dir}/CDISC Glossary.txt"/>
-	<property name="input.file.prot.txt"     location="${in.dir}/Protocol Terminology.txt"/>	
-	<property name="input.file.qrs.txt"      location="${in.dir}/QRS Terminology.txt"/>
-	<property name="input.file.sdtm.txt"    location="${in.dir}/SDTM Terminology.txt"/>
-	<property name="input.file.send.txt"    location="${in.dir}/SEND Terminology.txt"/>
+	<property name="input.file.adam"       location="${in.dir}/ADaM Terminology.xls"/>
+	<property name="input.file.cdash"       location="${in.dir}/CDASH Terminology.xls"/>
+	<property name="input.file.cde"       location="${in.dir}/Glossary Terminology.xls"/>
+	<property name="input.file.ddf"       location="${in.dir}/DDF Terminology.xls"/>
+	<property name="input.file.define-xml"       location="${in.dir}/Define-XML Terminology.xls"/>
+	<property name="input.file.prot"       location="${in.dir}/Protocol Terminology.xls"/>
+	<property name="input.file.qrs"       location="${in.dir}/QRS Terminology.xls"/>
+	<property name="input.file.sdtm"       location="${in.dir}/SDTM Terminology.xls"/>
+	<property name="input.file.send"       location="${in.dir}/SEND Terminology.xls"/>
 
-	<property name="output.file.adam.xml"   location="${out.dir}/ADaM/ADaM Terminology.odm.xml"/>
-	<property name="output.file.cdash.xml"  location="${out.dir}/SDTM/CDASH Terminology.odm.xml"/>
-	<property name="output.file.cde.xml"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.odm.xml"/>
-	<property name="output.file.prot.xml"    location="${out.dir}/Protocol/Protocol Terminology.odm.xml"/>	
-	<property name="output.file.qrs.xml"     location="${out.dir}/QRS/QRS Terminology.odm.xml"/>
-	<property name="output.file.sdtm.xml"   location="${out.dir}/SDTM/SDTM Terminology.odm.xml"/>
-	<property name="output.file.send.xml"   location="${out.dir}/SEND/SEND Terminology.odm.xml"/>
 
-	<property name="output.file.adam.html"   location="${out.dir}/ADaM/ADaM Terminology.html"/>
-	<property name="output.file.cdash.html"  location="${out.dir}/SDTM/CDASH Terminology.html"/>
-	<property name="output.file.cde.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.html"/>
-	<property name="output.file.prot.html"    location="${out.dir}/Protocol/Protocol Terminology.html"/>	
-	<property name="output.file.qrs.html"     location="${out.dir}/QRS/QRS Terminology.html"/> 
-	<property name="output.file.sdtm.html"   location="${out.dir}/SDTM/SDTM Terminology.html"/>
-	<property name="output.file.send.html"   location="${out.dir}/SEND/SEND Terminology.html"/>
-	
-	<property name="output.file.adam.4pdf.html"   location="${out.dir}/ADaM/ADaM Terminology 4pdf.html"/>
-	<property name="output.file.cdash.4pdf.html"  location="${out.dir}/SDTM/CDASH Terminology 4pdf.html"/>
-	<property name="output.file.cde.4pdf.html"    location="${out.dir}/CDISC_Glossary/CDISC Glossary 4pdf.html"/>
-	<property name="output.file.prot.4pdf.html"    location="${out.dir}/Protocol/Protocol Terminology 4pdf.html"/>	
-	<property name="output.file.qrs.4pdf.html"     location="${out.dir}/QRS/QRS Terminology 4pdf.html"/>
-	<property name="output.file.sdtm.4pdf.html"   location="${out.dir}/SDTM/SDTM Terminology 4pdf.html"/>
-	<property name="output.file.send.4pdf.html"   location="${out.dir}/SEND/SEND Terminology 4pdf.html"/>
-	
-	<property name="output.file.adam.pdf"   location="${out.dir}/ADaM/ADaM Terminology.pdf"/>
-	<property name="output.file.cdash.pdf"  location="${out.dir}/SDTM/CDASH Terminology.pdf"/>
-	<property name="output.file.cde.pdf"    location="${out.dir}/CDISC_Glossary/CDISC Glossary.pdf"/>
-	<property name="output.file.prot.pdf"    location="${out.dir}/Protocol/Protocol Terminology.pdf"/>	
-	<property name="output.file.qrs.pdf"     location="${out.dir}/QRS/QRS Terminology.pdf"/>
-	<property name="output.file.sdtm.pdf"   location="${out.dir}/SDTM/SDTM Terminology.pdf"/>
-	<property name="output.file.send.pdf"   location="${out.dir}/SEND/SEND Terminology.pdf"/>
+	<property name="input.file.adam.txt"       location="${in.dir}/ADaM Terminology.txt"/>
+	<property name="input.file.cdash.txt"       location="${in.dir}/CDASH Terminology.txt"/>
+	<property name="input.file.cde.txt"       location="${in.dir}/Glossary Terminology.txt"/>
+	<property name="input.file.ddf.txt"       location="${in.dir}/DDF Terminology.txt"/>
+	<property name="input.file.define-xml.txt"       location="${in.dir}/Define-XML Terminology.txt"/>
+	<property name="input.file.prot.txt"       location="${in.dir}/Protocol Terminology.txt"/>
+	<property name="input.file.qrs.txt"       location="${in.dir}/QRS Terminology.txt"/>
+	<property name="input.file.sdtm.txt"       location="${in.dir}/SDTM Terminology.txt"/>
+	<property name="input.file.send.txt"       location="${in.dir}/SEND Terminology.txt"/>
 
-	<property name="xsl.file"                   location="${xsl.dir}/controlledterminology1-0-0.xsl"/>
-	<property name="xsl4pdf.file"                location="${xsl.dir}/controlledterminology1-0-0-pdf.xsl"/>
-	<property name="schema.file"                location="${schema.dir}/controlledterminology1-0-0.xsd"/>
+
+	<property name="output.file.adam.xml"       location="${out.dir}/ADaM/ADaM Terminology.xml"/>
+	<property name="output.file.cdash.xml"       location="${out.dir}/SDTM/CDASH Terminology.xml"/>
+	<property name="output.file.cde.xml"       location="${out.dir}/CDISC_Glossary/Glossary Terminology.xml"/>
+	<property name="output.file.ddf.xml"       location="${out.dir}/DDF/DDF Terminology.xml"/>
+	<property name="output.file.define-xml.xml"       location="${out.dir}/Define-XML/Define-XML Terminology.xml"/>
+	<property name="output.file.prot.xml"       location="${out.dir}/Protocol/Protocol Terminology.xml"/>
+	<property name="output.file.qrs.xml"       location="${out.dir}/QRS/QRS Terminology.xml"/>
+	<property name="output.file.sdtm.xml"       location="${out.dir}/SDTM/SDTM Terminology.xml"/>
+	<property name="output.file.send.xml"       location="${out.dir}/SEND/SEND Terminology.xml"/>
+
+
+	<property name="output.file.adam.html"       location="${out.dir}/ADaM/ADaM Terminology.html"/>
+	<property name="output.file.cdash.html"       location="${out.dir}/SDTM/CDASH Terminology.html"/>
+	<property name="output.file.cde.html"       location="${out.dir}/CDISC_Glossary/Glossary Terminology.html"/>
+	<property name="output.file.ddf.html"       location="${out.dir}/DDF/DDF Terminology.html"/>
+	<property name="output.file.define-xml.html"       location="${out.dir}/Define-XML/Define-XML Terminology.html"/>
+	<property name="output.file.prot.html"       location="${out.dir}/Protocol/Protocol Terminology.html"/>
+	<property name="output.file.qrs.html"       location="${out.dir}/QRS/QRS Terminology.html"/>
+	<property name="output.file.sdtm.html"       location="${out.dir}/SDTM/SDTM Terminology.html"/>
+	<property name="output.file.send.html"       location="${out.dir}/SEND/SEND Terminology.html"/>
+
+
+	<property name="output.file.adam.4pdf.html"       location="${out.dir}/ADaM/ADaM Terminology.4pdf.html"/>
+	<property name="output.file.cdash.4pdf.html"       location="${out.dir}/SDTM/CDASH Terminology.4pdf.html"/>
+	<property name="output.file.cde.4pdf.html"       location="${out.dir}/CDISC_Glossary/Glossary Terminology.4pdf.html"/>
+	<property name="output.file.ddf.4pdf.html"       location="${out.dir}/DDF/DDF Terminology.4pdf.html"/>
+	<property name="output.file.define-xml.4pdf.html"       location="${out.dir}/Define-XML/Define-XML Terminology.4pdf.html"/>
+	<property name="output.file.prot.4pdf.html"       location="${out.dir}/Protocol/Protocol Terminology.4pdf.html"/>
+	<property name="output.file.qrs.4pdf.html"       location="${out.dir}/QRS/QRS Terminology.4pdf.html"/>
+	<property name="output.file.sdtm.4pdf.html"       location="${out.dir}/SDTM/SDTM Terminology.4pdf.html"/>
+	<property name="output.file.send.4pdf.html"       location="${out.dir}/SEND/SEND Terminology.4pdf.html"/>
+
+
+	<property name="output.file.adam.pdf"       location="${out.dir}/ADaM/ADaM Terminology.pdf"/>
+	<property name="output.file.cdash.pdf"       location="${out.dir}/SDTM/CDASH Terminology.pdf"/>
+	<property name="output.file.cde.pdf"       location="${out.dir}/CDISC_Glossary/Glossary Terminology.pdf"/>
+	<property name="output.file.ddf.pdf"       location="${out.dir}/DDF/DDF Terminology.pdf"/>
+	<property name="output.file.define-xml.pdf"       location="${out.dir}/Define-XML/Define-XML Terminology.pdf"/>
+	<property name="output.file.prot.pdf"       location="${out.dir}/Protocol/Protocol Terminology.pdf"/>
+	<property name="output.file.qrs.pdf"       location="${out.dir}/QRS/QRS Terminology.pdf"/>
+	<property name="output.file.sdtm.pdf"       location="${out.dir}/SDTM/SDTM Terminology.pdf"/>
+	<property name="output.file.send.pdf"       location="${out.dir}/SEND/SEND Terminology.pdf"/>
+
+
+	<property name="output.file.adam.owl"       location="${out.dir}/ADaM/ADaM Terminology.owl"/>
+	<property name="output.file.cdash.owl"       location="${out.dir}/SDTM/CDASH Terminology.owl"/>
+	<property name="output.file.cde.owl"       location="${out.dir}/CDISC_Glossary/Glossary Terminology.owl"/>
+	<property name="output.file.ddf.owl"       location="${out.dir}/DDF/DDF Terminology.owl"/>
+	<property name="output.file.define-xml.owl"       location="${out.dir}/Define-XML/Define-XML Terminology.owl"/>
+	<property name="output.file.prot.owl"       location="${out.dir}/Protocol/Protocol Terminology.owl"/>
+	<property name="output.file.qrs.owl"       location="${out.dir}/QRS/QRS Terminology.owl"/>
+	<property name="output.file.sdtm.owl"       location="${out.dir}/SDTM/SDTM Terminology.owl"/>
+	<property name="output.file.send.owl"       location="${out.dir}/SEND/SEND Terminology.owl"/>
+
+
+	<property name="xsl.file" location="${xsl.dir}/controlledterminology1-0-0.xsl"/>
+	<property name="xsl4pdf.file" location="${xsl.dir}/controlledterminology1-0-0-pdf.xsl"/>
+	<property name="schema.file" location="${schema.dir}/controlledterminology1-2-0.xsd"/>
 	<property name="cdisc.odm.schema.namespace" value="http://www.cdisc.org/ns/odm/v1.3"/>
 
-	<property name="dom4j.jar"          location="${lib.dir}/dom4j-1.6.1.jar"/>
-	<property name="jaxen.jar"          location="${lib.dir}/jaxen-1.1.1.jar"/>
-	<property name="poi.jar"            location="${lib.dir}/poi-3.2-FINAL.jar"/>
 	<property name="scala-compiler.jar" location="${lib.dir}/scala-compiler-2.10.7.jar"/>
 	<property name="scala-library.jar"  location="${lib.dir}/scala-library-2.10.7.jar"/>
 	<property name="scala-reflect.jar"  location="${lib.dir}/scala-reflect-2.10.7.jar"/>
-	<property name="itext-pdfa.jar"     location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
-	<property name="itext-xtra.jar"     location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
-	<property name="itextpdf.jar"       location="${jlib.dir}/itextpdf-5.4.1.jar"/>
-	<property name="xmlworker.jar"       location="${jlib.dir}/xmlworker-5.4.1.jar"/>
+
+	<property name="commons-collections.jar" location="${jlib.dir}/commons-collections4-4.4.jar"/>
+	<property name="dom4j.jar" location="${jlib.dir}/dom4j-1.6.1.jar"/>
+	<property name="evs-restapi-bean.jar" location="${jlib.dir}/evs-restapi-bean.jar"/>
+	<property name="gson.jar" location="${jlib.dir}/gson-2.6.2.jar"/>
+	<property name="itext-pdfa.jar" location="${jlib.dir}/itext-pdfa-5.4.1.jar"/>
+	<property name="itext-xtra.jar" location="${jlib.dir}/itext-xtra-5.4.1.jar"/>
+	<property name="itextpdf.jar" location="${jlib.dir}/itextpdf-5.4.1.jar"/>
+	<property name="jaxen.jar" location="${jlib.dir}/jaxen-1.1.1.jar"/>
+	<property name="opencsv.jar" location="${jlib.dir}/opencsv-3.8.jar"/>
+	<property name="poi.jar" location="${jlib.dir}/poi-3.17.jar"/>
+	<property name="poi-ooxml.jar" location="${jlib.dir}/poi-ooxml-3.17.jar"/>
+	<property name="poi-ooxml-schemas.jar" location="${jlib.dir}/poi-ooxml-schemas-3.17.jar"/>
+	<property name="serializer.jar" location="${jlib.dir}/serializer.jar"/>
+	<property name="xalan.jar" location="${jlib.dir}/xalan.jar"/>
+	<property name="xbean.jar" location="${jlib.dir}/xbean.jar"/>
+	<property name="xercesImpl.jar" location="${jlib.dir}/xercesImpl.jar"/>
+	<property name="xml-apis.jar" location="${jlib.dir}/xml-apis.jar"/>
+	<property name="xmlworker.jar" location="${jlib.dir}/xmlworker-5.4.1.jar"/>
+	<property name="xstream.jar" location="${jlib.dir}/xstream-1.2.2.jar"/>
+	<property name="formatter.jar" location="${jlib.dir}/formatter.jar"/>
+	<property name="log.jar" location="${jlib.dir}/log4j-1.2.15.jar"/>
+	<property name="slf4j-log4j.jar" location="${jlib.dir}/slf4j-log4j12-1.5.6.jar"/>
+	<property name="slf4j-api.jar" location="${jlib.dir}/slf4j-api-1.5.6.jar"/>
+	<property name="xmlbeans.jar" location="${jlib.dir}/xmlbeans-2.6.0.jar"/>
+	<property name="xmlunit.jar" location="${jlib.dir}/xmlunit-1.3.jar"/>
 	
 	<import file="etc/ivy-bootstrap.xml"/>
 	
 	<path id="runtime.classpath">
 		<path refid="build.classpath"/>
 	</path>
-	
+
 	<path id="build.classpath">
-		<pathelement location="${classes.dir}"/>
-		<pathelement location="${dom4j.jar}"/>
-		<pathelement location="${jaxen.jar}"/>
-		<pathelement location="${poi.jar}"/>
+	    <pathelement location="${classes.dir}"/>
 		<pathelement location="${scala-library.jar}"/>
 		<pathelement location="${scala-compiler.jar}"/>
 		<pathelement location="${scala-reflect.jar}"/>
+		
+		<pathelement location="${commons-collections.jar}"/>
+		<pathelement location="${dom4j.jar}"/>
+		<pathelement location="${evs-restapi-bean.jar}"/>
+		<pathelement location="${gson.jar}"/>
 		<pathelement location="${itext-pdfa.jar}"/>
 		<pathelement location="${itext-xtra.jar}"/>
 		<pathelement location="${itextpdf.jar}"/>
+		<pathelement location="${jaxen.jar}"/>
+		<pathelement location="${opencsv.jar}"/>
+		<pathelement location="${poi.jar}"/>
+		<pathelement location="${poi-ooxml.jar}"/>
+		<pathelement location="${poi-ooxml-schemas.jar}"/>
+		<pathelement location="${serializer.jar}"/>
+		<pathelement location="${xalan.jar}"/>
+		<pathelement location="${xbean.jar}"/>
+		<pathelement location="${xercesImpl.jar}"/>
+		<pathelement location="${xml-apis.jar}"/>
 		<pathelement location="${xmlworker.jar}"/>
+		<pathelement location="${xstream.jar}"/>
+		<pathelement location="${formatter.jar}"/>
+		<pathelement location="${log.jar}"/>
+		<pathelement location="${slf4j-log4j.jar}"/>
+		<pathelement location="${slf4j-api.jar}"/>
+		<pathelement location="${xmlbeans.jar}"/>
+		<pathelement location="${xmlunit.jar}"/>
 	</path>
 	
 	<!-- ************************************************************************************** -->
 	<!-- ** targets  ************************************************************************** -->
 	<!-- ************************************************************************************** -->
 	
-	<target name="run" depends="init, download, convert, validate, transform, transform4pdf" description=" --> download nci files, convert and transform"/>
-	
+	<target name="run" depends="init, download, convert, postconvert, validate, transform, transform4pdf, generateowl" description=" --> download nci files, convert and transform"/>
+
 	<target name="init" depends="setup-ivy">
 		<ivy:settings file="ivysettings.xml"/>
-		<ivy:retrieve conf="build" pattern="${lib.dir}/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve conf="build" pattern="${lib.dir}/[artifact]-[evision].[ext]"/>
 		
 		<taskdef resource="scala/tools/ant/antlib.xml">
 			<classpath>
@@ -134,29 +200,15 @@
 				<pathelement location="${scala-reflect.jar}"/>
 			</classpath>
 		</taskdef>
+		
 	</target>
-	
+
 	<target name="download" description=" --> download nci excel files">
 		<mkdir dir="${in.dir}"/>
-		
-<!--		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.xls" dest="${input.file.adam}" verbose="on" ignoreerrors="true" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.xls" dest="${input.file.cdash}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.xls" dest="${input.file.cde}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/QRS/QRS Terminology.xls" dest="${input.file.qrs}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.xls" dest="${input.file.sdtm}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.xls" dest="${input.file.send}" verbose="on" skipexisting="true"/>
-
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/ADaM/ADaM Terminology.txt" dest="${input.file.adam.txt}" verbose="on" ignoreerrors="true" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/CDASH Terminology.txt" dest="${input.file.cdash.txt}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/Clinical_Data_Element_Glossary/Clinical Data Element Glossary.txt" dest="${input.file.cde.txt}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/QRS/QRS Terminology.txt" dest="${input.file.qrs.txt}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SDTM/SDTM Terminology.txt" dest="${input.file.sdtm.txt}" verbose="on" skipexisting="true"/>
-		<get src="ftp://ftp1.nci.nih.gov/pub/cacore/EVS/CDISC/SEND/SEND Terminology.txt" dest="${input.file.send.txt}" verbose="on" skipexisting="true"/> -->
 	</target>
 	
 	<target name="compile" depends="init">
 		<mkdir dir="${classes.dir}"/>
-		
 		<scalac srcdir="${source.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
 		<javac srcdir="${jsource.dir}" destdir="${classes.dir}" classpathref="build.classpath" deprecation="true"/>
 	</target>
@@ -165,25 +217,32 @@
 		<delete dir="${out.dir}"/>
 		<mkdir dir="${out.dir}"/>
 		<mkdir dir="${out.dir}/ADaM"/>
+		<mkdir dir="${out.dir}/SDTM"/>
 		<mkdir dir="${out.dir}/CDISC_Glossary"/>
-		<mkdir dir="${out.dir}/Protocol"/>		
+		<mkdir dir="${out.dir}/DDF"/>
+		<mkdir dir="${out.dir}/Define-XML"/>
+		<mkdir dir="${out.dir}/Protocol"/>
 		<mkdir dir="${out.dir}/QRS"/>
 		<mkdir dir="${out.dir}/SDTM"/>
 		<mkdir dir="${out.dir}/SEND"/>
-		
+
 		<terminology2odm inputfile="${input.file.adam}"  outputfile="${output.file.adam.xml}"/>
-		<terminology2odm inputfile="${input.file.cdash}" outputfile="${output.file.cdash.xml}"/>
-		<terminology2odm inputfile="${input.file.cde}"   outputfile="${output.file.cde.xml}"/>
-		<terminology2odm inputfile="${input.file.prot}"   outputfile="${output.file.prot.xml}"/>		
-		<terminology2odm inputfile="${input.file.qrs}"    outputfile="${output.file.qrs.xml}"/>
+		<terminology2odm inputfile="${input.file.cdash}"  outputfile="${output.file.cdash.xml}"/>
+		<terminology2odm inputfile="${input.file.cde}"  outputfile="${output.file.cde.xml}"/>
+		<terminology2odm inputfile="${input.file.ddf}"  outputfile="${output.file.ddf.xml}"/>
+		<terminology2odm inputfile="${input.file.define-xml}"  outputfile="${output.file.define-xml.xml}"/>
+		<terminology2odm inputfile="${input.file.prot}"  outputfile="${output.file.prot.xml}"/>
+		<terminology2odm inputfile="${input.file.qrs}"  outputfile="${output.file.qrs.xml}"/>
 		<terminology2odm inputfile="${input.file.sdtm}"  outputfile="${output.file.sdtm.xml}"/>
 		<terminology2odm inputfile="${input.file.send}"  outputfile="${output.file.send.xml}"/>
-		
-		
+
 		<copy todir="${out.dir}">
 			<fileset dir="etc">
 				<include name="xsl/**"/>
 				<include name="schema/**"/>
+				<include name="core/**"/>
+				<include name="ct-1.2.0/**"/>
+				<include name="cdisc-odm-1.3.2/**"/>
 			</fileset>
 		</copy>
 
@@ -199,21 +258,45 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${out.dir}/CDISC_Glossary">
+		<copy todir="${out.dir}/SDTM">
 			<fileset dir="in">
-				<include name="CDISC*.*"/>
+				<include name="SDTM*.*"/>
 			</fileset>
 		</copy>
-		
+
+		<copy todir="${out.dir}/CDISC_Glossary">
+			<fileset dir="in">
+				<include name="Glossary*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/DDF">
+			<fileset dir="in">
+				<include name="DDF*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/Define-XML">
+			<fileset dir="in">
+				<include name="Define-XML*.*"/>
+			</fileset>
+		</copy>
+
 		<copy todir="${out.dir}/Protocol">
 			<fileset dir="in">
 				<include name="Protocol*.*"/>
 			</fileset>
-		</copy>		
+		</copy>
 
 		<copy todir="${out.dir}/QRS">
 			<fileset dir="in">
 				<include name="QRS*.*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${out.dir}/SDTM">
+			<fileset dir="in">
+				<include name="CDASH*.*"/>
 			</fileset>
 		</copy>
 
@@ -231,66 +314,109 @@
 
 	</target>
 
-  <target name="validate" depends="convert" description=" --> validate nci excel files odm">
-    <schemavalidate file="${output.file.adam.xml}" warn="yes" fullchecking="true" failonerror="false">
+	<target name="postconvert" depends="convert" description=" --> postprocess odm.xml">
+		<postprocess inputfile="${output.file.adam.xml}"  outputfile="${output.file.adam.xml}"/>
+		<postprocess inputfile="${output.file.cdash.xml}"  outputfile="${output.file.cdash.xml}"/>
+		<postprocess inputfile="${output.file.cde.xml}"  outputfile="${output.file.cde.xml}"/>
+		<postprocess inputfile="${output.file.ddf.xml}"  outputfile="${output.file.ddf.xml}"/>
+		<postprocess inputfile="${output.file.define-xml.xml}"  outputfile="${output.file.define-xml.xml}"/>
+		<postprocess inputfile="${output.file.prot.xml}"  outputfile="${output.file.prot.xml}"/>
+		<postprocess inputfile="${output.file.qrs.xml}"  outputfile="${output.file.qrs.xml}"/>
+		<postprocess inputfile="${output.file.sdtm.xml}"  outputfile="${output.file.sdtm.xml}"/>
+		<postprocess inputfile="${output.file.send.xml}"  outputfile="${output.file.send.xml}"/>
+	</target>
+
+	<target name="validate" depends="postconvert" description=" --> validate nci excel files odm">
+		<schemavalidate file="${output.file.adam.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-    <schemavalidate file="${output.file.cdash.xml}" warn="yes" fullchecking="true" failonerror="false">
+		<schemavalidate file="${output.file.cdash.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-    <schemavalidate file="${output.file.cde.xml}" warn="yes" fullchecking="true" failonerror="false">
+		<schemavalidate file="${output.file.cde.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-    <schemavalidate file="${output.file.prot.xml}" warn="yes" fullchecking="true" failonerror="false">
-			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
-		</schemavalidate>  	
-    <schemavalidate file="${output.file.qrs.xml}" warn="yes" fullchecking="true" failonerror="false">
+		<schemavalidate file="${output.file.ddf.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-    <schemavalidate file="${output.file.sdtm.xml}" warn="yes" fullchecking="true" failonerror="false">
+		<schemavalidate file="${output.file.define-xml.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
-    <schemavalidate file="${output.file.send.xml}" warn="yes" fullchecking="true" failonerror="false">
+		<schemavalidate file="${output.file.prot.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+		<schemavalidate file="${output.file.qrs.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+		<schemavalidate file="${output.file.sdtm.xml}" warn="yes" fullchecking="true" failonerror="false">
+			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
+		</schemavalidate>
+		<schemavalidate file="${output.file.send.xml}" warn="yes" fullchecking="true" failonerror="false">
 			<schema namespace="${cdisc.odm.schema.namespace}" file="${schema.file}"/>
 		</schemavalidate>
 	</target>
 
-  <target name="transform" depends="validate" description=" --> transform nci excel files odm html">
-    <xslt in="${output.file.adam.xml}"  out="${output.file.adam.html}" style="${xsl.file}" failonerror="false"/>
-    <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.html}" style="${xsl.file}" failonerror="false"/>
-    <xslt in="${output.file.cde.xml}"   out="${output.file.cde.html}" style="${xsl.file}" failonerror="false"/>
-    <xslt in="${output.file.prot.xml}"   out="${output.file.prot.html}" style="${xsl.file}" failonerror="false"/>  	
-    <xslt in="${output.file.qrs.xml}"    out="${output.file.qrs.html}" style="${xsl.file}" failonerror="false"/>
-    <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.html}" style="${xsl.file}" failonerror="false"/>
-    <xslt in="${output.file.send.xml}"  out="${output.file.send.html}" style="${xsl.file}" failonerror="false"/>
-  </target>
-	
-  <target name="transform4pdf" depends="transform" description=" --> transform nci odm to html for pdf conversion">
-	    <xslt in="${output.file.adam.xml}"  out="${output.file.adam.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-	    <xslt in="${output.file.cdash.xml}" out="${output.file.cdash.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-	    <xslt in="${output.file.cde.xml}"   out="${output.file.cde.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-		<xslt in="${output.file.prot.xml}"   out="${output.file.prot.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>  	
-	    <xslt in="${output.file.qrs.xml}"    out="${output.file.qrs.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-	    <xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-	    <xslt in="${output.file.send.xml}"  out="${output.file.send.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
-  	
-	<transform4pdf inputfile="${output.file.adam.4pdf.html}"  outputfile="${output.file.adam.pdf}"/>
-	<transform4pdf inputfile="${output.file.cdash.4pdf.html}" outputfile="${output.file.cdash.pdf}"/>
-	<transform4pdf inputfile="${output.file.cde.4pdf.html}"   outputfile="${output.file.cde.pdf}"/>
-	<transform4pdf inputfile="${output.file.prot.4pdf.html}"   outputfile="${output.file.prot.pdf}"/>  	
-	<transform4pdf inputfile="${output.file.qrs.4pdf.html}"    outputfile="${output.file.qrs.pdf}"/>
-	<transform4pdf inputfile="${output.file.sdtm.4pdf.html}"  outputfile="${output.file.sdtm.pdf}"/>
-	<transform4pdf inputfile="${output.file.send.4pdf.html}"  outputfile="${output.file.send.pdf}"/>
-  
-  </target>
-	
+	<target name="transform" depends="validate" description=" --> transform nci excel files odm html">
+		<xslt in="${output.file.adam.xml}"  out="${output.file.adam.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.cdash.xml}"  out="${output.file.cdash.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.cde.xml}"  out="${output.file.cde.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.ddf.xml}"  out="${output.file.ddf.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.define-xml.xml}"  out="${output.file.define-xml.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.prot.xml}"  out="${output.file.prot.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.qrs.xml}"  out="${output.file.qrs.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.html}" style="${xsl.file}" failonerror="false"/>
+		<xslt in="${output.file.send.xml}"  out="${output.file.send.html}" style="${xsl.file}" failonerror="false"/>
+	</target>
 
-	
+	<target name="transform4pdf" depends="transform" description=" --> transform nci odm to html for pdf conversion">
+		<xslt in="${output.file.adam.xml}"  out="${output.file.adam.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.cdash.xml}"  out="${output.file.cdash.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.cde.xml}"  out="${output.file.cde.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.ddf.xml}"  out="${output.file.ddf.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.define-xml.xml}"  out="${output.file.define-xml.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.prot.xml}"  out="${output.file.prot.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.qrs.xml}"  out="${output.file.qrs.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.sdtm.xml}"  out="${output.file.sdtm.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<xslt in="${output.file.send.xml}"  out="${output.file.send.4pdf.html}" style="${xsl4pdf.file}" failonerror="false"/>
+		<transform4pdf inputfile="${output.file.adam.4pdf.html}"  outputfile="${output.file.adam.pdf}"/>
+		<transform4pdf inputfile="${output.file.cdash.4pdf.html}"  outputfile="${output.file.cdash.pdf}"/>
+		<transform4pdf inputfile="${output.file.cde.4pdf.html}"  outputfile="${output.file.cde.pdf}"/>
+		<transform4pdf inputfile="${output.file.ddf.4pdf.html}"  outputfile="${output.file.ddf.pdf}"/>
+		<transform4pdf inputfile="${output.file.define-xml.4pdf.html}"  outputfile="${output.file.define-xml.pdf}"/>
+		<transform4pdf inputfile="${output.file.prot.4pdf.html}"  outputfile="${output.file.prot.pdf}"/>
+		<transform4pdf inputfile="${output.file.qrs.4pdf.html}"  outputfile="${output.file.qrs.pdf}"/>
+		<transform4pdf inputfile="${output.file.sdtm.4pdf.html}"  outputfile="${output.file.sdtm.pdf}"/>
+		<transform4pdf inputfile="${output.file.send.4pdf.html}"  outputfile="${output.file.send.pdf}"/>
+	</target>
+
+	<target name="generateowl" depends="transform4pdf" description=" --> generate owl file">
+		<generateowl inputfile="${input.file.adam.txt}"  outputfile="${output.file.adam.owl}"/>
+		<generateowl inputfile="${input.file.cdash.txt}"  outputfile="${output.file.cdash.owl}"/>
+		<generateowl inputfile="${input.file.cde.txt}"  outputfile="${output.file.cde.owl}"/>
+		<generateowl inputfile="${input.file.ddf.txt}"  outputfile="${output.file.ddf.owl}"/>
+		<generateowl inputfile="${input.file.define-xml.txt}"  outputfile="${output.file.define-xml.owl}"/>
+		<generateowl inputfile="${input.file.prot.txt}"  outputfile="${output.file.prot.owl}"/>
+		<generateowl inputfile="${input.file.qrs.txt}"  outputfile="${output.file.qrs.owl}"/>
+		<generateowl inputfile="${input.file.sdtm.txt}"  outputfile="${output.file.sdtm.owl}"/>
+		<generateowl inputfile="${input.file.send.txt}"  outputfile="${output.file.send.owl}"/>
+	</target>
+
 	<macrodef name="terminology2odm">
 		<attribute name="inputfile"/>
 		<attribute name="outputfile"/>
 		<sequential>
-			<java classname="TerminologyExcel2ODM" classpathref="runtime.classpath" failonerror="true">
+			<java classname="gov.nih.nci.evs.appl.TerminologyExcel2ODM" classpathref="runtime.classpath" failonerror="true">
+				<arg value="@{inputfile}"/>
+				<arg value="@{outputfile}"/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="postprocess">
+		<attribute name="inputfile"/>
+		<attribute name="outputfile"/>
+		<sequential>
+			<java classname="gov.nih.nci.evs.ODMPostProcessor" classpathref="runtime.classpath" failonerror="true">
 				<arg value="@{inputfile}"/>
 				<arg value="@{outputfile}"/>
 			</java>
@@ -307,6 +433,18 @@
 			</java>
 		</sequential>
 	</macrodef>
+	
+	<macrodef name="generateowl">
+		<attribute name="inputfile"/>
+		<attribute name="outputfile"/>
+		<sequential>
+			<java classname="gov.nih.nci.evs.browser.utils.RDFGenerator" classpathref="runtime.classpath" failonerror="true">
+				<arg value="@{inputfile}"/>
+				<arg value="@{outputfile}"/>
+			</java>
+		</sequential>
+	</macrodef>	
+	
 
 	<target name="clean" description=" --> remove all build artifacts and generated files">
 		<delete dir="${build.dir}"/>

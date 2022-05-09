@@ -37,6 +37,7 @@ import org.dom4j.QName
 
 import util.TerminologyExcelReader
 import util.ODMWriter
+import util.XmlUtil
 
 import model._
 
@@ -55,6 +56,8 @@ object TerminologyExcel2ODM {
     val outfile = new File(args(1))
   
     val terminologyReader = new TerminologyExcelReader()
+    
+
     terminologyReader.read(infile)
     
     val odm = new ODM()
@@ -107,7 +110,11 @@ object TerminologyExcel2ODM {
         odmCodelist.description = termCodelist.extras("terminology:definition")
         
         odmCodelist.extendedAttributes += new Extension("nciodm:ExtCodeID", termCodelist.extras("terminology:code"))
+        try {
         odmCodelist.extendedAttributes += new Extension("nciodm:CodeListExtensible", termCodelist.extras("terminology:extensible"))
+        } catch {
+        case e: Exception => e.printStackTrace()
+        }
         
         odmCodelist.extendedElements += new Extension("nciodm:CDISCSubmissionValue", termCodelist.extras("terminology:submission_value"))
         
@@ -155,9 +162,12 @@ object TerminologyExcel2ODM {
   }
   
   def convertSynonyms(target: Extras, source: Extras) {
+    var str = null
+    val xmlUtil = new XmlUtil()
     if (source.extras.contains("terminology:synonyms")) {
-        source.extras("terminology:synonyms").split(';').foreach { synonym =>
-            target.extendedElements += new Extension("nciodm:CDISCSynonym", synonym.trim())
+        source.extras("terminology:synonyms")
+        .split(';').foreach { synonym =>
+            target.extendedElements += new Extension("nciodm:CDISCSynonym", xmlUtil.xmlEscapeText(synonym.trim()))
         }
     }
   }
@@ -167,7 +177,7 @@ object TerminologyExcel2ODM {
     
     for (definition <- definitions) {
       if (oids.contains(definition.oid)) {
-        error("Duplicate oid '" + definition.oid + "'")
+        sys.error("Duplicate oid '" + definition.oid + "'")
       }
       oids.add(definition.oid)
     }

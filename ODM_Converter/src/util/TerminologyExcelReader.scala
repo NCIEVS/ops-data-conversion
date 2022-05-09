@@ -67,25 +67,8 @@ class TerminologyExcelReader extends ExcelReader {
       val sheet = workbook.getSheetAt(i)
       
       val sheetName = workbook.getSheetName(i)
-      
+ 
       if (sheetName.contains("Terminology")) {
-        printf("found sheet '%s' ... ", sheetName);
-        
-        val parts = sheetName.split(" ")
-          
-        if (parts.length != 3) {
-          throw new RuntimeException("Expected sheet name in form '<type> Terminology <date>' but found '" + sheetName + "' instead")
-        }
-          
-        terminologyModel = parts(0).trim()
-        terminologyShortModel = parts(0).trim()
-        terminologyType = "Controlled Terminology"
-        terminologyDate = parts(2).trim()
-      
-        readCodelists(sheet)
-      } 
-
-      if (sheetName.contains("Glossary")) {
         printf("found sheet '%s' ... ", sheetName);
         
         val parts = sheetName.split(" ")
@@ -93,15 +76,10 @@ class TerminologyExcelReader extends ExcelReader {
         if (parts.length != 3) {
           throw new RuntimeException("Expected sheet name in form 'Clinical <type> Glossary <date>' but found '" + sheetName + "' instead")
         }
-          
- /*       terminologyModel = "Clinical Data Element"
-        terminologyShortModel = "CDE"
-        terminologyType = "Glossary"
-        terminologyDate = parts(3).trim()  */
-      
+    
         terminologyModel = parts(0).trim()
         terminologyShortModel = parts(0).trim()
-        terminologyType = "Glossary"
+        terminologyType = "Controlled Terminology"
         terminologyDate = parts(2).trim()
       
         readCodelists(sheet)
@@ -110,9 +88,10 @@ class TerminologyExcelReader extends ExcelReader {
     
     is.close()
     
-    println("OK")
-  }
-  
+    printf("Done reading %s ... ", file)
+  }      
+      
+
   def readCodelists(sheet : HSSFSheet) {
     val firstRow = sheet.getFirstRowNum()
     val lastRow  = sheet.getLastRowNum()
@@ -120,6 +99,7 @@ class TerminologyExcelReader extends ExcelReader {
     var isFirstRow = true
     
     var codelist : CodeList = null;
+    var xmlUtil = new XmlUtil()
     
     for (i <- firstRow to lastRow) {
       var row = sheet.getRow(i)
@@ -136,28 +116,35 @@ class TerminologyExcelReader extends ExcelReader {
         val submission_value   = getCellValue(row, COLS("submission_value"  ), false)
         //val preferred_term     = getCellValue(row, COLS("preferred_term"    ), false)
         val synonyms           = getCellValue(row, COLS("synonyms"          ), false)
+        if (synonyms != null && synonyms.length > 2) synonyms.replace("; ", ";")
         val definition         = getCellValue(row, COLS("definition"        ), false)
         val nci_preferred_term = getCellValue(row, COLS("nci_preferred_term"), false)
         
         if (code != null && codelist_code == null) {
           // New codelist
           codelist = new CodeList("[NEW]", "[NEW]", "text")
-          
           codelist.addExtra("terminology:code", code)
-          codelist.addExtra("terminology:extensible", extensible)
-          codelist.addExtra("terminology:name", name)
-          codelist.addExtra("terminology:submission_value", submission_value)
-          // codelist.addExtra("terminology:preferred_term", preferred_term)
-          codelist.addExtra("terminology:synonyms", synonyms)
-          codelist.addExtra("terminology:definition", definition)
-          codelist.addExtra("terminology:nci_preferred_term", nci_preferred_term)
 
+          //if (terminologyModel.indexOf("Glossary") != -1 || terminologyModel.indexOf("Protocol") != -1) {
+          	//codelist.addExtra("terminology:extensible", extensible)
+          //} else {
+          if (extensible != null && extensible.length > 0) {
+               codelist.addExtra("terminology:extensible", extensible)
+          }
+
+          codelist.addExtra("terminology:name", xmlUtil.xmlEscapeText(name))
+          codelist.addExtra("terminology:submission_value", xmlUtil.xmlEscapeText(submission_value))
+          // codelist.addExtra("terminology:preferred_term", xmlUtil.xmlEscapeText(preferred_term))
+          codelist.addExtra("terminology:synonyms", synonyms)
+          codelist.addExtra("terminology:definition", xmlUtil.xmlEscapeText(definition))
+          codelist.addExtra("terminology:nci_preferred_term", xmlUtil.xmlEscapeText(nci_preferred_term))
           codelists += codelist
           
         } else if (code != null && codelist_code != null) {
           if (codelist_code != codelist.extras("terminology:code")) {
-            error("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
-          }
+            sys.error("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
+            println("ERROR: Incorrect codelist code.  Expected '" + codelist.extras("terminology:code") + "' but found '" + codelist_code + "' at line " + i + ".")
+          } 
           
           val cli = new CodeListItem(submission_value, "[NEW]")
           
@@ -165,11 +152,10 @@ class TerminologyExcelReader extends ExcelReader {
           // cli.extras("terminology:extensible", extensible)
           cli.addExtra("terminology:name", name)
           cli.addExtra("terminology:submission_value", submission_value)
-          // codelist.addExtra("terminology:preferred_term", preferred_term)
+          // codelist.addExtra("terminology:preferred_term", xmlUtil.xmlEscapeText(preferred_term))
           cli.addExtra("terminology:synonyms", synonyms)
-          cli.addExtra("terminology:definition", definition)
-          cli.addExtra("terminology:nci_preferred_term", nci_preferred_term)
-          
+          cli.addExtra("terminology:definition", xmlUtil.xmlEscapeText(definition))
+          cli.addExtra("terminology:nci_preferred_term", xmlUtil.xmlEscapeText(nci_preferred_term))
           codelist.codelistItems += cli
         }
       }

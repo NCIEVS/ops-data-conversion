@@ -63,7 +63,7 @@ class ODMWriter {
     odmElem.addNamespace("xs",     XML_XSI)
     odmElem.addNamespace("nciodm", NCI_ODM)
     
-    addAttribute(odmElem, "xs:schemaLocation", SCHEMA_LOCATION)
+    //addAttribute(odmElem, "xs:schemaLocation", SCHEMA_LOCATION)
     addAttribute(odmElem, "FileType", "Snapshot")
     addAttribute(odmElem, "FileOID",    odm.fileOID)
     addAttribute(odmElem, "Granularity", "Metadata")
@@ -75,6 +75,14 @@ class ODMWriter {
     addAttribute(odmElem, "SourceSystemVersion", odm.sourceSystemVersion)
     addAttribute(odmElem, "Description", odm.description)
     addAttribute(odmElem, "Originator", odm.originator)
+
+    addAttribute(odmElem, "nciodm:ControlledTerminologyVersion", "1.2.0")
+
+    if (odm.fileOID.indexOf("Protocol") != -1 || odm.fileOID.indexOf("Glossary") != -1) { 
+        addAttribute(odmElem, "nciodm:Context", "Other")
+    } else {
+        addAttribute(odmElem, "nciodm:Context", "Submission")
+    }
        
     val studyElem = odmElem.addElement("Study")
     addAttribute(studyElem, "OID", odm.study.oid)
@@ -201,6 +209,7 @@ class ODMWriter {
         val cliElem = codelistElem.addElement("CodeListItem")
         addAttribute(cliElem, "CodedValue", cli.codedValue)
         addTText(cliElem, "Decode", cli.decode)
+
         addExtensions(cliElem, cli)
       }
       
@@ -229,7 +238,7 @@ class ODMWriter {
   
   def addTextElement(element: Element, name: String, text: String) {
     if (text != null) {
-      element.addElement(name).setText(text)
+      element.addElement(name).setText(text.replace("&amp;#", "&#"))
     }
   }
   
@@ -238,7 +247,7 @@ class ODMWriter {
       element.addElement(name)
         .addElement("TranslatedText")
         .addAttribute("xml:lang", "en")
-        .setText(text)
+        .setText(text.replace("&amp;#", "&#"))
     }
   }
       
@@ -247,7 +256,7 @@ class ODMWriter {
         parentElem.addAttribute(extension.name, extension.value);
     }
     extended.extendedElements.foreach { extension =>
-        parentElem.addElement(extension.name).setText(extension.value)
+        parentElem.addElement(extension.name).setText(extension.value.replace("&amp;#", "&#"))
     }
   }
 }
