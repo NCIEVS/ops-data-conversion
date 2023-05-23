@@ -1,3 +1,5 @@
+#Check that you have the formatHistory.sh script with the correct jar version
+java -jar ConvertHistoryFiles-1.0-jar-with-dependencies.jar $@
 
 #To format the ncitconcept_history file, run the formatting program
 ./formatHistory.sh /path/to/ncitconcept_history /path/to/output.txt
