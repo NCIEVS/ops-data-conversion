@@ -1,0 +1,3 @@
+    </lgRel:associationPredicate>
+  </relations>
+</codingScheme>
