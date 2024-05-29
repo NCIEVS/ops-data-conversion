@@ -122,8 +122,12 @@ public class Ontology {
                 }
 
                 //Create Product Concept
-                String productCode =
-                        "NDC_" + CanmedToOwl.parseConceptCode(propertyValueList.get(Constants.NDC_PRODUCT));
+                String unparsedProductCode = propertyValueList.get(Constants.NDC_PRODUCT);
+                String productCode ="";
+                if(unparsedProductCode!=null) {
+                    productCode =
+                            "NDC_" + CanmedToOwl.parseConceptCode(propertyValueList.get(Constants.NDC_PRODUCT));
+                }
                 String routeString = propertyValueList.get(Constants.NDC_ROUTE_OF_ADMINISTRATION);
                 HashSet<String> routes = new HashSet<String>(parser.tokenizeString(routeString));
                 String brandNameString = propertyValueList.get(Constants.NDC_BRAND_NAME);
@@ -151,8 +155,12 @@ public class Ontology {
 
 
                 //Create Package Concept
-                String packageCode =
-                        "NDC_" + CanmedToOwl.parseConceptCode(propertyValueList.get(Constants.NDC_PACKAGE));
+                String unparsedPackageCode = propertyValueList.get(Constants.NDC_PACKAGE);
+                String packageCode ="";
+                if(unparsedPackageCode!=null) {
+                    packageCode =
+                            "NDC_" + CanmedToOwl.parseConceptCode(propertyValueList.get(Constants.NDC_PACKAGE));
+                }
                 String strength = propertyValueList.get(Constants.NDC_STRENGTH);
                 String status = propertyValueList.get(Constants.NDC_STATUS);
                 String effectiveDate = propertyValueList.get(Constants.NDC_EFFECTIVE_DATE);

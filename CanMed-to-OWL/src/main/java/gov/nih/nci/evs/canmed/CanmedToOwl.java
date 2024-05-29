@@ -178,7 +178,7 @@ public class CanmedToOwl {
             rawCode = rawCode.replace("'", "");
             rawCode = rawCode.replace("%", "");
         }
-        if(rawCode.length()<1){
+        if((rawCode==null) || (rawCode.length()<1)){
             System.out.println("Code is empty "+ origRawCode);
         }
         return rawCode;

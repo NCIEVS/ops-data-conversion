@@ -89,8 +89,9 @@ public class CanmedCsvParser {
         //https://stackoverflow.com/questions/1757065/java-splitting-a-comma-separated-string-but-ignoring-commas-in-quotes
         //String input = "foo,bar,c;qual=\"baz,blurb\",d;junk=\"quux,syzygy\"";
         List<String> result = new ArrayList<String>();
-        int start = 0;
+        int start = 1;
         boolean inQuotes = false;
+        try{
         for (int current = 0; current < input.length(); current++) {
             if (input.charAt(current) == '\"') inQuotes = !inQuotes; // toggle state
             //Are we at the end of the input string yet?
@@ -98,21 +99,29 @@ public class CanmedCsvParser {
             //if so, the add the last token
             if (atLastChar) {
                 String token = input.substring(start);
-                if(token.startsWith("\"")){
+                if(token.startsWith("\"") ){
                     token = token.substring(1, token.length()-1);
                 }
                 result.add(token.trim());
             }
             //If we are at a comma and not within quotes then we have found a delimiter
             else if (input.charAt(current) == ',' && !inQuotes) {
-                String token = input.substring(start, current);
+                String token = input.substring(start, current-1);
+                if(!token.isEmpty()){
                 if(token.startsWith("\"")){
-                    token = token.substring(1, token.length()-1);
+                    token = token.substring(1, token.length());
                 }
+                if(token.endsWith("\"")){
+                    token = token.substring(0, token.length()-1);
+                }}
                 result.add(token.trim());
 //                result.add(input.substring(start, current));
                 start = current + 1;
             }
+        }
+        } catch (Exception e){
+            System.out.println("Error in tokenizeString " + input);
+            return null;
         }
         return result;
     }
@@ -147,9 +156,10 @@ public class CanmedCsvParser {
             if (header.size() - line.size() > 4) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 System.out.println("ERROR: There is something seriously wrong with " + line.get(0));
+                return false;
             }
             if (line.get(0).equals("")) {
-                return false;
+                System.out.println("The code is empty for " +line.get(1));
             }
 
 
